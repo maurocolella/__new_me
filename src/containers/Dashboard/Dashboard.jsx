@@ -13,8 +13,11 @@ export default class Dashboard extends React.Component {
 	}
 
 	render() {
-		return <section className={styles.dashboard}>
+		return <main className={styles.dashboard}>
 				<h1 className={styles.dashboard__title}>TOAST</h1>
-		</section>;
+				<blockquote>
+					Lorem Ipsum.
+				</blockquote>
+			</main>;
 	}
 }

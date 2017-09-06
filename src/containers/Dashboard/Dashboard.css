@@ -1,0 +1,11 @@
+.dashboard {
+	color: #444;
+	font-family: serif;
+	max-width: 40em;
+	margin: 0 auto;
+	width: 92%;
+}
+
+.dashboard__title {
+	color: #222;
+}
