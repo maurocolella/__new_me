@@ -4,7 +4,7 @@
 	color: #eee;
 	cursor: pointer;
 	font-size: 14px;
-	margin-left: /*calc(-38.2vw + 20px)*/-36.9%;
+	margin-left: -35.9vw;
 	max-width: 38.2vw;
 	padding: 1em;
 	transition: margin-left 0.8s ease-out;
