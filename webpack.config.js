@@ -30,6 +30,22 @@ module.exports = {
 				modules: true,
 				localIdentName: '[name]__[local]___[hash:base64:5]'
 			}
+		}, {
+			test: /\.scss$/,
+			loader: 'style-loader'
+		}, {
+			test: /\.scss$/,
+			loader: 'css-loader',
+			query: {
+				modules: true,
+				localIdentName: '[name]__[local]___[hash:base64:5]'
+			}
+		}, {
+			test: /\.scss$/,
+			loader: 'sass-loader',
+			query: {
+				outputStyle: 'expanded'
+			}
 		}]
 	}
 };

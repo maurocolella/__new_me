@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './Dashboard.css';
+import styles from './Dashboard.scss';
 
 export default class Dashboard extends React.Component {
 	constructor(props) {
@@ -14,7 +14,7 @@ export default class Dashboard extends React.Component {
 
 	render() {
 		return (
-			<div className={styles.dashboard__wrapper}>
+			<div className={styles.wrapper}>
 				<header className={styles.header}>
 					<section className={styles.cover}>
 						<h1 className={styles.cover__title}>Mauro Colella</h1>
