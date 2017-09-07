@@ -15,12 +15,21 @@ export default class Sidebar extends React.Component {
 	render() {
 		return (
 			<section className={styles.sidebar}>
-				<ul>
-					<li>
+				<ul className={styles.nav}>
+					<li className={styles.nav__item}>
 						Lorem
 					</li>
-					<li>
+					<li className={styles.nav__item}>
 						Ipsum
+					</li>
+					<li className={styles.nav__item}>
+						Dolor
+					</li>
+					<li className={styles.nav__item}>
+						Sit
+					</li>
+					<li className={styles.nav__item}>
+						Amet
 					</li>
 				</ul>
 			</section>);
