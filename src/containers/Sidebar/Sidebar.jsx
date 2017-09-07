@@ -17,19 +17,19 @@ export default class Sidebar extends React.Component {
 			<section className={styles.sidebar}>
 				<ul className={styles.nav}>
 					<li className={styles.nav__item}>
-						Lorem
+						About
 					</li>
 					<li className={styles.nav__item}>
-						Ipsum
+						Skills
 					</li>
 					<li className={styles.nav__item}>
-						Dolor
+						Work
 					</li>
 					<li className={styles.nav__item}>
-						Sit
+						Play
 					</li>
 					<li className={styles.nav__item}>
-						Amet
+						Contact
 					</li>
 				</ul>
 			</section>);
