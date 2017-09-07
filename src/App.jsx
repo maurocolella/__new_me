@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
-import styles from 'normalize.css';
+
+import cssreset from 'normalize.css';
 import typography from './typeplate.css';
+import styles from './global.css';
+
+import Sidebar from './containers/Sidebar';
 import Dashboard from './containers/Dashboard';
 
 export default class App extends Component {
 	render() {
 		return (
-			<Dashboard />
+			<div className={styles.page}>
+				<Sidebar />
+				<Dashboard />
+			</div>
 		);
 	}
 }

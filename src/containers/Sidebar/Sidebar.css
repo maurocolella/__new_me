@@ -1,0 +1,15 @@
+.sidebar {
+	background-color: #fff;
+	box-shadow: 1px 0px 48px 0px #888;
+	color: #eee;
+	font-size: 14px;
+	margin-left: calc(-38.2vw + 20px);
+	max-width: 38.2vw;
+	padding: 1em;
+	transition: 0.8s margin-left ease-out;
+	transform: translate3d(0,0,0);
+}
+
+.sidebar:hover {
+	margin-left: 0;
+}
