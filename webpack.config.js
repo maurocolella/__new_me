@@ -9,15 +9,15 @@ module.exports = {
 			'webpack-hot-middleware/client',
 			'./src/index.jsx'
 		],
-		/* vendor : [
+		vendor : [
 			'react',
 			'react-dom',
 			'react-router-dom'
-		] */
+		]
 	},
 	output: {
 		path: path.join(__dirname, 'dist'),
-		filename: 'bundle.js',
+		filename: '[name].js',
 		chunkFilename: '[name].bundle.js',
 		publicPath: '/'
 	},
@@ -30,10 +30,10 @@ module.exports = {
 				ie8: false,
 				compress: true
 			} , sourceMap: false
-		}) /*,
+		}),
 		new webpack.optimize.CommonsChunkPlugin({
-			name: 'vendor' // Specify the common bundle's name.
-		})*/
+			name: 'common' // Specify the common bundle's name.
+		})
 	],
 	module: {
 		loaders: [{
