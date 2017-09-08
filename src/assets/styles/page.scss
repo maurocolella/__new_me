@@ -2,6 +2,7 @@
 	/* animation: fadein 0.4s; */
 	background-color: #fff;
 	color: #555;
+	font-weight: 300;
 	margin: 0 auto;
 	max-width: 40em;
 	padding: 0.825em 4% 3.3em;
@@ -13,8 +14,8 @@
 	}
 
 	&__title {
-		color: #333;
 		font-weight: 300;
+		color: #333;
 	}
 }
 
