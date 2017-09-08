@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import styles from './Sidebar.scss';
 
 export default class Sidebar extends React.Component {
@@ -17,10 +19,10 @@ export default class Sidebar extends React.Component {
 			<section className={styles.sidebar}>
 				<ul className={styles.nav}>
 					<li className={styles.nav__item}>
-						About
+						<Link to="/">About</Link>
 					</li>
 					<li className={styles.nav__item}>
-						Skills
+						<Link to="/skills">Skills</Link>
 					</li>
 					<li className={styles.nav__item}>
 						Work
