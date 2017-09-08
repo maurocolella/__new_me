@@ -26,10 +26,12 @@ module.exports = {
 		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new UglifyJSPlugin({
+			parallel: true,
+			sourceMap: false,
 			uglifyOptions: {
 				ie8: false,
 				compress: true
-			} , sourceMap: false
+			}
 		}),
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'common' // Specify the common bundle's name.

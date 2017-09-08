@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
-import styles from '../../page.scss';
+import styles from '../../assets/styles/page.scss';
 
 export default class SkillsPage extends React.Component {
 	constructor(props) {
