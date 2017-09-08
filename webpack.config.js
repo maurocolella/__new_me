@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-	devtool: 'cheap-module-eval-source-map',
+	devtool: 'cheap-module-source-map',
 	entry: {
 		app : [
 			'webpack-hot-middleware/client',
@@ -29,7 +29,7 @@ module.exports = {
 			uglifyOptions: {
 				ie8: false,
 				compress: true
-			}
+			} , sourceMap: false
 		}) /*,
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'vendor' // Specify the common bundle's name.
