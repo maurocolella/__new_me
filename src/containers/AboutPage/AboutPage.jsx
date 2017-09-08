@@ -6,12 +6,6 @@ import styles from '../../assets/styles/page.scss';
 export default class AboutPage extends React.Component {
 	constructor(props) {
 		super(props);
-
-		this.state = {
-		};
-	}
-
-	componentWillUnmount() {
 	}
 
 	render() {
