@@ -4,13 +4,21 @@ var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
 	devtool: 'cheap-module-eval-source-map',
-	entry: [
-		'webpack-hot-middleware/client',
-		'./src/index.jsx'
-	],
+	entry: {
+		app : [
+			'webpack-hot-middleware/client',
+			'./src/index.jsx'
+		],
+		/* vendor : [
+			'react',
+			'react-dom',
+			'react-router-dom'
+		] */
+	},
 	output: {
 		path: path.join(__dirname, 'dist'),
 		filename: 'bundle.js',
+		chunkFilename: '[name].bundle.js',
 		publicPath: '/'
 	},
 	plugins: [
@@ -22,7 +30,7 @@ module.exports = {
 				ie8: false,
 				compress: true
 			}
-		})/* ,
+		}) /*,
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'vendor' // Specify the common bundle's name.
 		})*/
