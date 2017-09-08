@@ -1,0 +1,18 @@
+.page {
+	background-color: #fff;
+	color: #555;
+	margin: 0 auto;
+	max-width: 40em;
+	padding: 0.825em 4% 3.3em;
+	transform: translate3d(0,0,0);
+	width: 92%;
+
+	&__header{
+		padding-top: 1.65em;
+	}
+
+	&__title {
+		color: #333;
+		font-weight: 300;
+	}
+}

@@ -10,7 +10,7 @@ import Dashboard from './containers/Dashboard';
 export default class App extends Component {
 	render() {
 		return (
-			<div className={styles.page}>
+			<div className={styles.main}>
 				<Sidebar />
 				<Dashboard />
 			</div>
