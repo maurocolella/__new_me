@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
 	devtool: 'cheap-module-eval-source-map',
@@ -13,7 +14,16 @@ module.exports = {
 		publicPath: '/'
 	},
 	plugins: [
-		new webpack.HotModuleReplacementPlugin()
+		new webpack.HotModuleReplacementPlugin(),
+		new UglifyJSPlugin({
+			uglifyOptions: {
+				ie8: false,
+				compress: true
+			}
+		})/* ,
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'vendor' // Specify the common bundle's name.
+		})*/
 	],
 	module: {
 		loaders: [{
