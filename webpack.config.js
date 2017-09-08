@@ -15,6 +15,8 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
+		new webpack.optimize.DedupePlugin(),
+		new webpack.optimize.OccurenceOrderPlugin(),
 		new UglifyJSPlugin({
 			uglifyOptions: {
 				ie8: false,
