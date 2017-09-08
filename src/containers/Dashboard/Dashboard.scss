@@ -7,7 +7,7 @@
 
 .cover{
 	padding-top: 1.65em;
-	background-color: rgba(255,255,255,0.1);
+	background-color: rgba(255,255,255,0.1); /* rgba(23,63,91,0.8); */
 	border-left: 1px solid #ff6611;
 	border-right: 1px solid #ff6611;
 	height: 100%;
@@ -23,7 +23,8 @@
 }
 
 .header{
-	background-color: #005577;
+	background: #005577; /* url('../../assets/blue-sunset-6.jpg') center; */
+	background-size: cover;
 	border-bottom: 1px solid #ff4400;
 	height: 200px;
 	z-index: 2;
