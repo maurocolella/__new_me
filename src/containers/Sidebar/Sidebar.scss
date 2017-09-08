@@ -2,7 +2,6 @@
 	background-color: #fff;
 	box-shadow: 1px 0px 48px 0px #888;
 	color: #555;
-	cursor: pointer;
 	font-size: 14px;
 	margin-left: -38.2%;
 	min-width: calc(38.2% + 20px);
@@ -28,14 +27,8 @@
 
 	&__item {
 		border-bottom: 1px solid #eee;
-		color: #555;
 		display: flex;
-		flex-direction: column;
-		font-size: 2em;
-		font-weight: 700;
 		height: 100%;
-		justify-content: center;
-		padding-left: 0.825em;
 		position: relative;
 		text-transform: uppercase;
 		width: 100%;
@@ -65,6 +58,36 @@
 			right: 0;
 			bottom: 0;
 			width: 6%;
+		}
+
+		& .nav__link:focus:after {
+			background-color: #dededf;
+			content: '';
+			height: 100%;
+			opacity: 1;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			width: 6%;
+		}
+	}
+
+	&__link {
+		&,
+		&:hover,
+		&:focus,
+		&:active{
+			color: #555;
+			cursor: pointer;
+			display: flex;
+			flex-direction: column;
+			font-size: 2em;
+			font-weight: 700;
+			height: 100%;
+			justify-content: center;
+			padding-left: 0.825em;
+			text-decoration: none;
+			width: 100%;
 		}
 	}
 }
