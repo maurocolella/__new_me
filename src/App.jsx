@@ -4,8 +4,9 @@ import cssreset from 'normalize.css';
 import typography from './typeplate.css';
 import styles from './global.scss';
 
-import Sidebar from './containers/Sidebar';
 import Dashboard from './containers/Dashboard';
+import Sidebar from './containers/Sidebar';
+
 
 export default class App extends Component {
 	render() {
