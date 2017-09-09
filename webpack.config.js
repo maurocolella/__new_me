@@ -39,40 +39,51 @@ module.exports = {
 	module: {
 		rules: [{
 			test: /\.(js|jsx)$/,
-			loaders: ['react-hot-loader', 'babel-loader'],
+			use: [
+				{ loader: 'react-hot-loader' },
+				{ loader: 'babel-loader'}
+			],
 			include: path.join(__dirname, 'src')
 		}, {
 			test: /\.css$/,
-			loader: 'style-loader'
-		}, {
-			test: /\.css$/,
-			loader: 'css-loader',
-			query: {
-				modules: true,
-				localIdentName: '[name]__[local]___[hash:base64:5]'
-			}
-		}, {
-			test: /\.scss$/,
-			loader: 'style-loader'
-		}, {
-			test: /\.scss$/,
-			loader: 'css-loader',
-			query: {
-				modules: true,
-				localIdentName: '[name]__[local]___[hash:base64:5]'
-			}
+			use: [
+				{ loader: 'style-loader' },
+				{
+					loader: 'css-loader',
+					options: {
+						modules: true,
+						localIdentName: '[name]__[local]___[hash:base64:5]'
+					}
+				}
+			]
 		}, {
 			test: /\.scss$/,
-			loader: 'sass-loader',
-			query: {
-				outputStyle: 'expanded'
-			}
+			use: [
+				{ loader: 'style-loader' },
+				{
+					loader: 'css-loader',
+					options: {
+						modules: true,
+						localIdentName: '[name]__[local]___[hash:base64:5]'
+					}
+				},
+				{
+					loader: 'sass-loader',
+					options: {
+						outputStyle: 'expanded'
+					}
+				}
+			]
 		}, {
 			test: /\.(jpg|png|svg)$/,
-			loader: 'url-loader',
-			options: {
-				limit: 25000,
-			}
+			use: [
+				{
+					loader: 'url-loader',
+					options: {
+						limit: 25000,
+					}
+				}
+			]
 		}]
 	}
 };
