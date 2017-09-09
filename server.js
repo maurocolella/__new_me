@@ -6,11 +6,11 @@ import {
   createIsomorphicWebpack
 } from 'isomorphic-webpack';
 
-// import render from './src/index.server.jsx';
+import render from './src/index.server.jsx';
 
 const app = express();
 const compiler = webpack(config);
-// createIsomorphicWebpack(config);
+createIsomorphicWebpack(config);
 
 app.set('views', './src/views');
 app.set('view engine', 'ejs');

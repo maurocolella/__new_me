@@ -26,7 +26,7 @@ module.exports = {
 		new webpack.HotModuleReplacementPlugin(),
 		new UglifyJSPlugin({
 			parallel: true,
-			sourceMap: false,
+			sourceMap: true,
 			uglifyOptions: {
 				ie8: false,
 				compress: true
