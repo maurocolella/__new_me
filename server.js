@@ -1,11 +1,16 @@
-var path = require('path');
-var webpack = require('webpack');
-var express = require('express');
-var config = require('./webpack.config');
-// var serverRender = require('./src/index.server.jsx');
+import path from 'path';
+import webpack from 'webpack';
+import express from 'express';
+import config from './webpack.config';
+import {
+  createIsomorphicWebpack
+} from 'isomorphic-webpack';
 
-var app = express();
-var compiler = webpack(config);
+// import render from './src/index.server.jsx';
+
+const app = express();
+const compiler = webpack(config);
+// createIsomorphicWebpack(config);
 
 app.set('views', './src/views');
 app.set('view engine', 'ejs');

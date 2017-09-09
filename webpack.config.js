@@ -24,8 +24,6 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.optimize.DedupePlugin(),
-		new webpack.optimize.OccurenceOrderPlugin(),
 		new UglifyJSPlugin({
 			parallel: true,
 			sourceMap: false,
@@ -39,9 +37,9 @@ module.exports = {
 		})
 	],
 	module: {
-		loaders: [{
+		rules: [{
 			test: /\.(js|jsx)$/,
-			loaders: ['react-hot', 'babel'],
+			loaders: ['react-hot-loader', 'babel-loader'],
 			include: path.join(__dirname, 'src')
 		}, {
 			test: /\.css$/,
