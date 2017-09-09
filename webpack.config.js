@@ -5,10 +5,15 @@ var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
 	devtool: 'cheap-module-source-map',
 	entry: {
-		app : [
+		client : [
 			'webpack-hot-middleware/client',
 			'babel-polyfill',
 			'./src/index.client.jsx'
+		],
+		server : [
+			'webpack-hot-middleware/client',
+			'babel-polyfill',
+			'./src/index.server.jsx'
 		],
 		vendor : [
 			'react',

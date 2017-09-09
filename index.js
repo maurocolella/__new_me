@@ -2,11 +2,13 @@ import path from 'path';
 import webpack from 'webpack';
 import express from 'express';
 import config from './webpack.config';
-import {
-  createIsomorphicWebpack
-} from 'isomorphic-webpack';
 
-import render from './src/index.server.jsx';
+import {
+	renderToString
+} from 'react-dom/server';
+import {
+	createIsomorphicWebpack
+} from 'isomorphic-webpack';
 
 const app = express();
 const compiler = webpack(config);
@@ -22,6 +24,9 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.get('*', function(req, res) {
+	// const render = require('./dist/server.js');
+	// const html = render(req);
+	// console.log(html);
 
 	res.render('index', { html: '' });
 });
