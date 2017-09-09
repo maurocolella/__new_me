@@ -1,9 +1,9 @@
 {
-	"name": "react-hot-boilerplate",
-	"version": "1.0.0",
-	"description": "Boilerplate for ReactJS project with hot code reloading",
+	"name": "mauro-colella-portfolio",
+	"version": "1.0.3",
+	"description": "Portfolio based on ReactJS hot code reloading boilerplate",
 	"scripts": {
-		"start": "node server.js",
+		"start": "babel-node server.js",
 		"lint": "eslint src"
 	},
 	"repository": {

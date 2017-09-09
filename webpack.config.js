@@ -8,7 +8,7 @@ module.exports = {
 		app : [
 			'webpack-hot-middleware/client',
 			'babel-polyfill',
-			'./src/index.jsx'
+			'./src/index.client.jsx'
 		],
 		vendor : [
 			'react',
