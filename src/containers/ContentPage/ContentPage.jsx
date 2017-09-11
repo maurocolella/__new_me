@@ -1,39 +1,18 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import fetch from 'isomorphic-fetch';
+import { connect } from 'react-redux';
+import { itemsFetchData } from './actions';
 
 import styles from '../../assets/styles/page.scss';
 
-export default class ContentPage extends React.Component {
+class ContentPage extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.fetchData = this.fetchData.bind(this);
 	}
 
 	componentDidMount() {
-		this.fetchData('http://api.dev.home/articles');
-	}
-
-	fetchData(url) {
-		this.setState({ isLoading: true });
-
-		fetch(url)
-			.then((response) => {
-			if (!response.ok) {
-				throw Error(response.statusText);
-			}
-
-			this.setState({ isLoading: false });
-
-			return response;
-		})
-			.then((response) => response.json())
-			.then((items) => {
-				console.log(items);
-				this.setState({ items });
-			})
-			.catch(() => this.setState({ hasErrored: true }));
+		this.props.fetchData('http://api.dev.home/articles');
 	}
 
 	render() {
@@ -53,3 +32,21 @@ export default class ContentPage extends React.Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	console.log(state);
+
+	return {
+		items: state.items,
+		hasErrored: state.itemsHasErrored,
+		isLoading: state.itemsIsLoading
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		fetchData: (url) => dispatch(itemsFetchData(url))
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContentPage);
