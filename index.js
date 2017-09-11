@@ -24,9 +24,9 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.get('*', function(req, res) {
-	// const render = require('./dist/server.js');
+	// const appBody = renderToString(require('./src/App.jsx').default);
 	// const html = render(req);
-	// console.log(html);
+	// console.log(appBody);
 
 	res.render('index', { html: '' });
 });
