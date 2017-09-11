@@ -5,10 +5,15 @@ var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
 	devtool: 'cheap-module-source-map',
 	entry: {
-		app : [
+		client : [
 			'webpack-hot-middleware/client',
 			'babel-polyfill',
-			'./src/index.jsx'
+			'./src/index.client.jsx'
+		],
+		server : [
+			'webpack-hot-middleware/client',
+			'babel-polyfill',
+			'./src/index.server.jsx'
 		],
 		vendor : [
 			'react',
@@ -24,11 +29,9 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.optimize.DedupePlugin(),
-		new webpack.optimize.OccurenceOrderPlugin(),
 		new UglifyJSPlugin({
 			parallel: true,
-			sourceMap: false,
+			sourceMap: true,
 			uglifyOptions: {
 				ie8: false,
 				compress: true
@@ -39,42 +42,53 @@ module.exports = {
 		})
 	],
 	module: {
-		loaders: [{
+		rules: [{
 			test: /\.(js|jsx)$/,
-			loaders: ['react-hot', 'babel'],
+			use: [
+				{ loader: 'react-hot-loader' },
+				{ loader: 'babel-loader'}
+			],
 			include: path.join(__dirname, 'src')
 		}, {
 			test: /\.css$/,
-			loader: 'style-loader'
-		}, {
-			test: /\.css$/,
-			loader: 'css-loader',
-			query: {
-				modules: true,
-				localIdentName: '[name]__[local]___[hash:base64:5]'
-			}
-		}, {
-			test: /\.scss$/,
-			loader: 'style-loader'
-		}, {
-			test: /\.scss$/,
-			loader: 'css-loader',
-			query: {
-				modules: true,
-				localIdentName: '[name]__[local]___[hash:base64:5]'
-			}
+			use: [
+				{ loader: 'style-loader' },
+				{
+					loader: 'css-loader',
+					options: {
+						modules: true,
+						localIdentName: '[name]__[local]___[hash:base64:5]'
+					}
+				}
+			]
 		}, {
 			test: /\.scss$/,
-			loader: 'sass-loader',
-			query: {
-				outputStyle: 'expanded'
-			}
+			use: [
+				{ loader: 'style-loader' },
+				{
+					loader: 'css-loader',
+					options: {
+						modules: true,
+						localIdentName: '[name]__[local]___[hash:base64:5]'
+					}
+				},
+				{
+					loader: 'sass-loader',
+					options: {
+						outputStyle: 'expanded'
+					}
+				}
+			]
 		}, {
 			test: /\.(jpg|png|svg)$/,
-			loader: 'url-loader',
-			options: {
-				limit: 25000,
-			}
+			use: [
+				{
+					loader: 'url-loader',
+					options: {
+						limit: 25000,
+					}
+				}
+			]
 		}]
 	}
 };
