@@ -19,7 +19,7 @@ export default class Dashboard extends React.Component {
 					</section>
 				</header>
 				<Route exact path="/skills" component={SkillsPage} />
-				<Route path="/" component={ContentPage} />
+				<Route exact path="/" component={ContentPage} />
 			</div>);
 	}
 }

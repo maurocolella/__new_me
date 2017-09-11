@@ -1,11 +1,39 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import fetch from 'isomorphic-fetch';
 
 import styles from '../../assets/styles/page.scss';
 
 export default class ContentPage extends React.Component {
 	constructor(props) {
 		super(props);
+
+		this.fetchData = this.fetchData.bind(this);
+	}
+
+	componentDidMount() {
+		this.fetchData('http://api.dev.home/articles');
+	}
+
+	fetchData(url) {
+		this.setState({ isLoading: true });
+
+		fetch(url)
+			.then((response) => {
+			if (!response.ok) {
+				throw Error(response.statusText);
+			}
+
+			this.setState({ isLoading: false });
+
+			return response;
+		})
+			.then((response) => response.json())
+			.then((items) => {
+				console.log(items);
+				this.setState({ items });
+			})
+			.catch(() => this.setState({ hasErrored: true }));
 	}
 
 	render() {
