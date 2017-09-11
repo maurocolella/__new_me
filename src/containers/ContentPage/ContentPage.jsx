@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 
 import styles from '../../assets/styles/page.scss';
 
-export default class AboutPage extends React.Component {
+export default class ContentPage extends React.Component {
 	constructor(props) {
 		super(props);
 	}
