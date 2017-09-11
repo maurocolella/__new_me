@@ -55,9 +55,15 @@
 	"dependencies": {
 		"babel-polyfill": "^6.26.0",
 		"ejs": "^2.5.7",
+		"file-loader": "^0.11.2",
+		"immutable": "^3.8.1",
+		"isomorphic-fetch": "^2.2.1",
 		"normalize.css": "^7.0.0",
-		"react": "^0.14.6",
-		"react-dom": "^0.14.6",
-		"react-router-dom": "^4.2.2"
+		"react": "^15.6.1",
+		"react-dom": "^15.6.1",
+		"react-redux": "^5.0.6",
+		"react-router-dom": "^4.2.2",
+		"redux": "^3.7.2",
+		"redux-thunk": "^2.2.0"
 	}
 }
