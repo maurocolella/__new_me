@@ -29,14 +29,18 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
-		new UglifyJSPlugin({
+		/* new webpack.DefinePlugin({
+			'process.env': {
+				NODE_ENV: JSON.stringify('production')
+			}
+		}), new UglifyJSPlugin({
 			parallel: true,
 			sourceMap: true,
 			uglifyOptions: {
 				ie8: false,
 				compress: true
 			}
-		}),
+		}), */
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'common' // Specify the common bundle's name.
 		})
