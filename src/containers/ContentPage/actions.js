@@ -1,3 +1,5 @@
+import 'isomorphic-fetch';
+
 export function itemsHasErrored(bool) {
 	return {
 		type: 'ITEMS_HAS_ERRORED',
