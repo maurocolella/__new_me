@@ -20,7 +20,7 @@ class ContentPage extends React.Component {
 		const { isLoading, item } = this.props;
 
 		return (
-			(!isLoading) ?
+			(isLoading) ?
 			<Loader />
 			:
 			<main className={styles.page}>
@@ -40,7 +40,6 @@ const mapStateToProps = (state, ownProps) => {
 	const item = (items.length) ? (slug === undefined) ? items[0] : items.filter((obj) => obj.slug === slug)[0] : {};
 
 	return {
-		// items: state.items,
 		hasErrored: state.itemsHasErrored,
 		isLoading: state.itemsIsLoading,
 		slug,
