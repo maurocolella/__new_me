@@ -13,16 +13,16 @@ export default class Sidebar extends React.Component {
 			<section className={styles.sidebar}>
 				<ul className={styles.nav}>
 					<li className={styles.nav__item}>
-						<Link className={styles.nav__link} to="/">About</Link>
+						<Link className={styles.nav__link} to="/est">About</Link>
 					</li>
 					<li className={styles.nav__item}>
 						<Link className={styles.nav__link} to="/skills">Skills</Link>
 					</li>
 					<li className={styles.nav__item}>
-						<Link className={styles.nav__link} to="/">Work</Link>
+						<Link className={styles.nav__link} to="/work">Work</Link>
 					</li>
 					<li className={styles.nav__item}>
-						<Link className={styles.nav__link} to="/">Play</Link>
+						<Link className={styles.nav__link} to="/consequatur">Play</Link>
 					</li>
 					<li className={styles.nav__item}>
 						<Link className={styles.nav__link} to="/">Contact</Link>
