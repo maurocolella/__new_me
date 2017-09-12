@@ -1,0 +1,19 @@
+.viewport{
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	overflow: hidden;
+	position: relative;
+}
+
+.gl{
+	cursor: grab;
+	height: 100% !important;
+	position: absolute;
+	width: 100% !important;
+}
+
+.gl:active{
+	cursor: grabbing;
+}
