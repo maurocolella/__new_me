@@ -56,8 +56,13 @@
 		}
 
 		& .nav__link:focus:after {
-			background-color: #dededf;
+			background-color: #ddebff;
+			content: '';
+			height: 100%;
 			opacity: 1;
+			position: absolute;
+			right: 0;
+			bottom: 0;
 			width: 6%;
 		}
 	}
