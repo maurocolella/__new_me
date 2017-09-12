@@ -1,7 +1,9 @@
 .page {
-	/* animation: fadein 0.4s; */
 	background-color: #fff;
 	color: #555;
+	display: flex;
+	flex: 2;
+	flex-direction: column;
 	font-weight: 300;
 	margin: 0 auto;
 	max-width: 40em;
@@ -14,6 +16,7 @@
 	}
 
 	&__title {
+		animation: fadein 0.4s;
 		color: #333;
 		font-weight: 300;
 	}
