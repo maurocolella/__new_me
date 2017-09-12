@@ -26,7 +26,8 @@ class ContentPage extends React.Component {
 				<header className={styles.page__header}>
 					<h2 className={styles.page__title}>{item ? item.title : ''}</h2>
 				</header>
-				{item ? item.body : ''}
+				<article dangerouslySetInnerHTML={{__html: item ? item.body : ''}}>
+				</article>
 			</main>
 		);
 	}
