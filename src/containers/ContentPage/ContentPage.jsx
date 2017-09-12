@@ -16,10 +16,7 @@ class ContentPage extends React.Component {
 	}
 
 	render() {
-		const { slug } = this.props;
-		const item = (slug) ? this.props.items.filter((obj) => obj.slug === slug)[0] : {};
-
-		console.log(slug, item);
+		const { item } = this.props;
 
 		return (
 			<main className={styles.page}>
@@ -34,11 +31,16 @@ class ContentPage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+	const { slug } = ownProps.match.params;
+	const { items } = state;
+	const item = (items.length) ? (slug === undefined) ? items[0] : items.filter((obj) => obj.slug === slug)[0] : {};
+
 	return {
-		items: state.items,
+		// items: state.items,
 		hasErrored: state.itemsHasErrored,
 		isLoading: state.itemsIsLoading,
-		slug: ownProps.match.params.slug
+		slug,
+		item
 	};
 };
 
