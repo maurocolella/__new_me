@@ -1,4 +1,5 @@
 import 'isomorphic-fetch';
+import 'bluebird';
 
 export function itemsHasErrored(bool) {
 	return {
@@ -27,11 +28,11 @@ export function itemsFetchData(url) {
 
 		fetch(url)
 			.then((response) => {
+			dispatch(itemsIsLoading(false));
+
 			if (!response.ok) {
 				throw Error(response.statusText);
 			}
-
-			dispatch(itemsIsLoading(false));
 
 			return response;
 		})
