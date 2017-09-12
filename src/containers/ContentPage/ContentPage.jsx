@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { itemsFetchData } from './actions';
 
+import Loader from '../../components/Loader';
 import styles from '../../assets/styles/page.scss';
 
 class ContentPage extends React.Component {
@@ -16,9 +17,12 @@ class ContentPage extends React.Component {
 	}
 
 	render() {
-		const { item } = this.props;
+		const { isLoading, item } = this.props;
 
 		return (
+			(!isLoading) ?
+			<Loader />
+			:
 			<main className={styles.page}>
 				<header className={styles.page__header}>
 					<h2 className={styles.page__title}>{item ? item.title : ''}</h2>
