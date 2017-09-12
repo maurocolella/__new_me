@@ -51,23 +51,13 @@
 
 		&:hover:after {
 			background-color: #1e7397;
-			content: '';
-			height: 100%;
 			opacity: 1;
-			position: absolute;
-			right: 0;
-			bottom: 0;
 			width: 6%;
 		}
 
 		& .nav__link:focus:after {
 			background-color: #dededf;
-			content: '';
-			height: 100%;
 			opacity: 1;
-			position: absolute;
-			right: 0;
-			bottom: 0;
 			width: 6%;
 		}
 	}
@@ -76,7 +66,7 @@
 		&,
 		&:hover,
 		&:focus,
-		&:active{
+		&:active {
 			color: #555;
 			cursor: pointer;
 			display: flex;
@@ -88,6 +78,12 @@
 			padding-left: 0.825em;
 			text-decoration: none;
 			width: 100%;
+		}
+
+		&:hover,
+		&:focus,
+		&:active {
+			color: #1f769a;
 		}
 	}
 }
