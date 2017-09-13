@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { skillsFetchData } from './actions';
 
 import GLChart from '../../components/GLChart';
 
 import styles from '../../assets/styles/page.scss';
 
-export default class SkillsPage extends React.Component {
+class SkillsPage extends React.Component {
 	constructor(props) {
 		super(props);
 	}
 
+	componentDidMount() {
+		this.props.fetchData('http://api.dev.home/skills');
+	}
+
 	render() {
+		console.log(this.props.skills);
+
 		return (
 			<main className={styles.page}>
 				<header className={styles.page__header}>
@@ -25,3 +33,21 @@ export default class SkillsPage extends React.Component {
 		);
 	}
 }
+
+const mapStateToProps = (state, ownProps) => {
+	const { skills } = state;
+
+	return {
+		hasErrored: state.skillsHasErrored,
+		isLoading: state.skillsIsLoading,
+		skills
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		fetchData: (url) => dispatch(skillsFetchData(url))
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SkillsPage);

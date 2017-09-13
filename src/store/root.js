@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux';
-import { items, itemsHasErrored, itemsIsLoading } from '../containers/ContentPage/reducers';
+import { articles, articlesHasErrored, articlesIsLoading } from '../containers/ContentPage/reducers';
+import { skills, skillsHasErrored, skillsIsLoading } from '../containers/SkillsPage/reducers';
 
 export default combineReducers({
-	items,
-	itemsHasErrored,
-	itemsIsLoading
+	articles,
+	articlesHasErrored,
+	articlesIsLoading,
+	skills,
+	skillsHasErrored,
+	skillsIsLoading
 });

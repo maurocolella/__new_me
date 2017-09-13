@@ -1,6 +1,6 @@
-export function itemsHasErrored(state = false, action) {
+export function articlesHasErrored(state = false, action) {
 	switch (action.type) {
-		case 'ITEMS_HAS_ERRORED':
+		case 'ARTICLES_HAS_ERRORED':
 			return action.hasErrored;
 
 		default:
@@ -8,9 +8,9 @@ export function itemsHasErrored(state = false, action) {
 					   }
 }
 
-export function itemsIsLoading(state = false, action) {
+export function articlesIsLoading(state = false, action) {
 	switch (action.type) {
-		case 'ITEMS_IS_LOADING':
+		case 'ARTICLES_IS_LOADING':
 			return action.isLoading;
 
 		default:
@@ -18,10 +18,10 @@ export function itemsIsLoading(state = false, action) {
 					   }
 }
 
-export function items(state = [], action) {
+export function articles(state = [], action) {
 	switch (action.type) {
-		case 'ITEMS_FETCH_DATA_SUCCESS':
-			return action.items;
+		case 'ARTICLES_FETCH_DATA_SUCCESS':
+			return action.articles;
 
 		default:
 			return state;

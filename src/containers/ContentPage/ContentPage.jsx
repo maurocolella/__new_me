@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { itemsFetchData } from './actions';
+import { articlesFetchData } from './actions';
 
 import Loader from '../../components/Loader';
 import styles from '../../assets/styles/page.scss';
@@ -17,7 +17,7 @@ class ContentPage extends React.Component {
 	}
 
 	render() {
-		const { isLoading, item } = this.props;
+		const { isLoading, article } = this.props;
 
 		return (
 			(isLoading) ?
@@ -25,9 +25,9 @@ class ContentPage extends React.Component {
 			:
 			<main className={styles.page}>
 				<header className={styles.page__header}>
-					<h2 className={styles.page__title}>{item ? item.title : ''}</h2>
+					<h2 className={styles.page__title}>{article ? article.title : ''}</h2>
 				</header>
-				<article dangerouslySetInnerHTML={{__html: item ? item.body : ''}}>
+				<article dangerouslySetInnerHTML={{__html: article ? article.body : ''}}>
 				</article>
 			</main>
 		);
@@ -36,20 +36,20 @@ class ContentPage extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
 	const { slug } = ownProps.match.params;
-	const { items } = state;
-	const item = (items.length) ? (slug === undefined) ? items[0] : items.filter((obj) => obj.slug === slug)[0] : {};
+	const { articles } = state;
+	const article = (articles !== undefined && articles.length) ? (slug === undefined) ? articles[0] : articles.filter((obj) => obj.slug === slug)[0] : {};
 
 	return {
-		hasErrored: state.itemsHasErrored,
-		isLoading: state.itemsIsLoading,
+		hasErrored: state.articlesHasErrored,
+		isLoading: state.articlesIsLoading,
 		slug,
-		item
+		article
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		fetchData: (url) => dispatch(itemsFetchData(url))
+		fetchData: (url) => dispatch(articlesFetchData(url))
 	};
 };
 
