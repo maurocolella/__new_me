@@ -6,7 +6,7 @@ export default class GLChart extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.initGL = this.initGL.bind(this);
+		// this.initGL = this.initGL.bind(this);
 		this.detectGL = this.detectGL.bind(this);
 
 		this.state = {
@@ -72,10 +72,12 @@ export default class GLChart extends React.Component {
 		this.state.GLContext.teardown();
 	}
 
-	initGL(el) {
-		this.state.GLContext.init(el, this.state.data);
+	componentWillReceiveProps(nextProps) {
+		if(nextProps.data.toString() !== this.props.data.toString()){
+			this.state.GLContext.teardown();
+			this.state.GLContext.init(this.canvas, nextProps.data);
+		}
 	}
-
 
 	detectGL() {
 
@@ -96,7 +98,7 @@ export default class GLChart extends React.Component {
 		return (
 				hasGL ?
 					<div className={styles.viewport} style={this.props.style}>
-						<canvas ref={this.initGL} className={styles.gl} />
+						<canvas ref={(canvas) => { this.canvas = canvas; }} className={styles.gl} />
 					</div>
 					:
 				<div></div>

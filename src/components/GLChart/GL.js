@@ -29,7 +29,6 @@ export default class GL {
 	}
 
 	init(canvas, dataSet) {
-
 		if(!canvas) {
 			return;
 		}
@@ -76,9 +75,6 @@ export default class GL {
 			return this.renderText(entry.name);
 		});
 
-		const skillsGeometry = new THREE.ConvexGeometry(skillsVertices);
-		const envelopeGeometry = new THREE.ConvexGeometry(envelopeVertices);
-
 		const innerSphereGeometry = new THREE.SphereGeometry(radiusIn, segments, rings);
 		const outerSphereGeometry = new THREE.SphereGeometry(radiusOut, segments, rings);
 
@@ -112,38 +108,44 @@ export default class GL {
 			fog: false,
 		});
 
-		skillsGeometry.dynamic = true;
-		skillsGeometry.vertices = skillsGeometry.vertices.map((vertex, index) => {
-			return vertex.multiplyScalar(dataSet[index].value);
-		});
-		const skillsCloud = new THREE.Mesh(skillsGeometry, flatMaterial);
-		skillsCloud.scale.set(radiusOut, radiusOut, radiusOut);
-
-		const envelope = new THREE.Mesh(envelopeGeometry, darkWireframeMaterial);
-		envelope.scale.set(radiusOut, radiusOut, radiusOut);
-
 		const outerSphere = new THREE.Mesh(outerSphereGeometry, wireframeMaterial);
 		const innerSphere = new THREE.Mesh(innerSphereGeometry, wireframeMaterial);
 
-		const spikesVertices = envelope.geometry.vertices.slice();
-		const spikesGeometry = new THREE.Geometry();
+		if(dataSet.length > 4){
+			const skillsGeometry = new THREE.ConvexGeometry(skillsVertices);
+			const envelopeGeometry = new THREE.ConvexGeometry(envelopeVertices);
 
-		spikesVertices.forEach((vertex, index) => {
-			spikesGeometry.vertices.push(new THREE.Vector3(0, 0, 0));
-			spikesGeometry.vertices.push(vertex);
-			labelSprites[index].position.set(vertex.x * 40, vertex.y * 40, vertex.z * 40);
-			labelSprites[index].scale.set(36.0, 36.0, 36.0);
-			this.scene.add(labelSprites[index]);
-		});
+			skillsGeometry.dynamic = true;
+			skillsGeometry.vertices = skillsGeometry.vertices.map((vertex, index) => {
+				return vertex.multiplyScalar(dataSet[index].value);
+			});
+			const skillsCloud = new THREE.Mesh(skillsGeometry, flatMaterial);
+			skillsCloud.scale.set(radiusOut, radiusOut, radiusOut);
 
-		const spikes = new THREE.LineSegments(spikesGeometry, lineMaterial);
-		spikes.scale.set(40, 40, 40);
+			const envelope = new THREE.Mesh(envelopeGeometry, darkWireframeMaterial);
+			envelope.scale.set(radiusOut, radiusOut, radiusOut);
+
+			const spikesVertices = envelope.geometry.vertices.slice();
+			const spikesGeometry = new THREE.Geometry();
+
+			spikesVertices.forEach((vertex, index) => {
+				spikesGeometry.vertices.push(new THREE.Vector3(0, 0, 0));
+				spikesGeometry.vertices.push(vertex);
+				labelSprites[index].position.set(vertex.x * 40, vertex.y * 40, vertex.z * 40);
+				labelSprites[index].scale.set(36.0, 36.0, 36.0);
+				this.scene.add(labelSprites[index]);
+			});
+
+			const spikes = new THREE.LineSegments(spikesGeometry, lineMaterial);
+			spikes.scale.set(40, 40, 40);
+
+			this.scene.add(skillsCloud);
+			this.scene.add(envelope);
+			this.scene.add(spikes);
+		}
 
 		this.scene.add(outerSphere);
 		this.scene.add(innerSphere);
-		this.scene.add(skillsCloud);
-		this.scene.add(envelope);
-		this.scene.add(spikes);
 
 		this.light = new THREE.DirectionalLight(0xffffff, 1);
 		this.scene.add(this.light);

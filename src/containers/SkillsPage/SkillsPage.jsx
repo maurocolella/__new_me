@@ -17,14 +17,14 @@ class SkillsPage extends React.Component {
 	}
 
 	render() {
-		console.log(this.props.skills);
+		const { skills } = this.props;
 
 		return (
 			<main className={styles.page}>
 				<header className={styles.page__header}>
 					<h2 className={styles.page__title}>Skills</h2>
 				</header>
-				<GLChart style={{height: '400px', width: 'auto'}} />
+				<GLChart style={{height: '400px', width: 'auto'}} data={skills} />
 				<br/>
 				<p>
 					Phasellus at quam dignissim, semper ligula id, consectetur velit. Fusce ex eros, auctor id est vel, molestie placerat erat. Praesent volutpat ligula interdum commodo placerat. Morbi at porta metus. Quisque turpis urna, auctor a ipsum a, commodo auctor dui. Suspendisse pulvinar enim arcu, sed facilisis tortor pretium eget. Nunc eu turpis ac eros condimentum dictum ut ac lorem. Mauris sodales egestas dolor, et molestie sapien porttitor ac. Cras massa nisl, dapibus eu diam sit amet, ornare dignissim magna.
@@ -36,11 +36,19 @@ class SkillsPage extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
 	const { skills } = state;
+	const topSkills = [];
+	for(let skill in skills){
+		if(skill < 10){
+			topSkills.push({name: skills[skill].title, value: skills[skill].rating});
+		}
+	}
+
+	console.log(topSkills);
 
 	return {
 		hasErrored: state.skillsHasErrored,
 		isLoading: state.skillsIsLoading,
-		skills
+		skills: topSkills
 	};
 };
 
