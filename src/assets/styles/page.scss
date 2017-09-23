@@ -22,6 +22,16 @@
 	}
 }
 
+.tag {
+	background-color: #eee;
+	border: 1px solid #ddd;
+	border-radius: 2px;
+	font-family: Courier;
+	font-size: 0.9em;
+	margin: 1px;
+	padding: 2px 4px;
+}
+
 @keyframes fadein {
 	from { opacity: 0; }
 	to   { opacity: 1; }

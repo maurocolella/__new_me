@@ -17,7 +17,8 @@ class SkillsPage extends React.Component {
 	}
 
 	render() {
-		const { topSkills } = this.props;
+		const { topSkills, skills } = this.props;
+		console.log(skills);
 
 		return (
 			<main className={styles.page}>
@@ -27,6 +28,13 @@ class SkillsPage extends React.Component {
 				<GLChart style={{height: '400px', width: 'auto'}} data={topSkills} />
 				<br/>
 				<p>
+					{
+						skills.map((skill) => {
+							return (
+								<span key={skills.id} className={styles.tag}>{skill.title}</span>
+							);
+						})
+					}
 					Phasellus at quam dignissim, semper ligula id, consectetur velit. Fusce ex eros, auctor id est vel, molestie placerat erat. Praesent volutpat ligula interdum commodo placerat. Morbi at porta metus. Quisque turpis urna, auctor a ipsum a, commodo auctor dui. Suspendisse pulvinar enim arcu, sed facilisis tortor pretium eget. Nunc eu turpis ac eros condimentum dictum ut ac lorem. Mauris sodales egestas dolor, et molestie sapien porttitor ac. Cras massa nisl, dapibus eu diam sit amet, ornare dignissim magna.
 				</p>
 			</main>
