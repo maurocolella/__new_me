@@ -68,6 +68,12 @@ export default class GLChart extends React.Component {
 		};
 	}
 
+	componentDidMount() {
+		if(this.props.data.length){
+			this.state.GLContext.init(this.canvas, this.props.data);
+		}
+	}
+
 	componentWillUnmount() {
 		this.state.GLContext.teardown();
 	}

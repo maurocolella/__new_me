@@ -29,6 +29,7 @@ export default class GL {
 	}
 
 	init(canvas, dataSet) {
+
 		if(!canvas) {
 			return;
 		}
@@ -111,6 +112,9 @@ export default class GL {
 		const outerSphere = new THREE.Mesh(outerSphereGeometry, wireframeMaterial);
 		const innerSphere = new THREE.Mesh(innerSphereGeometry, wireframeMaterial);
 
+		this.scene.add(outerSphere);
+		this.scene.add(innerSphere);
+
 		if(dataSet.length > 4){
 			const skillsGeometry = new THREE.ConvexGeometry(skillsVertices);
 			const envelopeGeometry = new THREE.ConvexGeometry(envelopeVertices);
@@ -143,9 +147,6 @@ export default class GL {
 			this.scene.add(envelope);
 			this.scene.add(spikes);
 		}
-
-		this.scene.add(outerSphere);
-		this.scene.add(innerSphere);
 
 		this.light = new THREE.DirectionalLight(0xffffff, 1);
 		this.scene.add(this.light);
