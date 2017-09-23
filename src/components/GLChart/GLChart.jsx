@@ -25,7 +25,7 @@ export default class GLChart extends React.Component {
 
 	componentWillReceiveProps(nextProps) {
 		if(nextProps.data.toString() !== this.props.data.toString()){
-			this.state.GLContext.teardown();
+			// this.state.GLContext.teardown();
 			this.state.GLContext.init(this.canvas, nextProps.data);
 		}
 	}
@@ -48,7 +48,7 @@ export default class GLChart extends React.Component {
 		const hasGL = this.detectGL();
 		return (
 				hasGL ?
-					<div className={styles.viewport} style={this.props.style}>
+					<div className={`${styles.viewport} ${this.props.className}`} style={this.props.style}>
 						<canvas ref={(canvas) => { this.canvas = canvas; }} className={styles.gl} />
 					</div>
 					:

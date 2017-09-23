@@ -25,9 +25,12 @@ class SkillsPage extends React.Component {
 				<header className={styles.page__header}>
 					<h2 className={styles.page__title}>Skills</h2>
 				</header>
-				<GLChart style={{height: '400px', width: 'auto'}} data={topSkills} />
-				<br/>
-				<p>
+				<article className={styles.article}>
+					<h6>Core</h6>
+					<GLChart className={styles.chart} data={topSkills} />
+				</article>
+				<article className={styles.article}>
+					<h6>More</h6>
 					{
 						skills.map((skill) => {
 							return (
@@ -35,8 +38,7 @@ class SkillsPage extends React.Component {
 							);
 						})
 					}
-					Phasellus at quam dignissim, semper ligula id, consectetur velit. Fusce ex eros, auctor id est vel, molestie placerat erat. Praesent volutpat ligula interdum commodo placerat. Morbi at porta metus. Quisque turpis urna, auctor a ipsum a, commodo auctor dui. Suspendisse pulvinar enim arcu, sed facilisis tortor pretium eget. Nunc eu turpis ac eros condimentum dictum ut ac lorem. Mauris sodales egestas dolor, et molestie sapien porttitor ac. Cras massa nisl, dapibus eu diam sit amet, ornare dignissim magna.
-				</p>
+				</article>
 			</main>
 		);
 	}
