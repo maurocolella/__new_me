@@ -37,13 +37,14 @@ class SkillsPage extends React.Component {
 const mapStateToProps = (state, ownProps) => {
 	const { skills } = state;
 	const topSkills = [];
-	for(let skill in skills){
-		if(skill < 10){
-			topSkills.push({name: skills[skill].title, value: skills[skill].rating});
+	for(let index in skills){
+		if(index < 15){
+			let skill = skills.shift();
+			topSkills.push({name: skill.title, value: skill.rating});
 		}
 	}
 
-	console.log(topSkills);
+	console.log(skills);
 
 	return {
 		hasErrored: state.skillsHasErrored,
