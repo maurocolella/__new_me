@@ -9,9 +9,9 @@ export default class Loader extends React.Component {
 
 	render() {
 		return (
-			<div className={styles.loader}>
+			<div className={`${styles.loader} ${this.props.className}`}>
 				<div className={styles['folding-cube']}>
-					<div className={`${styles['cube1']} ${styles['cube']}`}></div>
+					<div className={styles['cube']}></div>
 					<div className={`${styles['cube2']} ${styles['cube']}`}></div>
 					<div className={`${styles['cube4']} ${styles['cube']}`}></div>
 					<div className={`${styles['cube3']} ${styles['cube']}`}></div>
