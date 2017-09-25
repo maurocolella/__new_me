@@ -16,9 +16,13 @@ module.exports = {
 			'./src/index.server.jsx'
 		],
 		vendor : [
+			'bluebird',
 			'react',
+			'redux',
+			'react-redux',
 			'react-dom',
-			'react-router-dom'
+			'react-router-dom',
+			'three'
 		]
 	},
 	output: {

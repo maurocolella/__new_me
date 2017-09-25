@@ -1,40 +1,43 @@
-export function itemsHasErrored(bool) {
+import 'isomorphic-fetch';
+import 'bluebird';
+
+export function articlesHasErrored(bool) {
 	return {
-		type: 'ITEMS_HAS_ERRORED',
+		type: 'ARTICLES_HAS_ERRORED',
 		hasErrored: bool
 	};
 }
 
-export function itemsIsLoading(bool) {
+export function articlesIsLoading(bool) {
 	return {
-		type: 'ITEMS_IS_LOADING',
+		type: 'ARTICLES_IS_LOADING',
 		isLoading: bool
 	};
 }
 
-export function itemsFetchDataSuccess(items) {
+export function articlesFetchDataSuccess(articles) {
 	return {
-		type: 'ITEMS_FETCH_DATA_SUCCESS',
-		items
+		type: 'ARTICLES_FETCH_DATA_SUCCESS',
+		articles
 	};
 }
 
-export function itemsFetchData(url) {
+export function articlesFetchData(url) {
 	return (dispatch) => {
-		dispatch(itemsIsLoading(true));
+		dispatch(articlesIsLoading(true));
 
 		fetch(url)
 			.then((response) => {
+			dispatch(articlesIsLoading(false));
+
 			if (!response.ok) {
 				throw Error(response.statusText);
 			}
 
-			dispatch(itemsIsLoading(false));
-
 			return response;
 		})
 			.then((response) => response.json())
-			.then((items) => dispatch(itemsFetchDataSuccess(items)))
-			.catch(() => dispatch(itemsHasErrored(true)));
+			.then((items) => dispatch(articlesFetchDataSuccess(items)))
+			.catch(() => dispatch(articlesHasErrored(true)));
 	};
 }

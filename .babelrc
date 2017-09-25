@@ -1,4 +1,4 @@
 {
-	"plugins": ["dynamic-import-webpack", "transform-runtime"],
+	"plugins": ["dynamic-import-webpack"],
 	"presets": ["es2015", "stage-0", "react"]
 }
