@@ -1,5 +1,7 @@
 .page {
 	background-color: #fff;
+	border-left: 1px solid #aaa;
+	border-right: 1px solid #aaa;
 	color: #555;
 	display: flex;
 	flex: 2;
@@ -7,7 +9,7 @@
 	font-weight: 300;
 	margin: 0 auto;
 	max-width: 40em;
-	padding: 0.825em 4% 3.3em;
+	padding: 49px 4% 3.3em;
 	transform: translate3d(0,0,0);
 	width: 92%;
 
