@@ -21,7 +21,7 @@ class ContentPage extends React.Component {
 
 		return (
 			(isLoading) ?
-			<Loader />
+			<Loader className={styles.page} />
 			:
 			<main className={styles.page}>
 				<header className={styles.page__header}>

@@ -4,8 +4,8 @@ import cssreset from 'normalize.css';
 import typography from './assets/styles/typeplate.scss';
 import styles from './App.scss';
 
-import Navbar from './containers/Navbar';
 import Dashboard from './containers/Dashboard';
+import Navbar from './components/Navbar';
 
 export default class App extends Component {
 	render() {
