@@ -28,7 +28,13 @@ export default class GL {
 
 	}
 
-	init(canvas, dataSet) {
+	init(canvas, dataSet, baseColor) {
+
+		const color = new THREE.Color( baseColor );
+		const luminance = new THREE.Color( baseColor );
+
+		luminance.sub(new THREE.Color( 0x333333 ));
+
 
 		if(!canvas) {
 			return;
@@ -96,8 +102,8 @@ export default class GL {
 		});
 
 		const flatMaterial = new THREE.MeshLambertMaterial({
-			color: 0x336699,
-			emissive: 0x114477,
+			color: color.getHex(),
+			emissive: luminance.getHex(),
 			polygonOffset: true,
 			polygonOffsetFactor: 1,
 			polygonOffsetUnits: 1,
@@ -113,7 +119,7 @@ export default class GL {
 		const innerSphere = new THREE.Mesh(innerSphereGeometry, wireframeMaterial);
 
 		this.scene.add(outerSphere);
-		this.scene.add(innerSphere);
+		// this.scene.add(innerSphere);
 
 		if(dataSet.length > 4){
 			const skillsGeometry = new THREE.ConvexGeometry(skillsVertices);
