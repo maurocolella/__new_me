@@ -3,28 +3,3 @@
 	height: 100%;
 	width: 100%;
 }
-
-.cover{
-	padding-top: 1.65em;
-	background-color: rgba(0,0,0,0.5);
-	border-left: 1px solid #ff6611;
-	border-right: 1px solid #ff6611;
-	height: 100%;
-	margin: 0 auto;
-	max-width: 40em;
-	padding: 0.825em 4% 3.3em;
-	width: 92%;
-
-	&__title{
-		color: #fff;
-		font-weight: 500;
-	}
-}
-
-.header{
-	background: #005577 url('../../assets/images/blue-peaks.jpg') center;
-	background-size: cover;
-	border-bottom: 1px solid #ff4400;
-	height: 313px;
-	z-index: 2;
-}
