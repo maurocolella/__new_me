@@ -7,7 +7,7 @@
 
 .cover{
 	padding-top: 1.65em;
-	background-color: rgba(23,63,107,0.2);
+	background-color: rgba(0,0,0,0.5);
 	border-left: 1px solid #ff6611;
 	border-right: 1px solid #ff6611;
 	height: 100%;
@@ -23,7 +23,7 @@
 }
 
 .header{
-	background: #005577 /* url('../../assets/images/blue-peaks.jpg') center */;
+	background: #005577 url('../../assets/images/blue-peaks.jpg') center;
 	background-size: cover;
 	border-bottom: 1px solid #ff4400;
 	height: 313px;
