@@ -9,13 +9,14 @@ export default class GLChart extends React.Component {
 		this.detectGL = this.detectGL.bind(this);
 
 		this.state = {
-			GLContext: new GL()
+			GLContext: new GL(),
+			baseColor: 0x336699
 		};
 	}
 
 	componentDidMount() {
 		if(this.props.data.length){
-			this.state.GLContext.init(this.canvas, this.props.data);
+			this.state.GLContext.init(this.canvas, this.props.data, this.state.baseColor );
 		}
 	}
 
@@ -26,7 +27,7 @@ export default class GLChart extends React.Component {
 	componentWillReceiveProps(nextProps) {
 		if(nextProps.data.toString() !== this.props.data.toString()){
 			// this.state.GLContext.teardown();
-			this.state.GLContext.init(this.canvas, nextProps.data);
+			this.state.GLContext.init(this.canvas, nextProps.data, this.state.baseColor );
 		}
 	}
 
