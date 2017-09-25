@@ -1,0 +1,21 @@
+.cover{
+	padding-top: 1.65em;
+	/* background-color: rgba(0,0,0,0.4);
+	border-left: 1px solid #000;
+	border-right: 1px solid #000; */
+	height: 100%;
+	margin: 0 auto;
+	max-width: 40em;
+	padding: 0.825em 4% 3.3em;
+	width: 92%;
+
+	&__title{
+		color: #fff;
+		font-weight: 500;
+	}
+}
+
+.footer{
+	background: #202020;
+	z-index: 2;
+}
