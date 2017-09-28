@@ -12,10 +12,10 @@ export default class Header extends React.Component {
 	}
 
 	scrollTo(event) {
-		event.preventDefault();
-		const target = event.target.getAttribute('href');
+		if('scrollBehavior' in document.documentElement.style){
+			event.preventDefault();
+			const target = event.target.getAttribute('href');
 
-		if (document) {
 			document.querySelector(target).scrollIntoView({
 				behavior: 'smooth'
 			});
