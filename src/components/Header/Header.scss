@@ -3,7 +3,10 @@
 	background-color: rgba(0,0,0,0.5);
 	border-left: 1px solid #ff6611;
 	border-right: 1px solid #ff6611;
+	display: flex;
+	flex-direction: column;
 	height: 100%;
+	justify-content: space-between;
 	margin: 0 auto;
 	max-width: 40em;
 	padding: 0.825em 4% 3.3em;
@@ -21,4 +24,12 @@
 	border-bottom: 1px solid #ff4400;
 	height: 313px;
 	z-index: 2;
+}
+
+.icon__hireme {
+	align-self: flex-end;
+	fill: none;
+	stroke: #fff;
+	height: 2em;
+	width: 2em;
 }

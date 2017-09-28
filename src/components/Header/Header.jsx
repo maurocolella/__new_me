@@ -13,6 +13,9 @@ export default class Header extends React.Component {
 			<header className={styles.header}>
 				<section className={styles.cover}>
 					<h1 className={styles.cover__title}>Mauro Colella</h1>
+					<svg className={styles.icon__hireme}>
+						<use xlinkHref="#icon-basic_pencil_ruler_pen" />
+					</svg>
 				</section>
 			</header>
 		);
