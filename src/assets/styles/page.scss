@@ -1,5 +1,9 @@
 .page {
 	background-color: #fcfcfc;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	box-shadow: 16px 24px 8px -16px #bcbcbc,
+				-16px 24px 8px -16px #bcbcbc;
 	color: #555;
 	flex: 2;
 	font-weight: 300;
