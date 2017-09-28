@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './Header.scss';
+import RulerIcon from '../Icons/RulerIcon';
 
 export default class Header extends React.Component {
 	constructor(props) {
@@ -13,9 +14,9 @@ export default class Header extends React.Component {
 			<header className={styles.header}>
 				<section className={styles.cover}>
 					<h1 className={styles.cover__title}>Mauro Colella</h1>
-					<svg className={styles.icon__hireme}>
-						<use xlinkHref="#icon-basic_pencil_ruler_pen" />
-					</svg>
+					<div className={styles.hireme}>
+						Hire Me <RulerIcon className={styles.hireme__icon} />
+					</div>
 				</section>
 			</header>
 		);

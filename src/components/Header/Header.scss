@@ -26,10 +26,18 @@
 	z-index: 2;
 }
 
-.icon__hireme {
+.hireme{
 	align-self: flex-end;
-	fill: none;
-	stroke: #fff;
-	height: 2em;
-	width: 2em;
+	display: inline-block;
+	color: #fff;
+	border: 1px solid #fff;
+	padding: 0.2em 0.4em;
+
+	&__icon {
+		fill: none;
+		stroke: #fff;
+		height: 1em;
+		vertical-align: middle;
+		width: 1em;
+	}
 }

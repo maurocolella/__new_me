@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router-dom';
 
 import styles from './Dashboard.scss';
 
-import IconFont from '../../components/IconFont';
 import Header from '../../components/Header';
 import ContentPage from '../ContentPage';
 import SkillsPage from '../SkillsPage';
@@ -23,7 +22,7 @@ export default class Dashboard extends React.Component {
 					<Route exact path="/:slug?" component={ContentPage} />
 				</Switch>
 				<Footer/>
-				<IconFont/>
-			</div>);
+			</div>
+		);
 	}
 }
