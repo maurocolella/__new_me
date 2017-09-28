@@ -5,16 +5,8 @@
 	font-family: 'Lato', sans-serif;
 }
 
-a:link {
-	text-decoration: inherit;
-	color: inherit;
-	cursor: auto;
-}
-
-a:visited {
-	text-decoration: inherit;
-	color: inherit;
-	cursor: auto;
+a {
+	outline: 0;
 }
 
 .app{
