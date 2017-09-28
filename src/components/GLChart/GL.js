@@ -55,6 +55,8 @@ export default class GL {
 
 		this.renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
 		this.renderer.setSize(this.el.offsetWidth, this.el.offsetHeight);
+		// TODO: use stronger antialiasing / higher pixel ratio?
+		// this.renderer.setPixelRatio(2);
 
 		this.controls = new THREE.OrbitControls(this.camera, canvas);
 		this.controls.enableDamping = true;
