@@ -10,7 +10,7 @@ export default class Footer extends React.Component {
 
 	render() {
 		return (
-			<footer className={styles.footer}>
+			<footer id="footer" className={styles.footer}>
 				<section className={styles.cover}>
 				</section>
 			</footer>
