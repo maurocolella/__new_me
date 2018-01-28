@@ -10,11 +10,11 @@ module.exports = {
 			'babel-polyfill',
 			'./src/index.client.jsx'
 		],
-		server : [
+		/* server : [
 			'webpack-hot-middleware/client',
 			'babel-polyfill',
 			'./src/index.server.jsx'
-		],
+		],*/
 		vendor : [
 			'bluebird',
 			'react',
