@@ -22,6 +22,7 @@ export default class Dashboard extends React.Component {
 					<Route exact path="/:slug?" component={ContentPage} />
 				</Switch>
 				<Footer/>
-			</div>);
+			</div>
+		);
 	}
 }

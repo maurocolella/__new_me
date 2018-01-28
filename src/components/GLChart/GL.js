@@ -45,7 +45,7 @@ export default class GL {
 
 		this.scene = new THREE.Scene();
 		this.scene.background = new THREE.Color(0xffffff);
-		this.scene.fog = new THREE.Fog( 0xffffff, 80, 170 );
+		this.scene.fog = new THREE.Fog( 0x00ffffff, 80, 170 );
 
 		this.dimensions.x = this.el.offsetWidth;
 		this.dimensions.y = this.el.offsetHeight;
@@ -55,6 +55,8 @@ export default class GL {
 
 		this.renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
 		this.renderer.setSize(this.el.offsetWidth, this.el.offsetHeight);
+		// TODO: use stronger antialiasing / higher pixel ratio?
+		this.renderer.setPixelRatio(2);
 
 		this.controls = new THREE.OrbitControls(this.camera, canvas);
 		this.controls.enableDamping = true;
@@ -86,11 +88,13 @@ export default class GL {
 		const outerSphereGeometry = new THREE.SphereGeometry(radiusOut, segments, rings);
 
 		const wireframeMaterial = new THREE.MeshBasicMaterial({
-			color: 0x999999,
+			color: 0x00999999,
+			depthTest: true,
+			depthWrite: false,
 			wireframe: true,
 			transparent: true,
-			opacity: 0.1,
-			fog: false,
+			opacity: 0.05,
+			fog: true,
 		});
 
 		const darkWireframeMaterial = new THREE.MeshBasicMaterial({

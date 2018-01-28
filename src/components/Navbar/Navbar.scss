@@ -16,7 +16,7 @@
 	z-index: 9;
 
 	&__item {
-		border-bottom: 1px solid #eee;
+		border-bottom: 4px solid transparent;
 		display: flex;
 		height: 48px;
 		line-height: 48px;
@@ -26,6 +26,7 @@
 
 		&:hover {
 			background-color: #fefefe;
+			border-bottom: 4px solid #1f769a;
 		}
 
 		/*&:after {
@@ -63,7 +64,7 @@
 		&:hover,
 		&:focus,
 		&:active {
-			color: #555;
+			color: #777;
 			cursor: pointer;
 			display: flex;
 			flex-direction: column;
