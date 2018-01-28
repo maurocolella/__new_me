@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+
 import path from 'path';
 import express from 'express';
 import webpack from 'webpack';
@@ -18,14 +20,15 @@ import {
 	createIsomorphicWebpack
 } from 'isomorphic-webpack';
 
+dotenv.config();
 const app = express();
 const compiler = webpack(config);
 // createIsomorphicWebpack(config);
 
 passport.use(new Strategy({
-	clientID: '139609183399646', //process.env.CLIENT_ID,
-	clientSecret: '064fae7cdc9cca2cfd34cfaeac6cefc1', // process.env.CLIENT_SECRET,
-	callbackURL: 'http://mauro-colella.com/auth/facebook/callback'
+	clientID: process.env.FB_CLIENT_ID,
+	clientSecret: process.env.FB_CLIENT_SECRET,
+	callbackURL: `${process.env.BASE_URL}/auth/facebook/callback`
 },
 						  function(accessToken, refreshToken, profile, cb) {
 	// In this example, the user's Facebook profile is supplied as the user
