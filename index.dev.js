@@ -25,7 +25,7 @@ const compiler = webpack(config);
 passport.use(new Strategy({
 	clientID: '139609183399646', //process.env.CLIENT_ID,
 	clientSecret: '064fae7cdc9cca2cfd34cfaeac6cefc1', // process.env.CLIENT_SECRET,
-	callbackURL: 'http://localhost:3000/auth/facebook/callback'
+	callbackURL: 'http://mauro-colella.com/auth/facebook/callback'
 },
 						  function(accessToken, refreshToken, profile, cb) {
 	// In this example, the user's Facebook profile is supplied as the user

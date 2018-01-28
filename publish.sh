@@ -1,2 +1,1 @@
-rsync -azP --progress --exclude=node_modules --exclude=.git ./ www-admin@mauro-colella.com:/var/www/main
-/client/
+rsync -rzP --exclude=node_modules --exclude=.git ../client www-admin@mauro-colella.com:/var/www/main/
