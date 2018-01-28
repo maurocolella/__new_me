@@ -22,7 +22,7 @@ export default class Navbar extends React.Component {
 						<Link className={styles.nav__link} to="/work">Work</Link>
 					</li>
 					<li className={styles.nav__item}>
-						<Link className={styles.nav__link} to="/play">Play</Link>
+						<Link className={styles.nav__link} to="/lab">Lab</Link>
 					</li>
 				</ul>
 			</nav>);

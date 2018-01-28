@@ -3,7 +3,7 @@
 	"version": "1.0.3",
 	"description": "Portfolio based on ReactJS hot code reloading boilerplate",
 	"scripts": {
-		"start": "babel-node index.js",
+		"start": "nodemon index.dev.js --exec babel-node",
 		"lint": "eslint src"
 	},
 	"repository": {
@@ -28,6 +28,7 @@
 	},
 	"homepage": "https://github.com/gaearon/react-hot-boilerplate",
 	"devDependencies": {
+		"babel-cli": "^6.26.0",
 		"babel-core": "^6.0.20",
 		"babel-eslint": "^4.1.3",
 		"babel-loader": "7.1.1",
@@ -43,6 +44,7 @@
 		"isomorphic-webpack": "^2.1.1",
 		"node-sass": "^4.5.3",
 		"node-style-loader": "^0.0.1-alpha",
+		"nodemon": "^1.14.11",
 		"react-hot-loader": "^1.3.0",
 		"sass-loader": "^6.0.6",
 		"style-loader": "^0.18.2",
@@ -55,17 +57,24 @@
 	"dependencies": {
 		"babel-polyfill": "^6.26.0",
 		"bluebird": "^3.5.0",
+		"body-parser": "^1.18.2",
+		"connect-ensure-login": "^0.1.1",
+		"cookie-parser": "^1.4.3",
 		"ejs": "^2.5.7",
+		"express-session": "^1.15.6",
 		"file-loader": "^0.11.2",
 		"immutable": "^3.8.1",
 		"isomorphic-fetch": "^2.2.1",
 		"normalize.css": "^7.0.0",
+		"passport": "^0.4.0",
+		"passport-facebook": "^2.1.1",
 		"react": "^15.6.1",
 		"react-dom": "^15.6.1",
 		"react-redux": "^5.0.6",
 		"react-router-dom": "^4.2.2",
 		"redux": "^3.7.2",
 		"redux-thunk": "^2.2.0",
+		"smoothscroll-polyfill": "^0.4.0",
 		"three": "^0.87.1"
 	}
 }
