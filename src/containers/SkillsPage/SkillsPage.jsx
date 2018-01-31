@@ -13,7 +13,7 @@ class SkillsPage extends React.Component {
 	}
 
 	componentDidMount() {
-		this.props.fetchData('http://api.mauro-colella.com/skills');
+		this.props.fetchData('//api.mauro-colella.com/skills');
 	}
 
 	render() {

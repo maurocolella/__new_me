@@ -13,7 +13,7 @@ class ContentPage extends React.Component {
 	}
 
 	componentDidMount() {
-		this.props.fetchData('http://api.mauro-colella.com/articles');
+		this.props.fetchData('//api.mauro-colella.com/articles');
 	}
 
 	render() {
