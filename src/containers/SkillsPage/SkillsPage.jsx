@@ -18,7 +18,6 @@ class SkillsPage extends React.Component {
 
 	render() {
 		const { topSkills, skills } = this.props;
-		console.log(skills);
 
 		return (
 			<main className={styles.page}>

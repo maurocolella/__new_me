@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './Footer.scss';
 import SunIcon from '../Icons/SunIcon';
+import TOCButton from '../TOCButton';
 
 export default class Footer extends React.Component {
 	constructor(props) {
@@ -17,6 +18,7 @@ export default class Footer extends React.Component {
 						Hire Me <SunIcon className={styles.hireme__icon} />
 					</a>
 				</section>
+				<TOCButton />
 			</footer>
 		);
 	}
