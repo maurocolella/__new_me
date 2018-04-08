@@ -1,0 +1,22 @@
+.button {
+    background-color: transparent;
+    bottom: 20px;
+    cursor: pointer;
+    height: 100px;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    right: 20px;
+    width: 100px;
+    transition: 0.4s opacity ease;
+
+    &--visible {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    &__icon {
+        fill: #ccc;
+        stroke: transparent;
+    }
+}
