@@ -1,4 +1,4 @@
 {
-	"plugins": ["dynamic-import-webpack"],
-	"presets": ["es2015", "stage-0", "react"]
+  "plugins": ["dynamic-import-webpack", "react-hot-loader/babel"],
+  "presets": ["es2015", "stage-0", "react"]
 }
