@@ -2,58 +2,61 @@ import React, { Component } from 'react';
 import GL from './GL.js';
 import styles from './GLChart.scss';
 
-export default class GLChart extends React.Component {
-	constructor(props) {
-		super(props);
+export default class GLChart extends Component {
+    constructor(props) {
+        super(props);
 
-		this.detectGL = this.detectGL.bind(this);
+        this.detectGL = this.detectGL.bind(this);
 
-		this.state = {
-			GLContext: new GL(),
-			baseColor: 0x336699
-		};
-	}
+        this.state = {
+            GLContext: new GL(),
+            baseColor: 0x336699
+        };
+    }
 
-	componentDidMount() {
-		if(this.props.data.length){
-			this.state.GLContext.init(this.canvas, this.props.data, this.state.baseColor );
-		}
-	}
+    componentDidMount() {
+        if(this.props.data.length){
+            this.state.GLContext.init(this.canvas, this.props.data, this.state.baseColor );
+        }
+    }
 
-	componentWillUnmount() {
-		this.state.GLContext.teardown();
-	}
+    componentWillUnmount() {
+        this.state.GLContext.teardown();
+    }
 
-	componentWillReceiveProps(nextProps) {
-		if(nextProps.data.toString() !== this.props.data.toString()){
-			// this.state.GLContext.teardown();
-			this.state.GLContext.init(this.canvas, nextProps.data, this.state.baseColor );
-		}
-	}
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.data.toString() !== this.props.data.toString()){
+            this.state.GLContext.init(this.canvas, nextProps.data, this.state.baseColor );
+        }
+    }
 
-	detectGL() {
+    detectGL() {
+        try {
+            const canvas = document.createElement('canvas');
+            const gl = (canvas.getContext('webgl') ||
+                        canvas.getContext('experimental-webgl'));
 
-		try {
-			const canvas = document.createElement('canvas');
-			const gl = (canvas.getContext('webgl') ||
-						canvas.getContext('experimental-webgl'));
+            return !! (window.WebGLRenderingContext && gl);
+        }
+        catch (e) {
+            return false;
+        }
+    }
 
-			return !! (window.WebGLRenderingContext && gl);
-		}
-		catch (e) {
-			return false;
-		}
-	}
-
-	render() {
-		const hasGL = this.detectGL();
-		return (
-				hasGL ?
-					<div className={`${styles.viewport} ${this.props.className}`} style={this.props.style}>
-						<canvas ref={(canvas) => { this.canvas = canvas; }} className={styles.gl} />
-					</div>
-					:
-				<div></div>
-			);
-	}
+    render() {
+        const hasGL = this.detectGL();
+        return (
+                hasGL ?
+                    <div
+                        className={`${styles.viewport} ${this.props.className}`} style={this.props.style}
+                    >
+                        <canvas
+                            ref={(canvas) => { this.canvas = canvas; }}
+                            className={styles.gl}
+                        />
+                    </div>
+                    :
+                <div />
+            );
+    }
 }

@@ -1,24 +1,25 @@
 .viewport{
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	min-height: 400px;
-	overflow: hidden;
-	position: relative;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 400px;
+    overflow: hidden;
+    position: relative;
 }
 
 .gl{
-	cursor: grab;
-	height: 100% !important;
-	left: 50%;
-	position: absolute;
-	top: 50%;
-	width: 100% !important;
-	transform: translate(-50%,-50%);
+    cursor: grab;
+    height: 100% !important;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    width: 100% !important;
+    transform: translate(-50%,-50%);
 
 }
 
 .gl:active{
-	cursor: grabbing;
+    cursor: grabbing;
 }
