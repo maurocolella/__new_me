@@ -23,7 +23,9 @@ export default class Header extends React.Component {
 
     render() {
         return (
-            <header className={styles.header}>
+            <header
+                className={styles.header}
+            >
                 <section className={styles.cover}>
                     <h1 className={styles.cover__title}>Mauro Colella</h1>
                     <a href="#footer" onClick={this.scrollTo} className={styles.hireme}>
