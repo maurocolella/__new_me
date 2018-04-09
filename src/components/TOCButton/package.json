@@ -1,0 +1,6 @@
+{
+  "name": "TOCButton",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./TOCButton.jsx"
+}
