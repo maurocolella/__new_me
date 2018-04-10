@@ -47,7 +47,7 @@ export default class GL {
         window.addEventListener('resize', this.resizeListener);
 
         this.scene = new THREE.Scene();
-        this.scene.background = new THREE.Color(0xffffff);
+        // this.scene.background = new THREE.Color(0xffffff);
         this.scene.fog = new THREE.Fog( 0x00ffffff, 80, 170 );
 
         this.dimensions.x = this.el.offsetWidth;
@@ -56,7 +56,11 @@ export default class GL {
         this.camera = new THREE.PerspectiveCamera(45, this.el.offsetWidth / this.el.offsetHeight, 0.1, 1000);
         this.camera.position.set(0, 0, 120);
 
-        this.renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+        this.renderer = new THREE.WebGLRenderer({
+            canvas,
+            antialias: true,
+            alpha: true,
+        });
         this.renderer.setSize(this.el.offsetWidth, this.el.offsetHeight);
         // TODO: use stronger antialiasing / higher pixel ratio?
         this.renderer.setPixelRatio(2);
