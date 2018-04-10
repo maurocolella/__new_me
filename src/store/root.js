@@ -3,10 +3,10 @@ import { articles, articlesHasErrored, articlesIsLoading } from '../containers/C
 import { skills, skillsHasErrored, skillsIsLoading } from '../containers/SkillsPage/reducers';
 
 export default combineReducers({
-	articles,
-	articlesHasErrored,
-	articlesIsLoading,
-	skills,
-	skillsHasErrored,
-	skillsIsLoading
+  articles,
+  articlesHasErrored,
+  articlesIsLoading,
+  skills,
+  skillsHasErrored,
+  skillsIsLoading,
 });

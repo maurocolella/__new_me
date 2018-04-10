@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { skillsFetchData } from './actions';
 
@@ -7,96 +7,111 @@ import GLChart from '../../components/GLChart';
 
 import styles from '../../assets/styles/page.scss';
 
-class SkillsPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleSearch = this.handleSearch.bind(this);
+class SkillsPage extends Component {
+  static propTypes = {
+    fetchData: PropTypes.func.isRequired,
+    topSkills: PropTypes.arrayOf(Object),
+    skills: PropTypes.arrayOf(Object),
+  };
 
-        this.state = {
-            filter: '',
-        };
-    }
+  static defaultProps = {
+    topSkills: [],
+    skills: [],
+  };
 
-    componentDidMount() {
-        this.props.fetchData('//api.mauro-colella.com/skills');
-    }
+  constructor(props) {
+    super(props);
+    this.handleSearch = this.handleSearch.bind(this);
 
-    handleSearch(event) {
-        this.setState({
-            filter: event.target.value,
-        });
-    }
+    this.state = {
+      filter: '',
+    };
+  }
 
-    render() {
-        const { topSkills, skills } = this.props;
-        const { filter } = this.state;
+  componentDidMount() {
+    this.props.fetchData('//api.mauro-colella.com/skills');
+  }
 
-        return (
-            <main className={styles.page}>
-                <header className={styles.page__header}>
-                    <h2 className={styles.page__title}>Skills</h2>
-                </header>
-                <article className={styles.article}>
-                    <GLChart className={styles.chart} data={topSkills} />
-                </article>
-                <article className={styles.article}>
-                    <h6>All Skills</h6>
-                    <span className={styles.notice}>
-                        The following skills have been used professionally.
-                    </span>
-                    <input
-                        className={styles.search}
-                        onChange={this.handleSearch}
-                        placeholder="filter..."
-                        type="text"
-                    />
-                    {
-                        skills.map((skill) => {
-                            const label = skill.title.toLowerCase();
-                            const isDimmed = filter.length && label.indexOf(filter.toLowerCase()) < 0;
-                            const classes = `${styles.tag}${isDimmed ? ` ${styles['tag--dim']}` : ''}`;
+  handleSearch(event) {
+    this.setState({
+      filter: event.target.value,
+    });
+  }
 
-                            return (
-                                <span
-                                    key={skill.id}
-                                    className={classes}
-                                    title={`${skill.rating * 100}%`}
-                                >
-                                    {skill.title}
-                                </span>
-                            );
-                        })
-                    }
-                </article>
-            </main>
-        );
-    }
+  render() {
+    const { topSkills, skills } = this.props;
+    const { filter } = this.state;
+
+    return (
+      <main className={styles.page}>
+        <header className={styles.page__header}>
+          <h2 className={styles.page__title}>Skills</h2>
+        </header>
+        <article className={styles.article}>
+          <GLChart className={styles.chart} data={topSkills} />
+        </article>
+        <article className={styles.article}>
+          <h6>All Skills</h6>
+          <span className={styles.notice}>
+            The following skills have been used professionally.
+          </span>
+          <input
+            className={styles.search}
+            onChange={this.handleSearch}
+            placeholder="filter..."
+            type="text"
+          />
+          {
+            skills.map((skill) => {
+              const label = skill.title.toLowerCase();
+              const isDimmed = filter.length && label.indexOf(filter.toLowerCase()) < 0;
+              const classes = `${styles.tag}${isDimmed ? ` ${styles['tag--dim']}` : ''}`;
+
+              return (
+                <span
+                  key={skill.id}
+                  className={classes}
+                  title={`${skill.rating * 100}%`}
+                >
+                  {skill.title}
+                </span>
+              );
+            })
+          }
+        </article>
+      </main>
+    );
+  }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    const { skills } = state;
-    const topSkills = [];
-    for(let index in skills){
-        let skill = skills[index];
-        let formattedSkill = {name: skill.title, value: skill.rating};
+const mapStateToProps = (state) => {
+  const { skills } = state;
+  const topSkills = [];
+  const otherSkills = [];
 
-        if(skill.featured){
-            topSkills.push(formattedSkill);
-        }
+  skills.forEach((skill) => {
+    const formattedSkill = {
+      name: skill.title,
+      value: skill.rating,
+    };
+
+    if (skill.featured) {
+      topSkills.push(formattedSkill);
+    } else {
+      otherSkills.push(skill);
     }
+  });
 
-    return {
-        hasErrored: state.skillsHasErrored,
-        isLoading: state.skillsIsLoading,
-        topSkills,
-        skills,
-    };
+  return {
+    hasErrored: state.skillsHasErrored,
+    isLoading: state.skillsIsLoading,
+    topSkills,
+    skills: otherSkills,
+  };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchData: (url) => dispatch(skillsFetchData(url))
-    };
-};
+const mapDispatchToProps = dispatch => ({
+  fetchData: url => dispatch(skillsFetchData(url)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SkillsPage);
