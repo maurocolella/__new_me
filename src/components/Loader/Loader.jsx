@@ -1,21 +1,25 @@
-import React, { Component } from 'react';
-
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import styles from './Loader.scss';
 
-export default class Loader extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+export default class Loader extends PureComponent {
+  static propTypes = {
+    className: PropTypes.string,
+  };
 
-	render() {
-		return (
-			<div className={`${styles.loader} ${this.props.className}`}>
-				<div className={styles['folding-cube']}>
-					<div className={styles['cube']}></div>
-					<div className={`${styles['cube2']} ${styles['cube']}`}></div>
-					<div className={`${styles['cube4']} ${styles['cube']}`}></div>
-					<div className={`${styles['cube3']} ${styles['cube']}`}></div>
-				</div>
-			</div>);
-	}
+  static defaultProps = {
+    className: '',
+  };
+
+  render() {
+    return (
+      <div className={`${styles.loader} ${this.props.className}`}>
+        <div className={styles['folding-cube']}>
+          <div className={styles.cube} />
+          <div className={`${styles.cube2} ${styles.cube}`} />
+          <div className={`${styles.cube4} ${styles.cube}`} />
+          <div className={`${styles.cube3} ${styles.cube}`} />
+        </div>
+      </div>);
+  }
 }
