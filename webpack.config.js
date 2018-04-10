@@ -85,7 +85,17 @@ module.exports = {
         }
       ]
     }, {
-      test: /\.(jpg|png|svg)$/,
+      test: /\.(jpg|png)$/,
+      use: [
+        {
+          loader: 'responsive-loader',
+          options: {
+            adapter: require('responsive-loader/sharp'),
+          }
+        }
+      ]
+    }, {
+      test: /\.(svg)$/,
       use: [
         {
           loader: 'url-loader',
