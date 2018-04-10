@@ -16,7 +16,38 @@ export default class Header extends Component {
     });
   }
 
+  constructor(props) {
+    super(props);
+    this.handleScroll = this.handleScroll.bind(this);
+
+    this.state = {
+      scrollOffset: 0,
+      parallaxSpeed: 0.05,
+    };
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll() {
+    const { scrollOffset } = this.state;
+    const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+
+    if (scrollTop !== scrollOffset) {
+      this.setState({
+        scrollOffset: scrollTop,
+      });
+    }
+  }
+
   render() {
+    const { scrollOffset, parallaxSpeed } = this.state;
+
     return (
       <header
         className={styles.header}
@@ -26,6 +57,9 @@ export default class Header extends Component {
           src={coverImage.src}
           srcSet={coverImage.srcSet}
           alt=""
+          style={{
+            transform: `translate3d(-50%,-${50 - (scrollOffset * parallaxSpeed)}%,0)`,
+          }}
         />
         <section className={styles.cover}>
           <h1 className={styles.cover__title}>Mauro Colella</h1>
