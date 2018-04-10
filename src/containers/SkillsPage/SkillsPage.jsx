@@ -40,7 +40,10 @@ class SkillsPage extends React.Component {
                     <GLChart className={styles.chart} data={topSkills} />
                 </article>
                 <article className={styles.article}>
-                    <h6>More</h6>
+                    <h6>All Skills</h6>
+                    <span className={styles.notice}>
+                        The following skills have been used professionally.
+                    </span>
                     <input
                         className={styles.search}
                         onChange={this.handleSearch}
@@ -73,8 +76,6 @@ class SkillsPage extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     const { skills } = state;
     const topSkills = [];
-    const otherSkills = [];
-
     for(let index in skills){
         let skill = skills[index];
         let formattedSkill = {name: skill.title, value: skill.rating};
@@ -82,16 +83,13 @@ const mapStateToProps = (state, ownProps) => {
         if(skill.featured){
             topSkills.push(formattedSkill);
         }
-        else{
-            otherSkills.push(skill);
-        }
     }
 
     return {
         hasErrored: state.skillsHasErrored,
         isLoading: state.skillsIsLoading,
         topSkills,
-        skills: otherSkills,
+        skills,
     };
 };
 
