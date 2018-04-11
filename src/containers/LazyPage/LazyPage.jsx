@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { articlesFetchData } from './actions';
+import { resumeFetchData } from './actions';
 
 import Loader from '../../components/Loader';
+import ResumeEntry from '../../components/ResumeEntry';
 import styles from '../../assets/styles/page.scss';
 
-class ContentPage extends Component {
+class LazyPage extends Component {
   static propTypes = {
     fetchData: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
-    article: PropTypes.shape.isRequired,
+    entries: PropTypes.arrayOf(Object).isRequired,
   };
 
   componentDidMount() {
@@ -18,8 +19,8 @@ class ContentPage extends Component {
   }
 
   render() {
-    const { isLoading, article } = this.props;
-    const { title, body } = article;
+    const title = 'Resume';
+    const { isLoading, entries } = this.props;
 
     return (
       (isLoading) ?
@@ -29,7 +30,15 @@ class ContentPage extends Component {
           <header className={styles.page__header}>
             <h2 className={styles.page__title}>{title}</h2>
           </header>
-          <article dangerouslySetInnerHTML={{ __html: body }} />
+          {entries.map(entry => (
+            <ResumeEntry
+              company={entry.company}
+              startDate={entry.startDate}
+              endDate={entry.endDate}
+              description={entry.description}
+              tasks={entry.tasks}
+            />
+          ))}
         </main>
     );
   }
@@ -37,29 +46,18 @@ class ContentPage extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const { slug } = ownProps.match.params;
-  const { articles } = state;
-
-  let article = {};
-
-  if (articles.items &&
-      articles.items.length) {
-    if (slug === undefined) {
-      ({ 0: article } = articles.items);
-    } else {
-      ({ 0: article } = articles.items.filter(obj => obj.slug === slug));
-    }
-  }
+  const { resume } = state;
 
   return {
-    hasErrored: articles.hasErrored,
-    isLoading: articles.isLoading,
+    hasErrored: resume.hasErrored,
+    isLoading: resume.isLoading,
     slug,
-    article,
+    entries: resume.items,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchData: () => { dispatch(articlesFetchData()); },
+  fetchData: () => { dispatch(resumeFetchData()); },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContentPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LazyPage);

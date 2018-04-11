@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Loader from '../../components/Loader';
 
-export default class LoadablePage extends Component {
+export default class Loadable extends Component {
   componentWillMount = () => {
     import('./SkillsPage.jsx').then((component) => {
       this.Component = component;
