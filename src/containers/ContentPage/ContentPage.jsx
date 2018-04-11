@@ -43,8 +43,7 @@ const mapStateToProps = (state, ownProps) => {
 
   let article = {};
 
-  if (articles !== undefined &&
-      articles.data &&
+  if (articles.data &&
       articles.data.length) {
     if (slug === undefined) {
       ({ 0: article } = articles.data);
