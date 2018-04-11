@@ -14,99 +14,101 @@ class SkillsPage extends Component {
     skills: PropTypes.arrayOf(Object),
   };
 
-  static defaultProps = {
-    topSkills: [],
-    skills: [],
+static defaultProps = {
+  topSkills: [],
+  skills: [],
+};
+
+constructor(props) {
+  super(props);
+  this.handleSearch = this.handleSearch.bind(this);
+
+  this.state = {
+    filter: '',
   };
+}
 
-  constructor(props) {
-    super(props);
-    this.handleSearch = this.handleSearch.bind(this);
+componentDidMount() {
+  this.props.fetchData('//api.mauro-colella.com/skills');
+}
 
-    this.state = {
-      filter: '',
-    };
-  }
+handleSearch(event) {
+  this.setState({
+    filter: event.target.value,
+  });
+}
 
-  componentDidMount() {
-    this.props.fetchData('//api.mauro-colella.com/skills');
-  }
+render() {
+  const { topSkills, skills } = this.props;
+  const { filter } = this.state;
 
-  handleSearch(event) {
-    this.setState({
-      filter: event.target.value,
-    });
-  }
+  return (
+    <main className={styles.page}>
+      <header className={styles.page__header}>
+        <h2 className={styles.page__title}>Skills</h2>
+      </header>
+      <article className={styles.article}>
+        <GLChart className={styles.chart} data={topSkills} />
+      </article>
+      <article className={styles.article}>
+        <h6>All Skills</h6>
+        <span className={styles.notice}>
+          The following skills have been used professionally.
+        </span>
+        <input
+          className={styles.search}
+          onChange={this.handleSearch}
+          placeholder="filter..."
+          type="text"
+        />
+        {
+          skills.map((skill) => {
+            const label = skill.title.toLowerCase();
+            const isDimmed = filter.length && label.indexOf(filter.toLowerCase()) < 0;
+            const classes = `${styles.tag}${isDimmed ? ` ${styles['tag--dim']}` : ''}`;
 
-  render() {
-    const { topSkills, skills } = this.props;
-    const { filter } = this.state;
-
-    return (
-      <main className={styles.page}>
-        <header className={styles.page__header}>
-          <h2 className={styles.page__title}>Skills</h2>
-        </header>
-        <article className={styles.article}>
-          <GLChart className={styles.chart} data={topSkills} />
-        </article>
-        <article className={styles.article}>
-          <h6>All Skills</h6>
-          <span className={styles.notice}>
-            The following skills have been used professionally.
-          </span>
-          <input
-            className={styles.search}
-            onChange={this.handleSearch}
-            placeholder="filter..."
-            type="text"
-          />
-          {
-            skills.map((skill) => {
-              const label = skill.title.toLowerCase();
-              const isDimmed = filter.length && label.indexOf(filter.toLowerCase()) < 0;
-              const classes = `${styles.tag}${isDimmed ? ` ${styles['tag--dim']}` : ''}`;
-
-              return (
-                <span
-                  key={skill.id}
-                  className={classes}
-                  title={`${skill.rating * 100}%`}
-                >
-                  {skill.title}
-                </span>
-              );
-            })
-          }
-        </article>
-      </main>
-    );
-  }
+            return (
+              <span
+                key={skill.id}
+                className={classes}
+              >
+                {skill.title}
+              </span>
+            );
+          })
+        }
+      </article>
+    </main>
+  );
+}
 }
 
 const mapStateToProps = (state) => {
   const { skills } = state;
   const topSkills = [];
-  const otherSkills = [];
+  const allSkills = [];
 
-  skills.forEach((skill) => {
-    const formattedSkill = {
-      name: skill.title,
-      value: skill.rating,
-    };
+  if (skills.data && skills.data.length) {
+    skills.data.forEach((skill) => {
+      const normalizedSkill = Object.assign(skill, skill.attributes);
 
-    if (skill.featured) {
-      topSkills.push(formattedSkill);
-    } else {
-      otherSkills.push(skill);
-    }
-  });
+      const formattedSkill = {
+        name: normalizedSkill.title,
+        value: normalizedSkill.rating,
+      };
+
+      if (normalizedSkill.featured) {
+        topSkills.push(formattedSkill);
+      }
+      allSkills.push(normalizedSkill);
+    });
+  }
 
   return {
     hasErrored: state.skillsHasErrored,
     isLoading: state.skillsIsLoading,
     topSkills,
-    skills: otherSkills,
+    skills: allSkills,
   };
 };
 
