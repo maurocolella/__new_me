@@ -1,29 +1,31 @@
-export function skillsHasErrored(state = false, action) {
+const initialState = {
+  hasErrored: false,
+  isLoading: false,
+  items: [],
+};
+
+function skills(state = initialState, action) {
   switch (action.type) {
     case 'SKILLS_HAS_ERRORED':
-      return action.hasErrored;
-
-    default:
-      return state;
-  }
-}
-
-export function skillsIsLoading(state = false, action) {
-  switch (action.type) {
+      return {
+        ...state,
+        isLoading: false,
+        hasErrored: true,
+      };
     case 'SKILLS_IS_LOADING':
-      return action.isLoading;
-
-    default:
-      return state;
-  }
-}
-
-export function skills(state = [], action) {
-  switch (action.type) {
+      return {
+        ...state,
+        isLoading: true,
+      };
     case 'SKILLS_FETCH_DATA_SUCCESS':
-      return action.skills;
-
+      return {
+        ...state,
+        isLoading: false,
+        items: action.payload.slice(),
+      };
     default:
       return state;
   }
 }
+
+export default skills;

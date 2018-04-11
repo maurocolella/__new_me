@@ -1,0 +1,15 @@
+.entry {
+  animation: fadein 0.8s;
+  min-height: 100px;
+  padding-bottom: 1.618em;
+
+  &__heading {
+    border-bottom: 1px solid #1f769a;
+    padding-bottom: 4px;
+  }
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
