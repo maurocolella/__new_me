@@ -19,6 +19,9 @@ class ContentPage extends Component {
 
   render() {
     const { isLoading, article } = this.props;
+    const defaults = { title: '', body: '' };
+
+    const { title, body } = article && article.attributes ? article.attributes : defaults;
 
     return (
       (isLoading) ?
@@ -26,9 +29,9 @@ class ContentPage extends Component {
         :
         <main className={styles.page}>
           <header className={styles.page__header}>
-            <h2 className={styles.page__title}>{article ? article.title : ''}</h2>
+            <h2 className={styles.page__title}>{title}</h2>
           </header>
-          <article dangerouslySetInnerHTML={{ __html: article ? article.body : '' }} />
+          <article dangerouslySetInnerHTML={{ __html: body }} />
         </main>
     );
   }
@@ -40,13 +43,16 @@ const mapStateToProps = (state, ownProps) => {
 
   let article = {};
 
-  if (articles !== undefined && articles.length) {
+  if (articles !== undefined &&
+      articles.data &&
+      articles.data.length) {
     if (slug === undefined) {
-      ({ 0: article } = articles);
+      ({ 0: article } = articles.data);
     } else {
-      ({ 0: article } = articles.filter(obj => obj.slug === slug));
+      ({ 0: article } = articles.data.filter(obj => obj.attributes.slug === slug));
     }
   }
+
   return {
     hasErrored: state.articlesHasErrored,
     isLoading: state.articlesIsLoading,
