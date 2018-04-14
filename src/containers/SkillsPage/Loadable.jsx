@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Loader from '../../components/Loader';
 
 export default class LoadablePage extends Component {
   componentWillMount = () => {
@@ -8,6 +9,6 @@ export default class LoadablePage extends Component {
     });
   }
   render = () => (
-    this.Component ? <this.Component.default /> : null
+    this.Component ? <this.Component.default /> : <Loader />
   )
 }
