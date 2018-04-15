@@ -32,9 +32,16 @@ export default class GLChart extends Component {
     super(props);
 
     this.state = {
-      GLContext: new GL(),
+      hasGL: this.constructor.detectGL(),
+      GLContext: {},
       baseColor: 0x336699,
     };
+  }
+
+  componentWillMount() {
+    this.setState({
+      GLContext: new GL(),
+    });
   }
 
   componentDidMount() {
@@ -44,7 +51,8 @@ export default class GLChart extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.data.toString() !== this.props.data.toString()) {
+    if (nextProps.data.length &&
+        nextProps.data.toString() !== this.props.data.toString()) {
       this.state.GLContext.init(this.canvas, nextProps.data, this.state.baseColor);
     }
   }
@@ -54,7 +62,8 @@ export default class GLChart extends Component {
   }
 
   render() {
-    const hasGL = this.constructor.detectGL();
+    const { hasGL } = this.state;
+
     return (
       hasGL ?
         <div
