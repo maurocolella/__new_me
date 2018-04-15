@@ -1,5 +1,4 @@
-import 'isomorphic-fetch';
-import 'bluebird';
+import getArticles from './services';
 
 export function articlesHasErrored(bool) {
   return {
@@ -18,26 +17,20 @@ export function articlesIsLoading(bool) {
 export function articlesFetchDataSuccess(articles) {
   return {
     type: 'ARTICLES_FETCH_DATA_SUCCESS',
-    articles,
+    payload: articles,
   };
 }
 
-export function articlesFetchData(url) {
-  return (dispatch) => {
+export function articlesFetchData() {
+  return async (dispatch) => {
     dispatch(articlesIsLoading(true));
 
-    fetch(url)
-      .then((response) => {
-        dispatch(articlesIsLoading(false));
-
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-
-        return response;
-      })
-      .then(response => response.json())
-      .then(items => dispatch(articlesFetchDataSuccess(items)))
-      .catch(() => dispatch(articlesHasErrored(true)));
+    try {
+      const items = await getArticles();
+      dispatch(articlesIsLoading(false));
+      dispatch(articlesFetchDataSuccess(items));
+    } catch (e) {
+      dispatch(articlesHasErrored(true));
+    }
   };
 }

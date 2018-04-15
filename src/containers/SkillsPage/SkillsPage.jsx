@@ -29,7 +29,7 @@ constructor(props) {
 }
 
 componentDidMount() {
-  this.props.fetchData('//api.mauro-colella.com/skills');
+  this.props.fetchData();
 }
 
 handleSearch(event) {
@@ -88,32 +88,28 @@ const mapStateToProps = (state) => {
   const topSkills = [];
   const allSkills = [];
 
-  if (skills.data && skills.data.length) {
-    skills.data.forEach((skill) => {
-      const normalizedSkill = Object.assign(skill, skill.attributes);
+  skills.items.forEach((skill) => {
+    const formattedSkill = {
+      name: skill.title,
+      value: skill.rating,
+    };
 
-      const formattedSkill = {
-        name: normalizedSkill.title,
-        value: normalizedSkill.rating,
-      };
-
-      if (normalizedSkill.featured) {
-        topSkills.push(formattedSkill);
-      }
-      allSkills.push(normalizedSkill);
-    });
-  }
+    if (skill.featured) {
+      topSkills.push(formattedSkill);
+    }
+    allSkills.push(Object.assign({}, skill));
+  });
 
   return {
-    hasErrored: state.skillsHasErrored,
-    isLoading: state.skillsIsLoading,
+    hasErrored: skills.hasErrored,
+    isLoading: skills.isLoading,
     topSkills,
     skills: allSkills,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchData: url => dispatch(skillsFetchData(url)),
+  fetchData: () => { dispatch(skillsFetchData()); },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SkillsPage);

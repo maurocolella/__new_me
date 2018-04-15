@@ -1,5 +1,4 @@
-import 'isomorphic-fetch';
-import 'bluebird';
+import getSkills from './services';
 
 export function skillsHasErrored(bool) {
   return {
@@ -18,28 +17,20 @@ export function skillsIsLoading(bool) {
 export function skillsFetchDataSuccess(skills) {
   return {
     type: 'SKILLS_FETCH_DATA_SUCCESS',
-    skills,
+    payload: skills,
   };
 }
 
-export function skillsFetchData(url) {
-  return (dispatch) => {
+export function skillsFetchData() {
+  return async (dispatch) => {
     dispatch(skillsIsLoading(true));
 
-    fetch(url)
-      .then((response) => {
-        dispatch(skillsIsLoading(false));
-
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-
-        return response;
-      })
-      .then(response => response.json())
-      .then((items) => {
-        dispatch(skillsFetchDataSuccess(items));
-      })
-      .catch(() => dispatch(skillsHasErrored(true)));
+    try {
+      const items = await getSkills();
+      dispatch(skillsIsLoading(false));
+      dispatch(skillsFetchDataSuccess(items));
+    } catch (e) {
+      dispatch(skillsHasErrored(true));
+    }
   };
 }
