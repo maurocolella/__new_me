@@ -1,14 +1,21 @@
 import 'isomorphic-fetch';
+import sscache from 'session-storage-cache';
 import deserialize from './model';
 
 async function getArticles() {
-  const response = await fetch('//api.mauro-colella.com/articles');
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
+  let data = sscache.get('articlesData');
 
-  const dataSet = await response.json();
-  return deserialize(dataSet);
+  if (!data) {
+    const response = await fetch('//api.mauro-colella.com/articles');
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+
+    const dataSet = await response.json();
+    data = deserialize(dataSet);
+    sscache.set('articlesData', data, 5);
+  }
+  return data;
 }
 
 export default getArticles;
