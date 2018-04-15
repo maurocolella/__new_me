@@ -4,20 +4,20 @@ const initialState = {
   items: [],
 };
 
-function articles(state = initialState, action) {
+function resume(state = initialState, action) {
   switch (action.type) {
-    case 'ARTICLES_HAS_ERRORED':
+    case 'RESUME_HAS_ERRORED':
       return {
         ...state,
         isLoading: false,
         hasErrored: true,
       };
-    case 'ARTICLES_IS_LOADING':
+    case 'RESUME_IS_LOADING':
       return {
         ...state,
         isLoading: true,
       };
-    case 'ARTICLES_FETCH_DATA_SUCCESS':
+    case 'RESUME_FETCH_DATA_SUCCESS':
       return {
         ...state,
         isLoading: false,
@@ -28,4 +28,4 @@ function articles(state = initialState, action) {
   }
 }
 
-export default articles;
+export default resume;
