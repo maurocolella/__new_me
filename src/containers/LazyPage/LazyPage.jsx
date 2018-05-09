@@ -32,7 +32,8 @@ class LazyPage extends Component {
           </header>
           {entries.map(entry => (
             <ResumeEntry
-              company={entry.company}
+              key={entry.id}
+              title={entry.title}
               startDate={entry.startDate}
               endDate={entry.endDate}
               description={entry.description}

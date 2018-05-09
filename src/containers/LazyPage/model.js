@@ -1,3 +1,5 @@
+import camelize from 'camelize';
+
 function deserialize(dataSet) {
   const { data, included } = dataSet;
 
@@ -5,9 +7,11 @@ function deserialize(dataSet) {
     let formattedEntry = Object.assign({}, entry);
     formattedEntry = Object.assign(formattedEntry, entry.attributes || {});
 
-    const relatedTasks = (formattedEntry.relationships &&
-      formattedEntry.relationships.find(relationship => relationship.type === 'tasks')
-        .data) || [];
+    const relatedTasks = (
+      formattedEntry.relationships &&
+      formattedEntry.relationships.tasks &&
+      formattedEntry.relationships.tasks.data
+    ) || [];
 
     const tasks = relatedTasks.map(task =>
       Object.assign(
@@ -19,7 +23,7 @@ function deserialize(dataSet) {
     delete formattedEntry.attributes;
     delete formattedEntry.relationships;
 
-    return formattedEntry;
+    return camelize(formattedEntry);
   });
 
   return formattedData;
