@@ -22,9 +22,11 @@ static defaultProps = {
 constructor(props) {
   super(props);
   this.handleSearch = this.handleSearch.bind(this);
+  this.hasActiveRelation = this.hasActiveRelation.bind(this);
 
   this.state = {
     filter: '',
+    activeSkill: null,
   };
 }
 
@@ -32,15 +34,44 @@ componentDidMount() {
   this.props.fetchData();
 }
 
+hasActiveRelation(skill) {
+  const { activeSkill } = this.state;
+
+  if (activeSkill && activeSkill.relationships) {
+    const { relationships } = activeSkill;
+    const relatedFrom = relationships.relatedFrom && relationships
+      .relatedFrom
+      .data
+      .find(relation => relation.id === skill.id);
+
+    const relatedTo = relationships.relatedTo && relationships
+      .relatedTo
+      .data
+      .find(relation => relation.id === skill.id);
+
+    return Boolean(relatedFrom || relatedTo);
+  }
+
+  return false;
+}
+
+handleRelated = skill => () => {
+  this.setState({
+    filter: '',
+    activeSkill: skill,
+  });
+}
+
 handleSearch(event) {
   this.setState({
     filter: event.target.value,
+    activeSkill: null,
   });
 }
 
 render() {
   const { topSkills, skills } = this.props;
-  const { filter } = this.state;
+  const { filter, activeSkill } = this.state;
 
   return (
     <main className={styles.page}>
@@ -58,22 +89,27 @@ render() {
         <input
           className={styles.search}
           onChange={this.handleSearch}
-          placeholder="filter..."
+          placeholder="search..."
           type="text"
         />
         {
           skills.map((skill) => {
             const label = skill.title.toLowerCase();
+            const isActive = activeSkill &&
+                  (skill.id === activeSkill.id || this.hasActiveRelation(skill));
             const isDimmed = filter.length && label.indexOf(filter.toLowerCase()) < 0;
-            const classes = `${styles.tag}${isDimmed ? ` ${styles['tag--dim']}` : ''}`;
+            const classes = `${styles.tag}
+                             ${isDimmed ? ` ${styles['tag--dim']}` : ''}
+                             ${isActive ? ` ${styles['tag--related']}` : ''}`;
 
             return (
-              <span
+              <button
                 key={skill.id}
                 className={classes}
+                onClick={this.handleRelated(skill)}
               >
                 {skill.title}
-              </span>
+              </button>
             );
           })
         }

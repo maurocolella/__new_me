@@ -29,6 +29,7 @@
 
 .tag {
     background-color: #eee;
+    border: 1px solid #eee;
     border-radius: 2px;
     box-shadow: 0px 1px 2px 0 #bbb;
     color: #777;
@@ -37,12 +38,18 @@
     font-size: 0.65em;
     font-weight: bold;
     margin: 2px;
+    outline: none;
     padding: 0.4em 0.8em;
     text-transform: uppercase;
     transition: 0.4s color ease;
 
     &--dim {
         color: #ccc;
+    }
+
+    &--related {
+        color: red;
+        font-weight: 800;
     }
 }
 
