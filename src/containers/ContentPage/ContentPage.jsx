@@ -10,7 +10,7 @@ class ContentPage extends Component {
   static propTypes = {
     fetchData: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
-    article: PropTypes.shape.isRequired,
+    article: PropTypes.shape({}).isRequired,
   };
 
   componentDidMount() {
