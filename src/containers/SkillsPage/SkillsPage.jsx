@@ -85,8 +85,8 @@ render() {
   return (
     <main className={styles.page}>
       <header className={styles.page__header}>
+        <small className={styles.lastModified}>Last modified: {this.lastModified()}</small>
         <h2 className={styles.page__title}>Skills</h2>
-        <em className={styles.lastModified}>Last modified: {this.lastModified()}</em>
       </header>
       <article className={styles.article}>
         <GLChart className={styles.chart} data={topSkills} />
