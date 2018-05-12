@@ -7,7 +7,7 @@ import Loader from '../../components/Loader';
 import ResumeEntry from '../../components/ResumeEntry';
 import styles from '../../assets/styles/page.scss';
 
-class LazyPage extends Component {
+class ResumePage extends Component {
   static propTypes = {
     fetchData: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
@@ -61,4 +61,4 @@ const mapDispatchToProps = dispatch => ({
   fetchData: () => { dispatch(resumeFetchData()); },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LazyPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ResumePage);

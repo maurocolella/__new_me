@@ -1,0 +1,6 @@
+{
+  "name": "ResumePage",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ResumePage.jsx"
+}
