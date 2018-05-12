@@ -19,7 +19,7 @@ export default class GLChart extends Component {
   static propTypes = {
     data: PropTypes.arrayOf(Object),
     className: PropTypes.string,
-    style: PropTypes.shape,
+    style: PropTypes.shape({}),
   };
 
   static defaultProps = {
