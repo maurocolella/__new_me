@@ -745,7 +745,7 @@ import * as THREE from 'three';
 
         triangle.normal(this.normal);
         triangle.midpoint(this.midpoint);
-        this.area = triangle.area();
+        this.area = triangle.getArea();
 
         this.constant = this.normal.dot(this.midpoint);
 
