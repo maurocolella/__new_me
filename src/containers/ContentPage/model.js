@@ -1,3 +1,5 @@
+import camelize from 'camelize';
+
 function deserialize(dataSet) {
   const normalizedArticles = dataSet.data.map((article) => {
     let normalizedArticle = Object.assign({}, article);
@@ -5,7 +7,7 @@ function deserialize(dataSet) {
       normalizedArticle = Object.assign(normalizedArticle, article.attributes);
       delete normalizedArticle.attributes;
     }
-    return normalizedArticle;
+    return camelize(normalizedArticle);
   }) || [];
 
   return normalizedArticles;
