@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 // import mergeWith from 'lodash/mergeWith';
 import articles from '../containers/ContentPage/reducers';
 import skills from '../containers/SkillsPage/reducers';
-import resume from '../containers/LazyPage/reducers';
+import resume from '../containers/ResumePage/reducers';
 
 /* TODO: implement
 const initialState = {
