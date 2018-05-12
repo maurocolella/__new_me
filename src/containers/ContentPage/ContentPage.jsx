@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import { articlesFetchData } from './actions';
 
 import Loader from '../../components/Loader';
@@ -19,7 +20,7 @@ class ContentPage extends Component {
 
   render() {
     const { isLoading, article } = this.props;
-    const { title, body } = article;
+    const { title, body, updatedAt } = article;
 
     return (
       (isLoading) ?
@@ -28,6 +29,7 @@ class ContentPage extends Component {
         <main className={styles.page}>
           <header className={styles.page__header}>
             <h2 className={styles.page__title}>{title}</h2>
+            <em className={styles.lastModified}>Last modified: {moment(updatedAt).format('LL')}</em>
           </header>
           <article dangerouslySetInnerHTML={{ __html: body }} />
         </main>
