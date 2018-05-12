@@ -13,6 +13,7 @@
     width: 92%;
 
     &__header{
+        margin-bottom: 1em;
         padding-top: 1.65em;
     }
 
@@ -25,6 +26,10 @@
 
 .article {
     margin-bottom: 45px;
+}
+
+.lastModified {
+    border-bottom: 1px solid #bbb;
 }
 
 .tag {
