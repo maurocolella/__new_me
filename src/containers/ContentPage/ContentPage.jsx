@@ -28,8 +28,8 @@ class ContentPage extends Component {
         :
         <main className={styles.page}>
           <header className={styles.page__header}>
+            <small className={styles.lastModified}>Last modified: {moment(updatedAt).format('LL')}</small>
             <h2 className={styles.page__title}>{title}</h2>
-            <em className={styles.lastModified}>Last modified: {moment(updatedAt).format('LL')}</em>
           </header>
           <article dangerouslySetInnerHTML={{ __html: body }} />
         </main>
