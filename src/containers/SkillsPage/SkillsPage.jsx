@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import moment from 'moment';
+
 import { skillsFetchData } from './actions';
-
 import GLChart from '../../components/GLChart';
-
 import styles from '../../assets/styles/page.scss';
 
 class SkillsPage extends Component {
@@ -21,6 +21,7 @@ static defaultProps = {
 
 constructor(props) {
   super(props);
+  this.lastModified = this.lastModified.bind(this);
   this.handleSearch = this.handleSearch.bind(this);
   this.hasActiveRelation = this.hasActiveRelation.bind(this);
 
@@ -32,6 +33,14 @@ constructor(props) {
 
 componentDidMount() {
   this.props.fetchData();
+}
+
+lastModified() {
+  const { skills } = this.props;
+
+  const updateDates = skills.map(skill => moment(skill.updatedAt));
+
+  return moment.max(updateDates).format('LL');
 }
 
 hasActiveRelation(skill) {
@@ -77,6 +86,7 @@ render() {
     <main className={styles.page}>
       <header className={styles.page__header}>
         <h2 className={styles.page__title}>Skills</h2>
+        <em className={styles.lastModified}>Last modified: {this.lastModified()}</em>
       </header>
       <article className={styles.article}>
         <GLChart className={styles.chart} data={topSkills} />
