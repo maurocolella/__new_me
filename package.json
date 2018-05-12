@@ -88,6 +88,6 @@
     "session-storage-cache": "^1.0.4",
     "sharp": "^0.20.1",
     "smoothscroll-polyfill": "^0.4.0",
-    "three": "^0.91.0"
+    "three": "^0.92.0"
   }
 }
