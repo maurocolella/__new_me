@@ -1,3 +1,5 @@
+@import "../../assets/styles/variables.scss";
+
 .navbar {
   position: absolute;
   top: 313px;
@@ -36,7 +38,6 @@
     font-weight: 700;
     height: 100%;
     justify-content: center;
-    // padding-left: 0.825em;
     text-align: center;
     text-decoration: none;
     width: 100%;
@@ -46,8 +47,8 @@
     &:focus,
     &:active {
       background-color: #fefefe;
-      border-bottom: 4px solid #1d72ba;
-      color: #1d72ba;
+      border-bottom: 4px solid $highlight-color;
+      color: $highlight-color;
     }
   }
 

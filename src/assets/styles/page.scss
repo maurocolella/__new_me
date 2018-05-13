@@ -1,4 +1,5 @@
 @import "mixins.scss";
+@import "variables.scss";
 
 .page {
   background-color: #fcfcfc;
@@ -57,13 +58,13 @@
   }
 
   &--related {
-    color: red;
+    color: $highlight-color;
     font-weight: 800;
   }
 
   &--reset {
     background-color: white;
-    color: red;
+    color: $highlight-color;
     font-weight: 800;
   }
 
@@ -116,6 +117,10 @@
     margin: 10px;
     pointer-events: none;
   }
+}
+
+.legend{
+  color: $highlight-color;
 }
 
 @keyframes fadein {
