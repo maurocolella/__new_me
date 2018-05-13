@@ -1,10 +1,12 @@
+@import "../../assets/styles/variables.scss";
+
 .entry {
   animation: fadein 0.8s;
   min-height: 100px;
   padding-bottom: 1.618em;
 
   &__heading {
-    border-bottom: 1px solid #1f769a;
+    border-bottom: 1px solid $highlight-color;
     padding-bottom: 4px;
   }
 }

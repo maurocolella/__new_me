@@ -1,3 +1,4 @@
+@import "../../assets/styles/variables.scss";
 @import "../../assets/styles/mixins.scss";
 
 .cover{
@@ -35,7 +36,7 @@
 }
 
 .hireme{
-  background-color: #1d72ba;
+  background-color: $highlight-color;
   border-radius: 3px;
   color: #eee;
   cursor: pointer;

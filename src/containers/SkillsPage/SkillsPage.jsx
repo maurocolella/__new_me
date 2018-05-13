@@ -196,7 +196,7 @@ render() {
               null
           }
         </ul>
-        <small style={{ color: 'red' }}>
+        <small className={styles.legend}>
           * Tap to highlight related items.
         </small>
       </article>
