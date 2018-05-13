@@ -93,9 +93,9 @@ render() {
       </article>
       <article className={styles.article}>
         <h6>All Skills</h6>
-        <span className={styles.notice}>
+        <small>
           The following skills have been used professionally.
-        </span>
+        </small>
         <input
           className={styles.search}
           onChange={this.handleSearch}
@@ -107,7 +107,8 @@ render() {
             const label = skill.title.toLowerCase();
             const isActive = activeSkill &&
                   (skill.id === activeSkill.id || this.hasActiveRelation(skill));
-            const isDimmed = filter.length && label.indexOf(filter.toLowerCase()) < 0;
+            const isDimmed = (filter.length && label.indexOf(filter.toLowerCase()) < 0) ||
+                  (activeSkill && !isActive);
             const classes = `${styles.tag}
                              ${isDimmed ? ` ${styles['tag--dim']}` : ''}
                              ${isActive ? ` ${styles['tag--related']}` : ''}`;
