@@ -87,7 +87,8 @@ export default class Navbar extends Component {
               className={styles.nav__link}
               to="/about"
             >
-              About
+              <i className={`material-icons ${styles.nav__icon}`}>person</i>
+              <span className={styles.nav__label}>About</span>
             </NavLink>
           </li>
           <li className={styles.nav__item}>
@@ -96,7 +97,8 @@ export default class Navbar extends Component {
               className={styles.nav__link}
               to="/skills"
             >
-              Skills
+              <i className={`material-icons ${styles.nav__icon}`}>phonelink</i>
+              <span className={styles.nav__label}>Skills</span>
             </NavLink>
           </li>
           <li className={styles.nav__item}>
@@ -105,7 +107,8 @@ export default class Navbar extends Component {
               className={styles.nav__link}
               to="/work"
             >
-              Work
+              <i className={`material-icons ${styles.nav__icon}`}>business</i>
+              <span className={styles.nav__label}>Work</span>
             </NavLink>
           </li>
           <li className={styles.nav__item}>
@@ -114,7 +117,8 @@ export default class Navbar extends Component {
               className={styles.nav__link}
               to="/resume"
             >
-              Resume
+              <i className={`material-icons ${styles.nav__icon}`}>reorder</i>
+              <span className={styles.nav__label}>Resume</span>
             </NavLink>
           </li>
         </ul>
