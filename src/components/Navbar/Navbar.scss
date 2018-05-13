@@ -25,7 +25,7 @@
 
     &__link {
         border-bottom: 4px solid transparent;
-        color: #777;
+        color: #111;
         cursor: pointer;
         display: flex;
         flex-direction: column;
@@ -43,8 +43,8 @@
         &:focus,
         &:active {
             background-color: #fefefe;
-            border-bottom: 4px solid #1f749a;
-            color: #1f749a;
+            border-bottom: 4px solid #1d72ca;
+            color: #1d72ca;
         }
     }
 }
