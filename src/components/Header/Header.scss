@@ -3,8 +3,6 @@
 .cover{
   padding-top: 1.65em;
   background-color: rgba(0,0,0,0.5);
-  border-left: 1px solid #ff6611;
-  border-right: 1px solid #ff6611;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -19,6 +17,8 @@
 
   @media (min-width: 768px) {
     @include container-lg;
+    border-left: 1px solid #ff6611;
+    border-right: 1px solid #ff6611;
   }
 }
 
