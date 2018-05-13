@@ -57,7 +57,7 @@ export default class Navbar extends Component {
     const clientRect = this.navbar.current.getBoundingClientRect();
     const isOffScreen = scrollTop > top && clientRect.top < 0;
 
-    if (scrollTop <= top) {
+    if (scrollTop <= top && sticky) {
       this.setState({
         sticky: false,
       });
