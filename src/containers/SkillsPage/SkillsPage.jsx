@@ -24,10 +24,17 @@ constructor(props) {
   this.lastModified = this.lastModified.bind(this);
   this.handleSearch = this.handleSearch.bind(this);
   this.hasActiveRelation = this.hasActiveRelation.bind(this);
+  this.handleFocusInput = this.handleFocusInput.bind(this);
+  this.handleBlurInput = this.handleBlurInput.bind(this);
+  this.focusSearchInput = this.focusSearchInput.bind(this);
+  this.handleGlobalCancelRelated = this.handleGlobalCancelRelated.bind(this);
+
+  this.searchInput = React.createRef();
 
   this.state = {
     filter: '',
     activeSkill: null,
+    searchActive: false,
   };
 }
 
@@ -37,9 +44,7 @@ componentDidMount() {
 
 lastModified() {
   const { skills } = this.props;
-
   const updateDates = skills.map(skill => moment(skill.updatedAt));
-
   return moment.max(updateDates).format('LL');
 }
 
@@ -69,6 +74,19 @@ handleRelated = skill => () => {
     filter: '',
     activeSkill: skill,
   });
+
+  if (skill) {
+    document.body.addEventListener('click', this.handleGlobalCancelRelated, true);
+  } else {
+    document.body.removeEventListener('click', this.handleGlobalCancelRelated, true);
+  }
+}
+
+handleGlobalCancelRelated() {
+  this.setState({
+    filter: '',
+    activeSkill: null,
+  });
 }
 
 handleSearch(event) {
@@ -78,9 +96,25 @@ handleSearch(event) {
   });
 }
 
+handleFocusInput() {
+  this.setState({
+    searchActive: true,
+  });
+}
+
+handleBlurInput() {
+  this.setState({
+    searchActive: false,
+  });
+}
+
+focusSearchInput() {
+  this.searchInput.current.focus();
+}
+
 render() {
   const { topSkills, skills } = this.props;
-  const { filter, activeSkill } = this.state;
+  const { filter, activeSkill, searchActive } = this.state;
 
   return (
     <main className={styles.page}>
@@ -92,38 +126,79 @@ render() {
         <GLChart className={styles.chart} data={topSkills} />
       </article>
       <article className={styles.article}>
-        <h6>All Skills</h6>
+        <h4>All Skills</h4>
         <small>
           The following skills have been used professionally.
         </small>
-        <input
-          className={styles.search}
-          onChange={this.handleSearch}
-          placeholder="search..."
-          type="text"
-        />
-        {
-          skills.map((skill) => {
-            const label = skill.title.toLowerCase();
-            const isActive = activeSkill &&
-                  (skill.id === activeSkill.id || this.hasActiveRelation(skill));
-            const isDimmed = (filter.length && label.indexOf(filter.toLowerCase()) < 0) ||
-                  (activeSkill && !isActive);
-            const classes = `${styles.tag}
-                             ${isDimmed ? ` ${styles['tag--dim']}` : ''}
-                             ${isActive ? ` ${styles['tag--related']}` : ''}`;
+        <div
+          className={
+            `${styles.search}
+            ${searchActive ? ` ${styles['search--active']}` : ''}`
+          }
+        >
+          <input
+            ref={this.searchInput}
+            className={styles.search__field}
+            onChange={this.handleSearch}
+            onFocus={this.handleFocusInput}
+            onBlur={this.handleBlurInput}
+            placeholder="search skills..."
+            type="text"
+          />
+          <button
+            className={styles.search__button}
+            onClick={this.focusSearchInput}
+          >
+            <i
+              className={`material-icons ${styles.search__icon}`}
+            >
+              search
+            </i>
+          </button>
+        </div>
+        <ul className={styles.flatList}>
+          {
+            skills.map((skill) => {
+              const label = skill.title.toLowerCase();
+              const isActive = activeSkill &&
+                    (skill.id === activeSkill.id || this.hasActiveRelation(skill));
+              const isDimmed = (filter.length && label.indexOf(filter.toLowerCase()) < 0) ||
+                    (activeSkill && !isActive);
+              const classes = `${styles.tag}
+                               ${isDimmed ? ` ${styles['tag--dim']}` : ''}
+                               ${isActive ? ` ${styles['tag--related']}` : ''}`;
 
-            return (
-              <button
-                key={skill.id}
-                className={classes}
-                onClick={this.handleRelated(skill)}
-              >
-                {skill.title}
-              </button>
-            );
-          })
-        }
+              return (
+                <li key={skill.id}>
+                  <button
+                    className={classes}
+                    onClick={this.handleRelated(skill)}
+                  >
+                    {skill.title}
+                  </button>
+                </li>
+              );
+            })
+          }
+          {
+            activeSkill ?
+              <li>
+                <button
+                  className={`${styles.tag} ${styles['tag--reset']}`}
+                  onClick={this.handleRelated(null)}
+                >
+                  <i className={`material-icons ${styles.tag__icon}`}>
+                    close
+                  </i> clear
+                </button>
+              </li>
+              :
+              null
+          }
+        </ul>
+        <small style={{ color: 'red' }}>
+          * Tap to highlight related items.
+        </small>
       </article>
     </main>
   );
