@@ -1,73 +1,116 @@
 .page {
-    background-color: #fcfcfc;
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    box-shadow: 16px 24px 8px -16px #bcbcbc,
-                -16px 24px 8px -16px #bcbcbc;
-    color: #555;
+  background-color: #fcfcfc;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  box-shadow: 16px 24px 8px -16px #bcbcbc,
+    -16px 24px 8px -16px #bcbcbc;
+  color: #555;
+  font-weight: 300;
+  margin: 0 auto;
+  max-width: 40em;
+  padding: 49px 4% 3.3em;
+  transform: translate3d(0,0,0);
+  width: 92%;
+
+  &__header{
+    margin-bottom: 1em;
+    padding-top: 1.65em;
+  }
+
+  &__title {
+    animation: fadein 0.4s;
+    color: #333;
     font-weight: 300;
-    margin: 0 auto;
-    max-width: 40em;
-    padding: 49px 4% 3.3em;
-    transform: translate3d(0,0,0);
-    width: 92%;
-
-    &__header{
-        margin-bottom: 1em;
-        padding-top: 1.65em;
-    }
-
-    &__title {
-        animation: fadein 0.4s;
-        color: #333;
-        font-weight: 300;
-    }
+  }
 }
 
 .article {
-    margin-bottom: 45px;
+  margin-bottom: 45px;
 }
 
 .lastModified {
-    border-bottom: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
 }
 
 .tag {
-    background-color: #eee;
-    border: 1px solid #eee;
-    border-radius: 2px;
-    box-shadow: 0px 1px 2px 0 #bbb;
-    color: #777;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 65%;
+  background-color: #eee;
+  border: 1px solid #eee;
+  border-radius: 2px;
+  box-shadow: 0px 1px 2px 0 #bbb;
+  color: #777;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 65%;
+  font-weight: bold;
+  margin: 2px;
+  outline: none;
+  padding: 0.4em 0.8em;
+  text-transform: uppercase;
+  transition: 0.4s color ease;
+
+  &--dim {
+    color: #ccc;
+  }
+
+  &--related {
+    color: red;
+    font-weight: 800;
+  }
+
+  &--reset {
+    background-color: white;
+    color: red;
+    font-weight: 800;
+  }
+
+  &__icon {
+    font-size: 11px;
     font-weight: bold;
-    margin: 2px;
-    outline: none;
-    padding: 0.4em 0.8em;
-    text-transform: uppercase;
-    transition: 0.4s color ease;
+    vertical-align: middle;
+  }
+}
 
-    &--dim {
-        color: #ccc;
-    }
-
-    &--related {
-        color: red;
-        font-weight: 800;
-    }
+.flatList {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
 }
 
 .search {
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  margin: 10px 0;
+  transition: 0.4s border-bottom-color ease;
+  width: 100%;
+
+  &--active {
+    border-bottom-color: #333;
+  }
+
+  &__field {
     background-color: transparent;
     border: 0;
-    border-bottom: 1px solid #ccc;
-    margin: 10px 0;
+    flex: 1;
     outline: 0;
-    width: 100%;
+    padding: 10px;
+  }
+
+  &__button {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__icon {
+    margin: 10px;
+    pointer-events: none;
+  }
 }
 
 @keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
