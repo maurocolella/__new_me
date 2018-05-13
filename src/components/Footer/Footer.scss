@@ -1,3 +1,5 @@
+@import "../../assets/styles/mixins.scss";
+
 .cover{
   display: flex;
   justify-content: center;
@@ -9,22 +11,27 @@
   border-top: 0;
   height: 75%;
   margin: 0 auto;
-  max-width: 40em;
   padding: 0.825em 4% 3.3em;
   position: relative;
-  width: 92%;
 
   &__title{
     color: #fff;
     font-weight: 500;
   }
+
+  @media (min-width: 768px) {
+    @include container-lg;
+  }
 }
 
 .footer{
   background: #fefefe;
-  height: 377px;
   overflow: hidden;
   z-index: 2;
+
+  @media (min-width: 768px) {
+    height: 377px;
+  }
 }
 
 .hireme{
