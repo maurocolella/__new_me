@@ -1,3 +1,5 @@
+@import "mixins.scss";
+
 .page {
   background-color: #fcfcfc;
   border-left: 1px solid #ddd;
@@ -7,10 +9,8 @@
   color: #555;
   font-weight: 300;
   margin: 0 auto;
-  max-width: 40em;
   padding: 49px 4% 3.3em;
   transform: translate3d(0,0,0);
-  width: 92%;
 
   &__header{
     margin-bottom: 1em;
@@ -21,6 +21,10 @@
     animation: fadein 0.4s;
     color: #333;
     font-weight: 300;
+  }
+
+  @media (min-width: 768px) {
+    @include container-lg;
   }
 }
 
@@ -40,7 +44,7 @@
   color: #777;
   cursor: pointer;
   display: inline-block;
-  font-size: 65%;
+  font-size: 80%;
   font-weight: bold;
   margin: 2px;
   outline: none;
@@ -67,6 +71,10 @@
     font-size: 11px;
     font-weight: bold;
     vertical-align: middle;
+  }
+
+  @media (min-width: 768px){
+    font-size: 65%;
   }
 }
 
