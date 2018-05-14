@@ -3,7 +3,8 @@
 
 .cover{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   padding-top: 1.65em;
   background-color: #f5f5f5;
@@ -12,7 +13,6 @@
   border-top: 0;
   height: 75%;
   margin: 0 auto;
-  padding: 0.825em 4% 3.3em;
   position: relative;
 
   &__title{
@@ -29,6 +29,24 @@
   background: #fefefe;
   overflow: hidden;
   z-index: 2;
+
+  &__notes {
+    justify-content: center;
+  }
+
+  &__note {
+    padding: 10px 20px;
+  }
+
+  &__link {
+    color: #565656;
+  }
+
+  &__icon {
+    fill: #ccc;
+    height: 36px;
+    width: 36px;
+  }
 
   @media (min-width: 768px) {
     height: 377px;
