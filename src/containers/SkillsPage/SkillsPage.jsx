@@ -42,6 +42,10 @@ componentDidMount() {
   this.props.fetchData();
 }
 
+componentWillUnmount() {
+  document.body.removeEventListener('click', this.handleGlobalCancelRelated, true);
+}
+
 lastModified() {
   const { skills } = this.props;
   const updateDates = skills.map(skill => moment(skill.updatedAt));
