@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import ReactGA from 'react-ga';
 
 import globalStyles from '../../assets/styles/page.scss';
 import styles from './Footer.scss';
@@ -32,6 +33,14 @@ export default class Footer extends PureComponent {
     event.stopPropagation();
     const url = event.currentTarget.getAttribute('href');
     const hash = this.constructor.hash(url);
+
+    ReactGA.outboundLink(
+      {
+        label: `outbound: ${url}`,
+      },
+      () => {},
+    );
+
     window.open(url, hash);
   }
 
@@ -43,7 +52,7 @@ export default class Footer extends PureComponent {
             href="https://www.upwork.com/freelancers/~014e1ddeddccaea1da"
             className={styles.hireme}
             onClick={this.popup}
-          >
+            >
             Hire Me <SunIcon className={styles.hireme__icon} />
           </a>
           <aside>
@@ -54,7 +63,7 @@ export default class Footer extends PureComponent {
                     href="https://api.mauro-colella.com"
                     className={styles.footer__link}
                     onClick={this.popup}
-                  >
+                    >
                     api
                   </a>
                 </small>
@@ -65,7 +74,7 @@ export default class Footer extends PureComponent {
                     href="https://github.com/maurocolella/__new_me"
                     className={styles.footer__link}
                     onClick={this.popup}
-                  >
+                    >
                     source code
                   </a>
                 </small>
@@ -77,7 +86,7 @@ export default class Footer extends PureComponent {
                   href="https://twitter.com/nvisionmedia"
                   className={styles.footer__link}
                   onClick={this.popup}
-                >
+                  >
                   <TwitterIcon className={styles.footer__icon} />
                 </a>
               </li>
@@ -86,11 +95,11 @@ export default class Footer extends PureComponent {
                   href="https://www.linkedin.com/in/mauro-colella-8783042/"
                   className={styles.footer__link}
                   onClick={this.popup}
-                >
+                  >
                   <LinkedinIcon
                     className={styles.footer__icon}
                     style={{ width: '54px' }}
-                  />
+                    />
                 </a>
               </li>
               <li className={styles.footer__note}>
@@ -98,7 +107,7 @@ export default class Footer extends PureComponent {
                   href="https://www.facebook.com/nvisionweb/"
                   className={styles.footer__link}
                   onClick={this.popup}
-                >
+                  >
                   <FacebookIcon className={styles.footer__icon} />
                 </a>
               </li>
