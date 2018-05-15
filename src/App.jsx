@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import sscache from 'session-storage-cache';
+import {
+  Router,
+} from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
+import ReactGA from 'react-ga';
 
 import 'normalize.css';
 import './assets/styles/typeplate.scss';
@@ -10,13 +15,24 @@ import Navbar from './components/Navbar';
 
 sscache.flush();
 
+// Initialize history.
+const history = createHistory();
+ReactGA.initialize('UA-9138282-16');
+
+history.listen((location) => {
+  ReactGA.set({ page: location.pathname });
+  ReactGA.pageview(location.pathname);
+});
+
 export default class App extends Component {
   render() {
     return (
-      <div className={styles.app}>
-        <Navbar />
-        <Dashboard />
-      </div>
+      <Router history={history}>
+        <div className={styles.app}>
+          <Navbar />
+          <Dashboard />
+        </div>
+      </Router>
     );
   }
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import ReactGA from 'react-ga';
 
 import { skillsFetchData } from './actions';
 import GLChart from '../../components/GLChart';
@@ -74,6 +75,12 @@ hasActiveRelation(skill) {
 }
 
 handleRelated = skill => () => {
+  ReactGA.event({
+    category: 'Related',
+    action: 'Skills Page',
+    label: skill.title,
+  });
+
   this.setState({
     filter: '',
     activeSkill: skill,
@@ -94,8 +101,18 @@ handleGlobalCancelRelated() {
 }
 
 handleSearch(event) {
+  const filter = event.target.value;
+
+  if (filter.length >= 3) {
+    ReactGA.event({
+      category: 'Search',
+      action: 'Skills Page',
+      label: filter,
+    });
+  }
+
   this.setState({
-    filter: event.target.value,
+    filter,
     activeSkill: null,
   });
 }
