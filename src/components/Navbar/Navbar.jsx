@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import NavItem from '../NavItem';
 
 import styles from './Navbar.scss';
 
@@ -82,46 +82,51 @@ export default class Navbar extends Component {
       >
         <ul className={styles.nav}>
           <li className={styles.nav__item}>
-            <NavLink
+            <NavItem
               activeClassName={styles['nav__link--active']}
               className={styles.nav__link}
               to="/about"
+              hoverClassName={styles['nav__link--hover']}
             >
               <i className={`material-icons ${styles.nav__icon}`}>person</i>
               <span className={styles.nav__label}>About</span>
-            </NavLink>
+            </NavItem>
           </li>
           <li className={styles.nav__item}>
-            <NavLink
+            <NavItem
               activeClassName={styles['nav__link--active']}
               className={styles.nav__link}
               to="/skills"
+              hoverClassName={styles['nav__link--hover']}
             >
               <i className={`material-icons ${styles.nav__icon}`}>phonelink</i>
               <span className={styles.nav__label}>Skills</span>
-            </NavLink>
+            </NavItem>
           </li>
           <li className={styles.nav__item}>
-            <NavLink
+            <NavItem
               activeClassName={styles['nav__link--active']}
               className={styles.nav__link}
               to="/work"
+              hoverClassName={styles['nav__link--hover']}
             >
               <i className={`material-icons ${styles.nav__icon}`}>business</i>
               <span className={styles.nav__label}>Work</span>
-            </NavLink>
+            </NavItem>
           </li>
           <li className={styles.nav__item}>
-            <NavLink
+            <NavItem
               activeClassName={styles['nav__link--active']}
               className={styles.nav__link}
               to="/resume"
+              hoverClassName={styles['nav__link--hover']}
             >
               <i className={`material-icons ${styles.nav__icon}`}>reorder</i>
               <span className={styles.nav__label}>Resume</span>
-            </NavLink>
+            </NavItem>
           </li>
         </ul>
-      </nav>);
+      </nav>
+    );
   }
 }

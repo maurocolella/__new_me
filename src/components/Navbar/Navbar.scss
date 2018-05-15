@@ -43,7 +43,7 @@
     width: 100%;
 
     &--active,
-    &:hover,
+    &--hover,
     &:active {
       background-color: #fefefe;
       border-bottom: 4px solid $highlight-color;
