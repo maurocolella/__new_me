@@ -3,15 +3,17 @@
     -webkit-tap-highlight-color: transparent;
     background-color: transparent;
     border-radius: 50%;
-    bottom: 20px;
+    bottom: 16px;
+    box-shadow: rgba(0, 0, 0, 0.23) 0px 3px 10px,
+        rgba(0, 0, 0, 0.31) 0px 3px 10px;
     cursor: pointer;
-    height: 100px;
+    height: 56px;
     opacity: 0;
     outline: none;
     pointer-events: none;
     position: fixed;
-    right: 20px;
-    width: 100px;
+    right: 16px;
+    width: 56px;
     transition: 0.4s opacity ease;
 
     &--visible {
@@ -20,13 +22,18 @@
     }
 
     &__icon {
-        fill: #ccc;
+        fill: #111;
         stroke: transparent;
     }
 
     &:active {
         .button__icon {
-            fill: #bbb;
+            fill: #444;
         }
+    }
+
+    @media (min-width: 768px){
+        bottom: 24px;
+        right: 24px;
     }
 }
