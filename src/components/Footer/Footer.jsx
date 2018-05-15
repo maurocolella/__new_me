@@ -36,7 +36,7 @@ export default class Footer extends PureComponent {
 
     ReactGA.outboundLink(
       {
-        label: `outbound: ${url}`,
+        label: url,
       },
       () => {},
     );
