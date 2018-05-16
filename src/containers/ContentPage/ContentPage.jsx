@@ -45,10 +45,13 @@ const mapStateToProps = (state, ownProps) => {
 
   if (articles.items &&
       articles.items.length) {
-    if (slug === undefined) {
-      ({ 0: article } = articles.items);
+    const hasSlug = slug !== undefined;
+    const matchedArticle = hasSlug && articles.items.filter(obj => obj.slug === slug);
+
+    if (!matchedArticle.length && hasSlug) {
+      ownProps.history.push('/not/found');
     } else {
-      ({ 0: article } = articles.items.filter(obj => obj.slug === slug));
+      ({ 0: article } = (hasSlug ? matchedArticle : articles.items));
     }
   }
 
