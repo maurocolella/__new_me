@@ -12,10 +12,19 @@ class ContentPage extends Component {
     fetchData: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
     article: PropTypes.shape({}).isRequired,
+    history: PropTypes.shape({}).isRequired,
+    isNotFound: PropTypes.bool.isRequired,
   };
 
   componentDidMount() {
     this.props.fetchData();
+  }
+
+  componentDidUpdate() {
+    const { isNotFound, history } = this.props;
+    if (isNotFound) {
+      history.push('/not/found');
+    }
   }
 
   render() {
@@ -41,6 +50,7 @@ const mapStateToProps = (state, ownProps) => {
   const { slug } = ownProps.match.params;
   const { articles } = state;
 
+  let isNotFound = false;
   let article = {};
 
   if (articles.items &&
@@ -49,7 +59,7 @@ const mapStateToProps = (state, ownProps) => {
     const matchedArticle = hasSlug && articles.items.filter(obj => obj.slug === slug);
 
     if (!matchedArticle.length && hasSlug) {
-      ownProps.history.push('/not/found');
+      isNotFound = true;
     } else {
       ({ 0: article } = (hasSlug ? matchedArticle : articles.items));
     }
@@ -60,6 +70,7 @@ const mapStateToProps = (state, ownProps) => {
     isLoading: articles.isLoading,
     slug,
     article,
+    isNotFound,
   };
 };
 
