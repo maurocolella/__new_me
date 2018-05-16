@@ -10,6 +10,7 @@ import Header from '../../components/Header';
 import ContentPage from '../ContentPage';
 import SkillsPage from '../SkillsPage';
 import ResumePage from '../ResumePage';
+import NotFoundPage from '../NotFoundPage';
 import Footer from '../../components/Footer';
 
 export default class Dashboard extends Component {
@@ -21,6 +22,7 @@ export default class Dashboard extends Component {
           <Route exact path="/skills" component={SkillsPage} />
           <Route exact path="/resume" component={ResumePage} />
           <Route exact path="/:slug?" component={ContentPage} />
+          <Route component={NotFoundPage} />
         </Switch>
         <Footer />
       </div>
