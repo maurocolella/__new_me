@@ -2,7 +2,7 @@
 
 .navbar {
   position: absolute;
-  top: 313px;
+  top: 312px;
   width: 100%;
   z-index: 4;
 }
@@ -29,7 +29,7 @@
   }
 
   &__link {
-    border-bottom: 4px solid transparent;
+    border-bottom: 3px solid transparent;
     color: #111;
     cursor: pointer;
     display: flex;
@@ -46,7 +46,7 @@
     &--hover,
     &:active {
       background-color: #fefefe;
-      border-bottom: 4px solid $highlight-color;
+      border-color: $highlight-color;
       color: $highlight-color;
     }
   }
