@@ -10,7 +10,7 @@
   color: #555;
   font-weight: 300;
   margin: 0 auto;
-  padding: 49px 4% 3.3em;
+  padding: 48px 30px 24px 30px;
   transform: translate3d(0,0,0);
 
   &__header{
@@ -30,10 +30,10 @@
 }
 
 .article {
-  margin-bottom: 45px;
+  margin-bottom: 36px;
 
   &--404 {
-    margin-top: 106px;
+    margin-top: 108px;
     text-align: center;
   }
 }
@@ -44,17 +44,15 @@
 
 .tag {
   background-color: #eee;
-  border: 1px solid #eee;
-  border-radius: 2px;
-  box-shadow: 0px 1px 2px 0 #bbb;
-  color: #777;
+  border: 0px;
+  color: #333;
   cursor: pointer;
   display: inline-block;
   font-size: 80%;
-  font-weight: bold;
-  margin: 2px;
+  // font-weight: bold;
+  margin: 3px;
   outline: none;
-  padding: 0.4em 0.8em;
+  padding: 6px 12px;
   text-transform: uppercase;
   transition: 0.4s color ease;
 
@@ -64,23 +62,21 @@
 
   &--related {
     color: $highlight-color;
-    font-weight: 800;
   }
 
   &--reset {
     background-color: white;
     color: $highlight-color;
-    font-weight: 800;
   }
 
   &__icon {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: bold;
     vertical-align: middle;
   }
 
   @media (min-width: 768px){
-    font-size: 65%;
+    font-size: 75%;
   }
 }
 
@@ -94,7 +90,7 @@
 .search {
   border-bottom: 1px solid #ccc;
   display: flex;
-  margin: 10px 0;
+  margin: 12px 0;
   transition: 0.4s border-bottom-color ease;
   width: 100%;
 
@@ -107,7 +103,7 @@
     border: 0;
     flex: 1;
     outline: 0;
-    padding: 10px;
+    padding: 12px;
   }
 
   &__button {
@@ -119,7 +115,7 @@
   }
 
   &__icon {
-    margin: 10px;
+    margin: 12px;
     pointer-events: none;
   }
 }
