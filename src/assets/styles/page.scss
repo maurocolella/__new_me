@@ -124,7 +124,4 @@
   color: $highlight-color;
 }
 
-@keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
+@include fadein;
