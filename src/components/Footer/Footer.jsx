@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import ReactGA from 'react-ga';
+import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 import globalStyles from '../../assets/styles/page.scss';
 import styles from './Footer.scss';
@@ -48,71 +50,96 @@ export default class Footer extends PureComponent {
     return (
       <footer id="footer" className={styles.footer}>
         <section className={styles.cover}>
-          <a
-            href="https://www.upwork.com/freelancers/~014e1ddeddccaea1da"
-            className={styles.hireme}
-            onClick={this.popup}
+          <div className={styles.banner}>
+            <a
+              href="https://www.upwork.com/freelancers/~014e1ddeddccaea1da"
+              className={styles.hireme}
+              onClick={this.popup}
             >
-            Hire Me <SunIcon className={styles.hireme__icon} />
-          </a>
-          <aside>
-            <ul className={`${globalStyles.flatList} ${styles.footer__notes}`}>
-              <li className={styles.footer__note}>
+              Hire Me <SunIcon className={styles.hireme__icon} />
+            </a>
+          </div>
+          <div className={styles.footnotes}>
+            <ul
+              className={`${globalStyles.flatList} ${styles.footnotes__group}`}
+            >
+              <li className={styles.footnotes__note}>
+                <a
+                  href="https://twitter.com/nvisionmedia"
+                  className={styles.footnotes__link}
+                  onClick={this.popup}
+                >
+                  <TwitterIcon className={styles.footnotes__icon} />
+                </a>
+              </li>
+              <li className={styles.footnotes__note}>
+                <a
+                  href="https://www.linkedin.com/in/mauro-colella-8783042/"
+                  className={styles.footnotes__link}
+                  onClick={this.popup}
+                >
+                  <LinkedinIcon
+                    className={styles.footnotes__icon}
+                    style={{ width: '54px' }}
+                  />
+                </a>
+              </li>
+              <li className={styles.footnotes__note}>
+                <a
+                  href="https://www.facebook.com/nvisionweb/"
+                  className={styles.footnotes__link}
+                  onClick={this.popup}
+                >
+                  <FacebookIcon className={styles.footnotes__icon} />
+                </a>
+              </li>
+            </ul>
+            <ul
+              className={`${globalStyles.flatList} ${styles.footnotes__group}`}
+            >
+              <li className={styles.footnotes__note}>
                 <small>
-                  <a
-                    href="https://api.mauro-colella.com"
-                    className={styles.footer__link}
-                    onClick={this.popup}
-                    >
-                    api
-                  </a>
+                  Copyright &copy; 2017-{moment().year()}
                 </small>
               </li>
-              <li className={styles.footer__note}>
+            </ul>
+            <ul
+              className={`${globalStyles.flatList} ${styles.footnotes__group}`}
+            >
+              <li className={styles.footnotes__note}>
+                <small>
+                  <Link
+                    to="/privacy"
+                    className={styles.footnotes__link}
+                  >
+                    privacy
+                  </Link>
+                </small>
+              </li>
+              <li className={styles.footnotes__note}>
                 <small>
                   <a
                     href="https://github.com/maurocolella/__new_me"
-                    className={styles.footer__link}
+                    className={styles.footnotes__link}
                     onClick={this.popup}
-                    >
+                  >
                     source code
                   </a>
                 </small>
               </li>
-            </ul>
-            <ul className={`${globalStyles.flatList} ${styles.footer__notes}`}>
-              <li className={styles.footer__note}>
-                <a
-                  href="https://twitter.com/nvisionmedia"
-                  className={styles.footer__link}
-                  onClick={this.popup}
+              <li className={styles.footnotes__note}>
+                <small>
+                  <a
+                    href="https://api.mauro-colella.com"
+                    className={styles.footnotes__link}
+                    onClick={this.popup}
                   >
-                  <TwitterIcon className={styles.footer__icon} />
-                </a>
-              </li>
-              <li className={styles.footer__note}>
-                <a
-                  href="https://www.linkedin.com/in/mauro-colella-8783042/"
-                  className={styles.footer__link}
-                  onClick={this.popup}
-                  >
-                  <LinkedinIcon
-                    className={styles.footer__icon}
-                    style={{ width: '54px' }}
-                    />
-                </a>
-              </li>
-              <li className={styles.footer__note}>
-                <a
-                  href="https://www.facebook.com/nvisionweb/"
-                  className={styles.footer__link}
-                  onClick={this.popup}
-                  >
-                  <FacebookIcon className={styles.footer__icon} />
-                </a>
+                    api
+                  </a>
+                </small>
               </li>
             </ul>
-          </aside>
+          </div>
         </section>
         <TOCButton />
       </footer>
