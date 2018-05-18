@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import sscache from 'session-storage-cache';
-import {
-  Router,
-} from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import ReactGA from 'react-ga';
 
@@ -12,6 +10,7 @@ import styles from './App.scss';
 
 import Dashboard from './containers/Dashboard';
 import Navbar from './components/Navbar';
+import CookieNotice from './components/CookieNotice';
 
 sscache.flush();
 
@@ -25,12 +24,23 @@ history.listen((location) => {
 });
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      noticeDelivered: localStorage ? localStorage.getItem('noticeDelivered') : null,
+    };
+  }
+
   render() {
+    const { noticeDelivered } = this.state;
+
     return (
       <Router history={history}>
         <div className={styles.app}>
           <Navbar />
           <Dashboard />
+          {noticeDelivered ? null : <CookieNotice />}
         </div>
       </Router>
     );
