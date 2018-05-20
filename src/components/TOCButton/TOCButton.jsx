@@ -52,14 +52,12 @@ export default class TOCButton extends Component {
       <div
         className={`${styles.button}${display ? ` ${styles['button--visible']}` : ''}`}
       >
-        <a
+        <button
+          className={styles.button__button}
           onClick={this.constructor.scrollToTop}
-          onKeyDown={this.constructor.scrollToTop}
-          role="link"
-          tabIndex={0}
         >
           <ScrollUpIcon className={styles.button__icon} />
-        </a>
+        </button>
       </div>
     );
   }

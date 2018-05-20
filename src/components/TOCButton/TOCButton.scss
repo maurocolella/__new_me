@@ -1,40 +1,49 @@
 .button {
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    -webkit-tap-highlight-color: transparent;
-    background-color: #fff;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+  background-color: #111;
+  border-radius: 50%;
+  bottom: 16px;
+  box-shadow: rgba(0, 0, 0, 0.23) 0px 3px 10px,
+    rgba(0, 0, 0, 0.31) 0px 3px 10px;
+  cursor: pointer;
+  height: 56px;
+  opacity: 0;
+  outline: none;
+  pointer-events: none;
+  position: fixed;
+  right: 16px;
+  width: 56px;
+  transition: 0.4s opacity ease;
+  z-index: 1;
+
+  &--visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &__button {
+    background-color: transparent;
+    border: 0;
     border-radius: 50%;
-    bottom: 16px;
-    box-shadow: rgba(0, 0, 0, 0.23) 0px 3px 10px,
-        rgba(0, 0, 0, 0.31) 0px 3px 10px;
     cursor: pointer;
-    height: 56px;
-    opacity: 0;
+    height: 100%;
     outline: none;
-    pointer-events: none;
-    position: fixed;
-    right: 16px;
-    width: 56px;
-    transition: 0.4s opacity ease;
-    z-index: 1;
-
-    &--visible {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    &__icon {
-        fill: #111;
-        stroke: transparent;
-    }
+    padding: 0;
+    width: 100%;
 
     &:active {
-        .button__icon {
-            fill: #444;
-        }
+      background-color: #444;
     }
+  }
 
-    @media (min-width: 768px){
-        bottom: 24px;
-        right: 24px;
-    }
+  &__icon {
+    color: #fff;
+    font-size: 3rem;
+  }
+
+  @media (min-width: 768px){
+    bottom: 24px;
+    right: 24px;
+  }
 }

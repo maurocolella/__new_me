@@ -21,6 +21,10 @@ ReactGA.initialize('UA-9138282-16');
 history.listen((location) => {
   ReactGA.set({ page: location.pathname });
   ReactGA.pageview(location.pathname);
+  window.scrollTo({
+    top: 0,
+    left: 0,
+  });
 });
 
 export default class App extends Component {
