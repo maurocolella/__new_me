@@ -7,7 +7,7 @@
   z-index: 2;
 
   @media (min-width: 768px) {
-    height: 384px;
+    padding-bottom: 72px;
   }
 }
 
@@ -16,8 +16,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 24px 30px 0 30px;
-  padding-top: 48px;
   background-color: #f5f5f5;
   border: 1px solid #dedede;
   box-shadow: 0px 0px 8px 0px #cbcacc;
@@ -32,23 +30,28 @@
 
   @media (min-width: 768px) {
     @include container-lg;
-    height: 300px;
-    padding-top: 36px;
   }
 }
 
 .banner {
   display: flex;
+  border-bottom: 1px solid #fff;
   flex: 1;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 30px;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 }
 
 .footnotes {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 24px;
+  padding: 0 30px;
   width: 100%;
 
   &__group {
@@ -56,13 +59,23 @@
   }
 
   &__note {
-    align-items: flex-end;
     display: flex;
-    padding: 0 12px;
+    padding: 0 6px;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
   }
 
   &__link {
     color: #565656;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   &__icon {
@@ -73,7 +86,6 @@
 
   @media (min-width: 768px){
     flex-direction: row;
-    padding: 0;
   }
 }
 
@@ -87,6 +99,12 @@
   padding: 6px 12px;
   text-decoration: none;
   text-transform: uppercase;
+  transition: 0.2s background-color ease;
+
+  &:hover,
+  &:active {
+    background-color: darken($highlight-color, 10);
+  }
 
   &__icon {
     fill: none;
