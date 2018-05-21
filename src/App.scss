@@ -5,6 +5,16 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+html,
+body,
+:global(#root) {
+  height: 100%;
+}
+
+:global(main) {
+  display: block;  /* ie11 */
+}
+
 h1,
 h2,
 h3,

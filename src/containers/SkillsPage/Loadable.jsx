@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Loader from '../../components/Loader';
+import styles from '../../assets/styles/page.scss';
 
 export default class Loadable extends Component {
   componentWillMount = () => {
@@ -9,6 +10,6 @@ export default class Loadable extends Component {
     });
   }
   render = () => (
-    this.Component ? <this.Component.default /> : <Loader />
+    this.Component ? <this.Component.default /> : <Loader className={styles.page} />
   )
 }
