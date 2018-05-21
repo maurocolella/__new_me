@@ -5,6 +5,12 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+html,
+body,
+:global(#root) {
+  height: 100%;
+}
+
 h1,
 h2,
 h3,
