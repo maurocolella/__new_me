@@ -51,15 +51,6 @@ export default class Footer extends PureComponent {
       <footer id="footer" className={styles.footer}>
         <section className={styles.cover}>
           <div className={styles.banner}>
-            <a
-              href="https://www.upwork.com/freelancers/~014e1ddeddccaea1da"
-              className={styles.hireme}
-              onClick={this.popup}
-            >
-              Hire Me <SunIcon className={styles.hireme__icon} />
-            </a>
-          </div>
-          <div className={styles.footnotes}>
             <ul
               className={`${globalStyles.flatList} ${styles.footnotes__group}`}
             >
@@ -94,6 +85,21 @@ export default class Footer extends PureComponent {
                 </a>
               </li>
             </ul>
+            <ul
+              className={`${globalStyles.flatList} ${styles.footnotes__group}`}
+            >
+              <li>
+                <a
+                  href="https://www.upwork.com/freelancers/~014e1ddeddccaea1da"
+                  className={styles.hireme}
+                  onClick={this.popup}
+                >
+                  Hire Me <SunIcon className={styles.hireme__icon} />
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className={styles.footnotes}>
             <ul
               className={`${globalStyles.flatList} ${styles.footnotes__group}`}
             >
