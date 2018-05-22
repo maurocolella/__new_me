@@ -88,7 +88,9 @@ export default class Navbar extends Component {
               to="/about"
               hoverClassName={styles['nav__link--hover']}
             >
-              <i className={`material-icons ${styles.nav__icon}`}>person</i>
+              <i
+                className={`material-icons ${styles.nav__icon} ${styles['nav__icon--person']}`}
+              />
               <span className={styles.nav__label}>About</span>
             </NavItem>
           </li>
@@ -99,7 +101,9 @@ export default class Navbar extends Component {
               to="/skills"
               hoverClassName={styles['nav__link--hover']}
             >
-              <i className={`material-icons ${styles.nav__icon}`}>phonelink</i>
+              <i
+                className={`material-icons ${styles.nav__icon} ${styles['nav__icon--phonelink']}`}
+              />
               <span className={styles.nav__label}>Skills</span>
             </NavItem>
           </li>
@@ -110,7 +114,9 @@ export default class Navbar extends Component {
               to="/work"
               hoverClassName={styles['nav__link--hover']}
             >
-              <i className={`material-icons ${styles.nav__icon}`}>business</i>
+              <i
+                className={`material-icons ${styles.nav__icon} ${styles['nav__icon--business']}`}
+              />
               <span className={styles.nav__label}>Work</span>
             </NavItem>
           </li>
@@ -121,7 +127,9 @@ export default class Navbar extends Component {
               to="/resume"
               hoverClassName={styles['nav__link--hover']}
             >
-              <i className={`material-icons ${styles.nav__icon}`}>reorder</i>
+              <i
+                className={`material-icons ${styles.nav__icon} ${styles['nav__icon--reorder']}`}
+              />
               <span className={styles.nav__label}>Resume</span>
             </NavItem>
           </li>

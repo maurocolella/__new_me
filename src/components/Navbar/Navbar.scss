@@ -56,6 +56,22 @@
     @media (min-width: 768px){
       display: none;
     }
+
+    &--person:after {
+      content: 'person';
+    }
+
+    &--phonelink:after {
+      content: 'phonelink';
+    }
+
+    &--business:after {
+      content: 'business';
+    }
+
+    &--reorder:after {
+      content: 'reorder';
+    }
   }
 
   &__label {
