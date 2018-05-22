@@ -38,7 +38,7 @@ class CookieNotice extends Component {
         >
           <i className="material-icons">close</i>
         </button>
-        This website uses Google Analytics in order to collect anonymous usage data. You can find out more about these cookies in my <Link to="/privacy" className={styles.notice__link}>privacy policy.</Link>. By using this website, you consent to the use of these cookies according to the privacy policy.
+        This website uses Google Analytics in order to collect anonymous usage data. You can find out more in my <Link to="/privacy" className={styles.notice__link}>privacy policy.</Link> By using this website, you consent to the use of statistical information according to the privacy policy.
       </div>
     );
   }
