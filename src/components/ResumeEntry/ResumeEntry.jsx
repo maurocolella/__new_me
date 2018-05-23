@@ -5,7 +5,6 @@ import moment from 'moment';
 import styles from './ResumeEntry.scss';
 
 class ResumeEntry extends Component {
-
   static propTypes = {
     title: PropTypes.string.isRequired,
     startDate: PropTypes.string.isRequired,
@@ -25,10 +24,16 @@ class ResumeEntry extends Component {
     moment.locale('en-UK');
 
     return (
-      <LazyLoad offset={-100}>
+      <LazyLoad>
         <div className={styles.entry}>
-          <h5 className={styles.entry__heading}>{title}</h5>
-          <em>{moment(startDate).format('LL')} - {moment(endDate).format('LL')}</em>
+          <h5 className={styles.entry__heading}>
+            <span>
+              {moment(startDate).format('MMM YYYY')} - {moment(endDate).format('MMM YYYY')}
+            </span>
+            <span>
+              {title}
+            </span>
+          </h5>
           <p>{description}</p>
           <ul>
             {tasks ?
