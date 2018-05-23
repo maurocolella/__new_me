@@ -1,17 +1,14 @@
 @import "../../assets/styles/variables.scss";
-@import "../../assets/styles/mixins.scss";
 
 .entry {
-  animation: fadein 0.8s;
   min-height: 100px;
   padding-bottom: 1.618em;
 
   &__heading {
     border-bottom: 1px solid #bbb;
     display: flex;
+    font-family: 'Arial', sans-serif;
     justify-content: space-between;
     padding-bottom: 4px;
   }
 }
-
-@include fadein;

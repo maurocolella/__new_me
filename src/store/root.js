@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import articles from '../containers/ContentPage/reducers';
 import skills from '../containers/SkillsPage/reducers';
 import resume from '../containers/ResumePage/reducers';
+import profile from '../containers/PrintableResumePage/reducers';
 
 /* TODO: implement
 const initialState = {
@@ -36,5 +37,6 @@ export default combineReducers({
   articles,
   skills,
   resume,
+  profile,
   // entities,
 });

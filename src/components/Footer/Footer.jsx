@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import ReactGA from 'react-ga';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import hash from 'object-hash';
 
 import globalStyles from '../../assets/styles/page.scss';
 import styles from './Footer.scss';
@@ -12,29 +13,11 @@ import FacebookIcon from '../Icons/Social/FacebookIcon';
 import LinkedinIcon from '../Icons/Social/LinkedinIcon';
 
 export default class Footer extends PureComponent {
-  static hash(val) {
-    let hash = 0;
-    let i = 0;
-    let char = null;
-    if (val.length === 0) return hash;
-    for (i = 0; i < val.length; i += 1) {
-      char = val.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char; /* eslint-disable-line */
-      hash &= hash; /* eslint-disable-line */
-    }
-    return hash;
-  }
-
-  constructor(props) {
-    super(props);
-    this.popup = this.popup.bind(this);
-  }
-
-  popup(event) {
+  static popup(event) {
     event.preventDefault();
     event.stopPropagation();
     const url = event.currentTarget.getAttribute('href');
-    const hash = this.constructor.hash(url);
+    const urlHash = hash(url);
 
     ReactGA.outboundLink(
       {
@@ -43,7 +26,7 @@ export default class Footer extends PureComponent {
       () => {},
     );
 
-    window.open(url, hash);
+    window.open(url, urlHash);
   }
 
   render() {
@@ -58,7 +41,7 @@ export default class Footer extends PureComponent {
                 <a
                   href="https://twitter.com/nvisionmedia"
                   className={styles.footnotes__link}
-                  onClick={this.popup}
+                  onClick={this.constructor.popup}
                 >
                   <TwitterIcon className={styles.footnotes__icon} />
                 </a>
@@ -67,7 +50,7 @@ export default class Footer extends PureComponent {
                 <a
                   href="https://www.linkedin.com/in/mauro-colella-8783042/"
                   className={styles.footnotes__link}
-                  onClick={this.popup}
+                  onClick={this.constructor.popup}
                 >
                   <LinkedinIcon
                     className={styles.footnotes__icon}
@@ -79,7 +62,7 @@ export default class Footer extends PureComponent {
                 <a
                   href="https://www.facebook.com/nvisionweb/"
                   className={styles.footnotes__link}
-                  onClick={this.popup}
+                  onClick={this.constructor.popup}
                 >
                   <FacebookIcon className={styles.footnotes__icon} />
                 </a>
@@ -92,7 +75,7 @@ export default class Footer extends PureComponent {
                 <a
                   href="https://www.upwork.com/freelancers/~014e1ddeddccaea1da"
                   className={styles.hireme}
-                  onClick={this.popup}
+                  onClick={this.constructor.popup}
                 >
                   Hire Me <SunIcon className={styles.hireme__icon} />
                 </a>
@@ -127,7 +110,7 @@ export default class Footer extends PureComponent {
                   <a
                     href="https://github.com/maurocolella/__new_me"
                     className={styles.footnotes__link}
-                    onClick={this.popup}
+                    onClick={this.constructor.popup}
                   >
                     source code
                   </a>
@@ -138,7 +121,7 @@ export default class Footer extends PureComponent {
                   <a
                     href="https://api.mauro-colella.com"
                     className={styles.footnotes__link}
-                    onClick={this.popup}
+                    onClick={this.constructor.popup}
                   >
                     api
                   </a>
