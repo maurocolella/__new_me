@@ -17,6 +17,7 @@ sscache.flush();
 // Initialize history.
 const history = createHistory();
 ReactGA.initialize('UA-9138282-16');
+ReactGA.set({ anonymizeIp: true });
 
 history.listen((location) => {
   ReactGA.set({ page: location.pathname });
