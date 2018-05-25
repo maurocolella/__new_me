@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import sscache from 'session-storage-cache';
-import { Router } from 'react-router-dom';
+import {
+  Router,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import ReactGA from 'react-ga';
 
@@ -9,6 +13,7 @@ import './assets/styles/typeplate.scss';
 import styles from './App.scss';
 
 import Dashboard from './containers/Dashboard';
+import PrintableResumePage from './containers/PrintableResumePage';
 import Navbar from './components/Navbar';
 import CookieNotice from './components/CookieNotice';
 
@@ -43,9 +48,16 @@ export default class App extends Component {
     return (
       <Router history={history}>
         <div className={styles.app}>
-          <Navbar />
-          <Dashboard />
-          {noticeDelivered ? null : <CookieNotice />}
+          <Switch>
+            <Route exact path="/resume/print" component={PrintableResumePage} />
+            <Route>
+              <span style={{ width: '100%' }}>
+                <Navbar />
+                <Dashboard />
+                {noticeDelivered ? null : <CookieNotice />}
+              </span>
+            </Route>
+          </Switch>
         </div>
       </Router>
     );

@@ -16,7 +16,7 @@ function deserialize(dataSet) {
     const tasks = relatedTasks.map(task =>
       Object.assign(
         task,
-        included.find(link => link.id === task.id).attributes,
+        included.find(link => link.type === 'task' && link.id === task.id).attributes,
       ));
 
     formattedEntry.tasks = tasks;

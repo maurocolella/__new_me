@@ -1,0 +1,12 @@
+.page__header--with-tools {
+  display: flex;
+  justify-content: space-between;
+}
+
+.toolbox {
+  padding-top: 12px;
+
+  &__tool {
+    color: #111;
+  }
+}

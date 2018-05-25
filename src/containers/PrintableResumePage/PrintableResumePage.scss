@@ -1,0 +1,68 @@
+@import "../../assets/styles/variables.scss";
+
+.page {
+  color: #555;
+  font-family: 'Arial', sans-serif;
+  font-weight: 300;
+  margin: 0 auto;
+  padding: 48px 30px 24px 30px;
+  width: 100%;
+
+  &__header{
+    margin-bottom: 2.678cm;
+    padding-top: 1.65em;
+    text-align: center;
+  }
+
+  &__title {
+    color: darkblue;
+    font-family: 'Arial', sans-serif;
+    font-weight: 300;
+  }
+}
+
+.table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+
+  & th,
+  & td {
+    padding: 0.18cm 0.2cm;
+    vertical-align: top;
+  }
+
+  & th:first-of-type,
+  & td:first-of-type {
+    font-weight: bold;
+  }
+
+  &--with-border {
+    & th,
+    & td {
+      border: 1px solid #111;
+    }
+  }
+}
+
+.section {
+  margin-bottom: 1.655cm;
+
+  &__header {
+    border-bottom: 1px solid darkblue;
+    color: darkblue;
+    font-family: 'Arial', sans-serif;
+  }
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+
+  &__skill {
+    border-bottom: 1px solid #ccc;
+    margin-right: 1rem;
+  }
+}
