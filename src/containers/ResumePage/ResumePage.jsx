@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import hash from 'object-hash';
+import moment from 'moment';
 
 import { resumeFetchData } from './actions';
 
@@ -20,6 +21,8 @@ class ResumePage extends Component {
 
   constructor(props) {
     super(props);
+    this.lastModified = this.lastModified.bind(this);
+
     this.state = {
       printTarget: hash('mcl_resume_print'),
     };
@@ -27,6 +30,12 @@ class ResumePage extends Component {
 
   componentDidMount() {
     this.props.fetchData();
+  }
+
+  lastModified() {
+    const { entries } = this.props;
+    const updateDates = entries.map(entry => moment(entry.updatedAt));
+    return moment.max(updateDates).format('LL');
   }
 
   render() {
@@ -42,7 +51,10 @@ class ResumePage extends Component {
           <header
             className={`${globalStyles.page__header} ${styles['page__header--with-tools']}`}
           >
-            <h2 className={globalStyles.page__title}>{title}</h2>
+            <div>
+              <small className={styles.lastModified}>Last modified: {this.lastModified()}</small>
+              <h2 className={globalStyles.page__title}>{title}</h2>
+            </div>
             <aside className={styles.toolbox}>
               <Link
                 to="/resume/print"
