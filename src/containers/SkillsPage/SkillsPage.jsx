@@ -15,215 +15,215 @@ class SkillsPage extends Component {
     skills: PropTypes.arrayOf(Object),
   };
 
-static defaultProps = {
-  topSkills: [],
-  skills: [],
-};
-
-constructor(props) {
-  super(props);
-  this.lastModified = this.lastModified.bind(this);
-  this.handleSearch = this.handleSearch.bind(this);
-  this.hasActiveRelation = this.hasActiveRelation.bind(this);
-  this.handleFocusInput = this.handleFocusInput.bind(this);
-  this.handleBlurInput = this.handleBlurInput.bind(this);
-  this.focusSearchInput = this.focusSearchInput.bind(this);
-  this.handleGlobalCancelRelated = this.handleGlobalCancelRelated.bind(this);
-
-  this.searchInput = React.createRef();
-
-  this.state = {
-    filter: '',
-    activeSkill: null,
-    searchActive: false,
+  static defaultProps = {
+    topSkills: [],
+    skills: [],
   };
-}
 
-componentDidMount() {
-  this.props.fetchData();
-}
+  constructor(props) {
+    super(props);
+    this.lastModified = this.lastModified.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.hasActiveRelation = this.hasActiveRelation.bind(this);
+    this.handleFocusInput = this.handleFocusInput.bind(this);
+    this.handleBlurInput = this.handleBlurInput.bind(this);
+    this.focusSearchInput = this.focusSearchInput.bind(this);
+    this.handleGlobalCancelRelated = this.handleGlobalCancelRelated.bind(this);
 
-componentWillUnmount() {
-  document.body.removeEventListener('click', this.handleGlobalCancelRelated, true);
-}
+    this.searchInput = React.createRef();
 
-lastModified() {
-  const { skills } = this.props;
-  const updateDates = skills.map(skill => moment(skill.updatedAt));
-  return moment.max(updateDates).format('LL');
-}
-
-hasActiveRelation(skill) {
-  const { activeSkill } = this.state;
-
-  if (activeSkill && activeSkill.relationships) {
-    const { relationships } = activeSkill;
-    const relatedFrom = relationships.relatedFrom && relationships
-      .relatedFrom
-      .data
-      .find(relation => relation.id === skill.id);
-
-    const relatedTo = relationships.relatedTo && relationships
-      .relatedTo
-      .data
-      .find(relation => relation.id === skill.id);
-
-    return Boolean(relatedFrom || relatedTo);
+    this.state = {
+      filter: '',
+      activeSkill: null,
+      searchActive: false,
+    };
   }
 
-  return false;
-}
+  componentDidMount() {
+    this.props.fetchData();
+  }
 
-handleRelated = skill => () => {
-  ReactGA.event({
-    category: 'Related',
-    action: 'Skills Page',
-    label: skill.title,
-  });
-
-  this.setState({
-    filter: '',
-    activeSkill: skill,
-  });
-
-  if (skill) {
-    document.body.addEventListener('click', this.handleGlobalCancelRelated, true);
-  } else {
+  componentWillUnmount() {
     document.body.removeEventListener('click', this.handleGlobalCancelRelated, true);
   }
-}
 
-handleGlobalCancelRelated() {
-  this.setState({
-    filter: '',
-    activeSkill: null,
-  });
-}
+  lastModified() {
+    const { skills } = this.props;
+    const updateDates = skills.map(skill => moment(skill.updatedAt));
+    return moment.max(updateDates).format('LL');
+  }
 
-handleSearch(event) {
-  const filter = event.target.value;
+  hasActiveRelation(skill) {
+    const { activeSkill } = this.state;
 
-  if (filter.length >= 3) {
+    if (activeSkill && activeSkill.relationships) {
+      const { relationships } = activeSkill;
+      const relatedFrom = relationships.relatedFrom && relationships
+        .relatedFrom
+        .data
+        .find(relation => relation.id === skill.id);
+
+      const relatedTo = relationships.relatedTo && relationships
+        .relatedTo
+        .data
+        .find(relation => relation.id === skill.id);
+
+      return Boolean(relatedFrom || relatedTo);
+    }
+
+    return false;
+  }
+
+  handleRelated = skill => () => {
     ReactGA.event({
-      category: 'Search',
+      category: 'Related',
       action: 'Skills Page',
-      label: filter,
+      label: skill.title,
+    });
+
+    this.setState({
+      filter: '',
+      activeSkill: skill,
+    });
+
+    if (skill) {
+      document.body.addEventListener('click', this.handleGlobalCancelRelated, true);
+    } else {
+      document.body.removeEventListener('click', this.handleGlobalCancelRelated, true);
+    }
+  }
+
+  handleGlobalCancelRelated() {
+    this.setState({
+      filter: '',
+      activeSkill: null,
     });
   }
 
-  this.setState({
-    filter,
-    activeSkill: null,
-  });
-}
+  handleSearch(event) {
+    const filter = event.target.value;
 
-handleFocusInput() {
-  this.setState({
-    searchActive: true,
-  });
-}
+    if (filter.length >= 3) {
+      ReactGA.event({
+        category: 'Search',
+        action: 'Skills Page',
+        label: filter,
+      });
+    }
 
-handleBlurInput() {
-  this.setState({
-    searchActive: false,
-  });
-}
+    this.setState({
+      filter,
+      activeSkill: null,
+    });
+  }
 
-focusSearchInput() {
-  this.searchInput.current.focus();
-}
+  handleFocusInput() {
+    this.setState({
+      searchActive: true,
+    });
+  }
 
-render() {
-  const { topSkills, skills } = this.props;
-  const { filter, activeSkill, searchActive } = this.state;
+  handleBlurInput() {
+    this.setState({
+      searchActive: false,
+    });
+  }
 
-  return (
-    <main className={styles.page}>
-      <header className={styles.page__header}>
-        <small className={styles.lastModified}>Last modified: {this.lastModified()}</small>
-        <h2 className={styles.page__title}>Skills</h2>
-      </header>
-      <article className={styles.article}>
-        <GLChart className={styles.chart} data={topSkills} />
-      </article>
-      <article className={styles.article}>
-        <h4>All Skills</h4>
-        <small>
-          The following skills have been used professionally.
-        </small>
-        <div
-          className={
-            `${styles.search}
-            ${searchActive ? ` ${styles['search--active']}` : ''}`
-          }
-        >
-          <input
-            ref={this.searchInput}
-            className={styles.search__field}
-            onChange={this.handleSearch}
-            onFocus={this.handleFocusInput}
-            onBlur={this.handleBlurInput}
-            placeholder="search skills..."
-            type="text"
-          />
-          <button
-            className={styles.search__button}
-            onClick={this.focusSearchInput}
+  focusSearchInput() {
+    this.searchInput.current.focus();
+  }
+
+  render() {
+    const { topSkills, skills } = this.props;
+    const { filter, activeSkill, searchActive } = this.state;
+
+    return (
+      <main className={styles.page}>
+        <header className={styles.page__header}>
+          <small className={styles.lastModified}>Last modified: {this.lastModified()}</small>
+          <h2 className={styles.page__title}>Skills</h2>
+        </header>
+        <article className={styles.article}>
+          <GLChart className={styles.chart} data={topSkills} />
+        </article>
+        <article className={styles.article}>
+          <h4>All Skills</h4>
+          <small>
+            The following skills have been used professionally.
+          </small>
+          <div
+            className={
+              `${styles.search}
+              ${searchActive ? ` ${styles['search--active']}` : ''}`
+            }
           >
-            <i
-              className={`material-icons ${styles.search__icon}`}
+            <input
+              ref={this.searchInput}
+              className={styles.search__field}
+              onChange={this.handleSearch}
+              onFocus={this.handleFocusInput}
+              onBlur={this.handleBlurInput}
+              placeholder="search skills..."
+              type="text"
+            />
+            <button
+              className={styles.search__button}
+              onClick={this.focusSearchInput}
             >
-              search
-            </i>
-          </button>
-        </div>
-        <ul className={styles.flatList}>
-          {
-            skills.map((skill) => {
-              const label = skill.title.toLowerCase();
-              const isActive = activeSkill &&
-                    (skill.id === activeSkill.id || this.hasActiveRelation(skill));
-              const isDimmed = (filter.length && label.indexOf(filter.toLowerCase()) < 0) ||
-                    (activeSkill && !isActive);
-              const classes = `${styles.tag}
-                               ${isDimmed ? ` ${styles['tag--dim']}` : ''}
-                               ${isActive ? ` ${styles['tag--related']}` : ''}`;
+              <i
+                className={`material-icons ${styles.search__icon}`}
+              >
+                search
+              </i>
+            </button>
+          </div>
+          <ul className={styles.flatList}>
+            {
+              skills.map((skill) => {
+                const label = skill.title.toLowerCase();
+                const isActive = activeSkill &&
+                      (skill.id === activeSkill.id || this.hasActiveRelation(skill));
+                const isDimmed = (filter.length && label.indexOf(filter.toLowerCase()) < 0) ||
+                      (activeSkill && !isActive);
+                const classes = `${styles.tag}
+                                 ${isDimmed ? ` ${styles['tag--dim']}` : ''}
+                                 ${isActive ? ` ${styles['tag--related']}` : ''}`;
 
-              return (
-                <li key={skill.id}>
+                return (
+                  <li key={skill.id}>
+                    <button
+                      className={classes}
+                      onClick={this.handleRelated(skill)}
+                    >
+                      {skill.title}
+                    </button>
+                  </li>
+                );
+              })
+            }
+            {
+              activeSkill ?
+                <li>
                   <button
-                    className={classes}
-                    onClick={this.handleRelated(skill)}
+                    className={`${styles.tag} ${styles['tag--reset']}`}
+                    onClick={this.handleRelated(null)}
                   >
-                    {skill.title}
+                    <i className={`material-icons ${styles.tag__icon}`}>
+                      close
+                    </i> clear
                   </button>
                 </li>
-              );
-            })
-          }
-          {
-            activeSkill ?
-              <li>
-                <button
-                  className={`${styles.tag} ${styles['tag--reset']}`}
-                  onClick={this.handleRelated(null)}
-                >
-                  <i className={`material-icons ${styles.tag__icon}`}>
-                    close
-                  </i> clear
-                </button>
-              </li>
-              :
-              null
-          }
-        </ul>
-        <small className={styles.legend}>
-          * Tap to highlight related items.
-        </small>
-      </article>
-    </main>
-  );
-}
+                :
+                null
+            }
+          </ul>
+          <small className={styles.legend}>
+            * Tap to highlight related items.
+          </small>
+        </article>
+      </main>
+    );
+  }
 }
 
 const mapStateToProps = (state) => {
