@@ -25,7 +25,7 @@ class ResumeEntry extends Component {
 
     return (
       <LazyLoad>
-        <div className={styles.entry}>
+        <article className={styles.entry}>
           <h5 className={styles.entry__heading}>
             <span>
               {moment(startDate).format('MMM YYYY')} - {moment(endDate).format('MMM YYYY')}
@@ -44,7 +44,7 @@ class ResumeEntry extends Component {
               null
             }
           </ul>
-        </div>
+        </article>
       </LazyLoad>
     );
   }
