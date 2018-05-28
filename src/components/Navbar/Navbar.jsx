@@ -76,15 +76,14 @@ export default class Navbar extends Component {
 
     return (
       <nav
-        className={styles.navbar}
+        className={`${styles.navbar}${sticky ? ` ${styles['navbar--sticky']}` : ''}`}
         ref={this.navbar}
-        style={sticky ? { position: 'fixed', top: '0px' } : null}
       >
-        <ul className={styles.nav}>
+        <ul className={`${styles.nav}${sticky ? ` ${styles['nav--sticky']}` : ''}`}>
           <li className={styles.nav__item}>
             <NavItem
               activeClassName={styles['nav__link--active']}
-              className={styles.nav__link}
+              className={`${styles.nav__link}${sticky ? ` ${styles['nav__link--sticky']}` : ''}`}
               to="/about"
               hoverClassName={styles['nav__link--hover']}
             >
@@ -97,7 +96,7 @@ export default class Navbar extends Component {
           <li className={styles.nav__item}>
             <NavItem
               activeClassName={styles['nav__link--active']}
-              className={styles.nav__link}
+              className={`${styles.nav__link}${sticky ? ` ${styles['nav__link--sticky']}` : ''}`}
               to="/skills"
               hoverClassName={styles['nav__link--hover']}
             >
@@ -110,7 +109,7 @@ export default class Navbar extends Component {
           <li className={styles.nav__item}>
             <NavItem
               activeClassName={styles['nav__link--active']}
-              className={styles.nav__link}
+              className={`${styles.nav__link}${sticky ? ` ${styles['nav__link--sticky']}` : ''}`}
               to="/work"
               hoverClassName={styles['nav__link--hover']}
             >
@@ -123,7 +122,7 @@ export default class Navbar extends Component {
           <li className={styles.nav__item}>
             <NavItem
               activeClassName={styles['nav__link--active']}
-              className={styles.nav__link}
+              className={`${styles.nav__link}${sticky ? ` ${styles['nav__link--sticky']}` : ''}`}
               to="/resume"
               hoverClassName={styles['nav__link--hover']}
             >
