@@ -74,9 +74,6 @@ class PrintableResumePage extends Component {
         </section>
         <section
           className={styles.section}
-          style={{
-            paddingTop: '1cm',
-          }}
         >
           <h5 className={styles.section__header}>Technical Expertise</h5>
           <ul className={styles.skills}>
