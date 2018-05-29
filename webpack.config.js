@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   devtool: 'cheap-module-source-map',
   entry: {
     client : [
@@ -16,15 +16,19 @@ module.exports = {
       'babel-polyfill',
       './src/index.server.jsx'
     ],*/
-    vendor : [
-      'bluebird',
-      'react',
-      'redux',
-      'react-redux',
-      'react-dom',
-      'react-router-dom',
-      'three'
-    ]
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          chunks: 'initial',
+          name: 'vendor',
+          priority: 10,
+          enforce: true,
+        },
+      },
+    },
   },
   output: {
     path: path.join(__dirname, 'dist'),

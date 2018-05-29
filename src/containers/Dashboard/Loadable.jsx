@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Loader from '../../components/Loader';
 
 export default class Loadable extends Component {
   componentWillMount = () => {
@@ -9,6 +8,6 @@ export default class Loadable extends Component {
     });
   }
   render = () => (
-    this.Component ? <this.Component.default /> : <Loader />
+    this.Component ? <this.Component.default /> : null
   )
 }

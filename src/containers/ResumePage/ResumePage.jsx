@@ -52,7 +52,9 @@ class ResumePage extends Component {
             className={`${globalStyles.page__header} ${styles['page__header--with-tools']}`}
           >
             <div>
-              <small className={styles.lastModified}>Last modified: {this.lastModified()}</small>
+              <small className={globalStyles.lastModified}>
+                Last modified: {this.lastModified()}
+              </small>
               <h2 className={globalStyles.page__title}>{title}</h2>
             </div>
             <aside className={styles.toolbox}>

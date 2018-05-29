@@ -11,6 +11,7 @@
   bottom: 0;
   transition: 0.6s opacity ease;
   width: 100%;
+  z-index: 10;
 
   &__link{
     color: #787878;
