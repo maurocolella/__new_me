@@ -14,11 +14,12 @@ export default class Loader extends PureComponent {
   render() {
     return (
       <div className={`${styles.loader} ${this.props.className}`}>
-        <div className={styles['folding-cube']}>
-          <div className={styles.cube} />
-          <div className={`${styles.cube2} ${styles.cube}`} />
-          <div className={`${styles.cube4} ${styles.cube}`} />
-          <div className={`${styles.cube3} ${styles.cube}`} />
+        <div className={styles.spinner}>
+          <div className={styles.rect1} />
+          <div className={styles.rect2} />
+          <div className={styles.rect3} />
+          <div className={styles.rect4} />
+          <div className={styles.rect5} />
         </div>
       </div>);
   }
