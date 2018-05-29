@@ -22,14 +22,15 @@ class StaticResumeEntry extends Component {
       tasks,
     } = this.props;
     moment.locale('en-UK');
+    const dateFormat = 'MMMM YYYY';
 
     return (
       <div className={styles.entry}>
         <h6 className={styles.entry__heading}>
           <span>
-            {moment(startDate).format('MMM YYYY')} - {moment(endDate).format('MMM YYYY')}
+            {moment(startDate).format(dateFormat)} - {moment(endDate).format(dateFormat)}
           </span>
-          <span>
+          <span style={{ textAlign: 'right' }}>
             {title}
           </span>
         </h6>

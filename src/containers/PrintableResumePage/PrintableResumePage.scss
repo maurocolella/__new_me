@@ -1,5 +1,11 @@
 @import "../../assets/styles/variables.scss";
 
+@page {
+  size: A4;
+  margin-bottom: 2cm;
+  margin-top: 2cm;
+}
+
 .page {
   color: #555;
   font-family: 'Arial', sans-serif;
@@ -9,7 +15,7 @@
   width: 100%;
 
   &__header{
-    margin-bottom: 2.678cm;
+    margin-bottom: 1.655cm;
     padding-top: 1.65em;
     text-align: center;
   }
