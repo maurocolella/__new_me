@@ -39,12 +39,14 @@
   border-bottom: 1px solid #fff;
   flex: 1;
   flex-direction: column;
+  height: 210px;
   justify-content: space-between;
   padding: 24px 30px 36px 30px;
   width: 100%;
 
   @media (min-width: 768px) {
     flex-direction: row;
+    height: 137px;
   }
 }
 
