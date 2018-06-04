@@ -5,6 +5,8 @@ import moment from 'moment';
 import ReactGA from 'react-ga';
 
 import { skillsFetchData } from './actions';
+
+import Loader from '../../components/Loader';
 import GLChart from '../../components/GLChart';
 import styles from '../../assets/styles/page.scss';
 
@@ -134,7 +136,7 @@ class SkillsPage extends Component {
   }
 
   render() {
-    const { topSkills, skills } = this.props;
+    const { topSkills, skills, isLoading } = this.props;
     const { filter, activeSkill, searchActive } = this.state;
 
     return (
@@ -177,46 +179,50 @@ class SkillsPage extends Component {
               </i>
             </button>
           </div>
-          <ul className={styles.flatList}>
-            {
-              skills.map((skill) => {
-                const label = skill.title.toLowerCase();
-                const isActive = activeSkill &&
-                      (skill.id === activeSkill.id || this.hasActiveRelation(skill));
-                const isDimmed = (filter.length && label.indexOf(filter.toLowerCase()) < 0) ||
-                      (activeSkill && !isActive);
-                const classes = `${styles.tag}
-                                 ${isDimmed ? ` ${styles['tag--dim']}` : ''}
-                                 ${isActive ? ` ${styles['tag--related']}` : ''}`;
+          { isLoading ?
+            <Loader />
+            :
+            <ul className={styles.flatList}>
+              {
+                skills.map((skill) => {
+                  const label = skill.title.toLowerCase();
+                  const isActive = activeSkill &&
+                        (skill.id === activeSkill.id || this.hasActiveRelation(skill));
+                  const isDimmed = (filter.length && label.indexOf(filter.toLowerCase()) < 0) ||
+                        (activeSkill && !isActive);
+                  const classes = `${styles.tag}
+                                   ${isDimmed ? ` ${styles['tag--dim']}` : ''}
+                                   ${isActive ? ` ${styles['tag--related']}` : ''}`;
 
-                return (
-                  <li key={skill.id}>
+                  return (
+                    <li key={skill.id}>
+                      <button
+                        className={classes}
+                        onClick={this.handleRelated(skill)}
+                      >
+                        {skill.title}
+                      </button>
+                    </li>
+                  );
+                })
+              }
+              {
+                activeSkill ?
+                  <li>
                     <button
-                      className={classes}
-                      onClick={this.handleRelated(skill)}
+                      className={`${styles.tag} ${styles['tag--reset']}`}
+                      onClick={this.handleRelated(null)}
                     >
-                      {skill.title}
+                      <i className={`material-icons ${styles.tag__icon}`}>
+                        close
+                      </i> clear
                     </button>
                   </li>
-                );
-              })
-            }
-            {
-              activeSkill ?
-                <li>
-                  <button
-                    className={`${styles.tag} ${styles['tag--reset']}`}
-                    onClick={this.handleRelated(null)}
-                  >
-                    <i className={`material-icons ${styles.tag__icon}`}>
-                      close
-                    </i> clear
-                  </button>
-                </li>
-                :
-                null
-            }
-          </ul>
+                  :
+                  null
+              }
+            </ul>
+          }
           <small className={styles.legend}>
             * Tap to highlight related items.
           </small>
