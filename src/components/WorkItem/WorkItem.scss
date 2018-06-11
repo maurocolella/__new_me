@@ -1,0 +1,38 @@
+@import "../../assets/styles/variables.scss";
+@import "../../assets/styles/mixins.scss";
+
+.entry {
+  animation: fadein 0.8s;
+  border-radius: 3px;
+  box-shadow: 0px 1px 3px 0px #999;
+  cursor: pointer;
+  padding: 24px;
+  transition: 0.2s box-shadow ease;
+
+  &:hover {
+    box-shadow: 0px 0px 3px 0px #ccc;
+  }
+
+  &__header {
+  }
+
+  &__title {
+    font-variant: all-small-caps;
+  }
+
+  &__image-wrapper {
+    overflow: hidden;
+    padding-bottom: 90%;
+    position: relative;
+  }
+
+  &__image {
+    height: 100%;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+  }
+}
+
+@include fadein;

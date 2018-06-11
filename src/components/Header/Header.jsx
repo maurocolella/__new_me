@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import smoothscroll from 'smoothscroll-polyfill';
+import 'picturefill';
+import ReactGA from 'react-ga';
+
 import SunIcon from '../Icons/SunIcon';
 import styles from './Header.scss';
-import 'picturefill';
 import coverImage from '../../assets/images/blue-peaks.jpg?sizes[]=480,sizes[]=640,sizes[]=800,sizes[]=1280,sizes[]=1600';
 
-import ReactGA from 'react-ga';
 
 smoothscroll.polyfill();
 

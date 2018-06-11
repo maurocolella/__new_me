@@ -217,7 +217,7 @@ export default class GL {
     canvas.height = textureSize;
 
     const context = canvas.getContext('2d');
-    context.font = '64px Abel, Arial Narrow, sans-serif';
+    context.font = '64px Open Sans, sans-serif';
     context.textBaseline = 'middle';
     context.textAlign = 'center';
     context.fillStyle = '#222222';
