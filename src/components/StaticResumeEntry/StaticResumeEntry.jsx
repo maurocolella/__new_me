@@ -36,12 +36,10 @@ class StaticResumeEntry extends Component {
         </h6>
         <p>{description}</p>
         <ul>
-          {tasks ?
+          {tasks &&
             tasks.map(task => (
               <li key={task.id}>{task.description}</li>
             ))
-            :
-            null
           }
         </ul>
       </div>

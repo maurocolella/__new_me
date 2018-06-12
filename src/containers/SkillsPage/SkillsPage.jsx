@@ -207,7 +207,7 @@ class SkillsPage extends Component {
                 })
               }
               {
-                activeSkill ?
+                activeSkill &&
                   <li>
                     <button
                       className={`${styles.tag} ${styles['tag--reset']}`}
@@ -218,8 +218,6 @@ class SkillsPage extends Component {
                       </i> clear
                     </button>
                   </li>
-                  :
-                  null
               }
             </ul>
           }
