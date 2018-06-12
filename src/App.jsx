@@ -54,7 +54,7 @@ export default class App extends Component {
               <span style={{ width: '100%' }}>
                 <Navbar />
                 <Dashboard />
-                {noticeDelivered ? null : <CookieNotice />}
+                {!noticeDelivered && <CookieNotice />}
               </span>
             </Route>
           </Switch>
