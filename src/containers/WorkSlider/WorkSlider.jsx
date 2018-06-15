@@ -58,6 +58,7 @@ class WorkSlider extends Component {
     if (show && show !== this.props.show) {
       this.setState({
         animRect: { ...nextProps.sourceRect },
+        locked: true,
       });
       document.body.style.overflow = 'hidden';
       document.addEventListener('keyup', this.handleKeyUp, true);
@@ -72,6 +73,7 @@ class WorkSlider extends Component {
             width: '100vw',
           },
           fadeHelp: true,
+          locked: false,
         });
       }, 500);
 
