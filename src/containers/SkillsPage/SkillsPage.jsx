@@ -15,6 +15,7 @@ class SkillsPage extends Component {
     fetchData: PropTypes.func.isRequired,
     topSkills: PropTypes.arrayOf(Object),
     skills: PropTypes.arrayOf(Object),
+    isLoading: PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
@@ -138,6 +139,7 @@ class SkillsPage extends Component {
   render() {
     const { topSkills, skills, isLoading } = this.props;
     const { filter, activeSkill, searchActive } = this.state;
+    const skillStyle = { flex: 1, margin: '3px' };
 
     return (
       <main className={styles.page}>
@@ -195,7 +197,10 @@ class SkillsPage extends Component {
                                    ${isActive ? ` ${styles['tag--related']}` : ''}`;
 
                   return (
-                    <li key={skill.id}>
+                    <li
+                      key={skill.id}
+                      style={skillStyle}
+                    >
                       <button
                         className={classes}
                         onClick={this.handleRelated(skill)}
@@ -208,7 +213,9 @@ class SkillsPage extends Component {
               }
               {
                 activeSkill &&
-                  <li>
+                  <li
+                    style={skillStyle}
+                  >
                     <button
                       className={`${styles.tag} ${styles['tag--reset']}`}
                       onClick={this.handleRelated(null)}
