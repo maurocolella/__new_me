@@ -20,18 +20,9 @@
     font-variant: all-small-caps;
   }
 
-  &__image-wrapper {
-    overflow: hidden;
-    padding-bottom: 90%;
-    position: relative;
-  }
-
   &__image {
     height: 100%;
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%,-50%);
+    width: 100%;
   }
 }
 
