@@ -78,11 +78,11 @@
   flex-wrap: wrap;
   font-size: 90%;
   list-style-type: disc;
-  margin: 24px auto;
+  margin: 24px 0;
+  margin-left: auto;
   padding-left: 1em;
 
   &__skill {
-    flex: 2;
     margin-right: 2em;
   }
 }
