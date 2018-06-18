@@ -23,11 +23,29 @@ class SkillsPage extends Component {
     skills: [],
   };
 
+  static hasActiveRelation(focusSkill, skill) {
+    if (focusSkill && focusSkill.relationships) {
+      const { relationships } = focusSkill;
+      const relatedFrom = relationships.relatedFrom && relationships
+        .relatedFrom
+        .data
+        .find(relation => relation.id === skill.id);
+
+      const relatedTo = relationships.relatedTo && relationships
+        .relatedTo
+        .data
+        .find(relation => relation.id === skill.id);
+
+      return Boolean(relatedFrom || relatedTo);
+    }
+
+    return false;
+  }
+
   constructor(props) {
     super(props);
     this.lastModified = this.lastModified.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-    this.hasActiveRelation = this.hasActiveRelation.bind(this);
     this.handleFocusInput = this.handleFocusInput.bind(this);
     this.handleBlurInput = this.handleBlurInput.bind(this);
     this.focusSearchInput = this.focusSearchInput.bind(this);
@@ -56,27 +74,6 @@ class SkillsPage extends Component {
     return moment.max(updateDates).format('LL');
   }
 
-  hasActiveRelation(skill) {
-    const { activeSkill } = this.state;
-
-    if (activeSkill && activeSkill.relationships) {
-      const { relationships } = activeSkill;
-      const relatedFrom = relationships.relatedFrom && relationships
-        .relatedFrom
-        .data
-        .find(relation => relation.id === skill.id);
-
-      const relatedTo = relationships.relatedTo && relationships
-        .relatedTo
-        .data
-        .find(relation => relation.id === skill.id);
-
-      return Boolean(relatedFrom || relatedTo);
-    }
-
-    return false;
-  }
-
   handleRelated = skill => () => {
     ReactGA.event({
       category: 'Related',
@@ -88,6 +85,8 @@ class SkillsPage extends Component {
       filter: '',
       activeSkill: skill,
     });
+
+    this.searchInput.current.value = '';
 
     if (skill) {
       document.body.addEventListener('click', this.handleGlobalCancelRelated, true);
@@ -120,10 +119,12 @@ class SkillsPage extends Component {
     });
   }
 
-  handleFocusInput() {
+  handleFocusInput(event) {
     this.setState({
       searchActive: true,
     });
+
+    this.handleSearch(event);
   }
 
   handleBlurInput() {
@@ -140,6 +141,26 @@ class SkillsPage extends Component {
     const { topSkills, skills, isLoading } = this.props;
     const { filter, activeSkill, searchActive } = this.state;
     const skillStyle = { flex: 1, margin: '3px' };
+
+    const searchResults = filter.length &&
+          skills.filter(skill => skill.title.toLowerCase().indexOf(filter) >= 0);
+    const searchResultsIndex = searchResults &&
+          searchResults.map(result => result.title.toLowerCase());
+
+    const allRelated = [];
+    if (searchResults.length) {
+      searchResults.forEach((focusSkill) => {
+        skills.forEach((skill) => {
+          if (searchResultsIndex.indexOf(skill.title.toLowerCase()) < 0 &&
+              this.constructor.hasActiveRelation(focusSkill, skill)) {
+            const label = skill.title.toLowerCase();
+            if (allRelated.indexOf(label) < 0) {
+              allRelated.push(label);
+            }
+          }
+        });
+      });
+    }
 
     return (
       <main className={styles.page}>
@@ -181,6 +202,9 @@ class SkillsPage extends Component {
               </i>
             </button>
           </div>
+          <small className={styles.legend}>
+            * Related items (tap to highlight).
+          </small>
           { isLoading ?
             <Loader />
             :
@@ -188,8 +212,10 @@ class SkillsPage extends Component {
               {
                 skills.map((skill) => {
                   const label = skill.title.toLowerCase();
-                  const isActive = activeSkill &&
-                        (skill.id === activeSkill.id || this.hasActiveRelation(skill));
+                  const isActive = (activeSkill &&
+                        (skill.id === activeSkill.id ||
+                         this.constructor.hasActiveRelation(activeSkill, skill))) ||
+                        allRelated.indexOf(label) >= 0;
                   const isDimmed = (filter.length && label.indexOf(filter.toLowerCase()) < 0) ||
                         (activeSkill && !isActive);
                   const classes = `${styles.tag}
@@ -228,9 +254,6 @@ class SkillsPage extends Component {
               }
             </ul>
           }
-          <small className={styles.legend}>
-            * Tap to highlight related items.
-          </small>
         </article>
       </main>
     );
