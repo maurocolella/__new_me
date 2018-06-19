@@ -3,7 +3,6 @@ import { combineReducers } from 'redux';
 import articles from '../containers/ContentPage/reducers';
 import skills from '../containers/SkillsPage/reducers';
 import resume from '../containers/ResumePage/reducers';
-import profile from '../containers/PrintableResumePage/reducers';
 import works from '../containers/WorkPage/reducers';
 
 /* TODO: implement
@@ -38,7 +37,6 @@ export default combineReducers({
   articles,
   skills,
   resume,
-  profile,
   works,
   // entities,
 });
