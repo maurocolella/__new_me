@@ -31,7 +31,7 @@ passport.use(new Strategy({
 	clientSecret: process.env.FB_CLIENT_SECRET,
 	callbackURL: `${process.env.BASE_URL}/auth/facebook/callback`
 },
-						  function(accessToken, refreshToken, profile, cb) {
+													function(accessToken, refreshToken, profile, cb) {
 	// In this example, the user's Facebook profile is supplied as the user
 	// record.  In a production-quality application, the Facebook profile should
 	// be associated with a user record in the application's database, which
@@ -60,6 +60,8 @@ passport.deserializeUser(function(obj, cb) {
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
+app.use('/icons', express.static(path.join(__dirname, 'icons')));
+
 // app.use(require('morgan')('combined'));
 app.use(cookieParser());
 app.enable('trust proxy');
@@ -85,7 +87,7 @@ app.get('/login', function(req, res) {
 });
 
 app.get('/login/facebook',
-		passport.authenticate('facebook'));
+				passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { successReturnToOrRedirect: '/', failureRedirect: '/login' }));
 
