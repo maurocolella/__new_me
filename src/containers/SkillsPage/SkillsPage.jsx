@@ -203,7 +203,7 @@ class SkillsPage extends Component {
             </button>
           </div>
           <small className={styles.legend}>
-            * Related items (tap to highlight).
+            * Related items in blue (tap to highlight).
           </small>
           { isLoading ?
             <Loader />
