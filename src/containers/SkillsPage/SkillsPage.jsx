@@ -173,9 +173,9 @@ class SkillsPage extends Component {
         </article>
         <article className={styles.article}>
           <h4>All Skills</h4>
-          <small>
+          <p>
             The following skills have been used professionally.
-          </small>
+          </p>
           <div
             className={
               `${styles.search}

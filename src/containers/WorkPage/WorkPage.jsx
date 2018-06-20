@@ -116,31 +116,36 @@ class WorkPage extends Component {
               <h2 className={globalStyles.page__title}>{title}</h2>
             </div>
           </header>
-          <ul className={styles.grid}>
-            {entries.map(entry => (
-              <li
-                className={styles.grid__entry}
-                key={entry.id.toString()}
-              >
-                <WorkItem
-                  id={entry.id.toString()}
-                  title={entry.title}
-                  description={entry.description}
-                  link={entry.links && entry.links.length ? entry.links[0].url : '#'}
-                  cover={entry.images && entry.images.length ? entry.images[0].url : placeholder}
-                  onClick={this.handleSliderToggle}
-                />
-              </li>
-            ))}
-          </ul>
-          {!isMobile &&
-          <WorkSlider
-            sourceRect={sourceRect}
-            show={showSlider}
-            activeSlide={activeSlide.toString()}
-            onClose={this.handleSliderClose}
-            entries={entries}
-          />}
+          <article>
+            <p>
+              A selection of recent works.
+            </p>
+            <ul className={styles.grid}>
+              {entries.map(entry => (
+                <li
+                  className={styles.grid__entry}
+                  key={entry.id.toString()}
+                >
+                  <WorkItem
+                    id={entry.id.toString()}
+                    title={entry.title}
+                    description={entry.description}
+                    link={entry.links && entry.links.length ? entry.links[0].url : '#'}
+                    cover={entry.images && entry.images.length ? entry.images[0].url : placeholder}
+                    onClick={this.handleSliderToggle}
+                  />
+                </li>
+              ))}
+            </ul>
+            {!isMobile &&
+            <WorkSlider
+              sourceRect={sourceRect}
+              show={showSlider}
+              activeSlide={activeSlide.toString()}
+              onClose={this.handleSliderClose}
+              entries={entries}
+            />}
+          </article>
         </main>
     );
   }
