@@ -140,7 +140,7 @@ class SkillsPage extends Component {
   render() {
     const { topSkills, skills, isLoading } = this.props;
     const { filter, activeSkill, searchActive } = this.state;
-    const skillStyle = { flex: 1, margin: '3px' };
+    const skillStyle = { display: 'flex', flex: '1 1 auto', margin: '3px' };
 
     const searchResults = filter.length &&
           skills.filter(skill => skill.title.toLowerCase().indexOf(filter) >= 0);
