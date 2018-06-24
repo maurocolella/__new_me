@@ -10,10 +10,6 @@
   }
 
   &__cover {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     overflow: hidden;
     position: relative;
     width: 82%;
@@ -52,10 +48,6 @@
   }
 
   &__link {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-
     & > img {
       width: 100%;
     }
