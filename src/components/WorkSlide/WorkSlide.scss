@@ -49,6 +49,7 @@
 
   &__link {
     & > img {
+      display: flex;
       width: 100%;
     }
   }
