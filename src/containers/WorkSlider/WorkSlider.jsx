@@ -72,10 +72,15 @@ class WorkSlider extends Component {
             top: 0,
             width: '100vw',
           },
-          fadeHelp: true,
           locked: false,
         });
       }, 500);
+
+      setTimeout(() => {
+        this.setState({
+          fadeHelp: true,
+        });
+      }, 4500);
 
       setTimeout(() => {
         sessionStorage.setItem('sliderShown', 'true');
