@@ -1,30 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './Sidebar.scss';
 
-export default class Sidebar extends Component {
-  render() {
-    return (
-      <section className={styles.sidebar}>
-        <ul className={styles.nav}>
-          <li className={styles.nav__item}>
-            <Link className={styles.nav__link} to="/about">About</Link>
-          </li>
-          <li className={styles.nav__item}>
-            <Link className={styles.nav__link} to="/skills">Skills</Link>
-          </li>
-          <li className={styles.nav__item}>
-            <Link className={styles.nav__link} to="/work">Work</Link>
-          </li>
-          <li className={styles.nav__item}>
-            <Link className={styles.nav__link} to="/play">Play</Link>
-          </li>
-          <li className={styles.nav__item}>
-            <Link className={styles.nav__link} to="/contact">Contact</Link>
-          </li>
-        </ul>
-      </section>
-    );
-  }
+export default function Sidebar() {
+  return (
+    <section className={styles.sidebar}>
+      <ul className={styles.nav}>
+        <li className={styles.nav__item}>
+          <Link className={styles.nav__link} to="/about">About</Link>
+        </li>
+        <li className={styles.nav__item}>
+          <Link className={styles.nav__link} to="/skills">Skills</Link>
+        </li>
+        <li className={styles.nav__item}>
+          <Link className={styles.nav__link} to="/work">Work</Link>
+        </li>
+        <li className={styles.nav__item}>
+          <Link className={styles.nav__link} to="/play">Play</Link>
+        </li>
+        <li className={styles.nav__item}>
+          <Link className={styles.nav__link} to="/contact">Contact</Link>
+        </li>
+      </ul>
+    </section>
+  );
 }

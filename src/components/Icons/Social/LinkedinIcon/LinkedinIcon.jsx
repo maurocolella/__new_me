@@ -13,11 +13,13 @@ export default class LinkedinIcon extends PureComponent {
   };
 
   render() {
+    const { className, style } = this.props;
+
     return (
       <svg
         viewBox="0 0 81.440002 72"
-        className={this.props.className}
-        style={this.props.style}
+        className={className}
+        style={style}
       >
         <g>
           <path

@@ -45,31 +45,37 @@ export default class GLChart extends Component {
   }
 
   componentDidMount() {
-    if (this.props.data.length) {
-      this.state.GLContext.init(this.canvas, this.props.data, this.state.baseColor);
+    const { data } = this.props;
+    const { GLContext, baseColor } = this.state;
+    if (data.length) {
+      GLContext.init(this.canvas, data, baseColor);
     }
   }
 
   componentWillReceiveProps(nextProps) {
+    const { data } = this.props;
+    const { GLContext, baseColor } = this.state;
     if (nextProps.data.length
-        && nextProps.data.toString() !== this.props.data.toString()) {
-      this.state.GLContext.init(this.canvas, nextProps.data, this.state.baseColor);
+        && nextProps.data.toString() !== data.toString()) {
+      GLContext.init(this.canvas, nextProps.data, baseColor);
     }
   }
 
   componentWillUnmount() {
-    this.state.GLContext.teardown();
+    const { GLContext } = this.state;
+    GLContext.teardown();
   }
 
   render() {
+    const { className, style } = this.props;
     const { hasGL } = this.state;
 
     return (
       hasGL
         ? (
           <div
-            className={`${styles.viewport} ${this.props.className}`}
-            style={this.props.style}
+            className={`${styles.viewport} ${className}`}
+            style={style}
           >
             <canvas
               ref={(canvas) => { this.canvas = canvas; }}

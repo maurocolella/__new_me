@@ -12,8 +12,10 @@ export default class Loader extends PureComponent {
   };
 
   render() {
+    const { className } = this.props;
+
     return (
-      <div className={`${styles.loader} ${this.props.className}`}>
+      <div className={`${styles.loader} ${className}`}>
         <div className={styles.spinner}>
           <div className={styles.rect1} />
           <div className={styles.rect2} />

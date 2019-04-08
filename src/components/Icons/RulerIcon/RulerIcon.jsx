@@ -11,8 +11,10 @@ export default class RulerIcon extends PureComponent {
   };
 
   render() {
+    const { className } = this.props;
+
     return (
-      <svg viewBox="0 0 64 64" className={this.props.className}>
+      <svg viewBox="0 0 64 64" className={className}>
         <rect x="22" y="1" strokeWidth="2" strokeMiterlimit="10" width="16" height="62" />
         <line strokeWidth="2" strokeMiterlimit="10" x1="31" y1="12" x2="38" y2="12" />
         <line strokeWidth="2" strokeMiterlimit="10" x1="38" y1="22" x2="35" y2="22" />

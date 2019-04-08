@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
 
-import Loader from '../../components/Loader';
 import WorkSlide from '../../components/WorkSlide';
 import styles from './WorkSlider.scss';
 import scrollIcon from '../../assets/images/mousewheel.png';
@@ -11,7 +10,6 @@ import keysIcon from '../../assets/images/arrow-keys.png';
 
 class WorkSlider extends Component {
   static propTypes = {
-    activeSlide: PropTypes.string,
     sourceRect: PropTypes.shape({}),
     show: PropTypes.bool.isRequired,
     entries: PropTypes.arrayOf(Object).isRequired,
@@ -19,7 +17,6 @@ class WorkSlider extends Component {
   };
 
   static defaultProps = {
-    activeSlide: '',
     sourceRect: {},
   };
 
@@ -52,10 +49,12 @@ class WorkSlider extends Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps, nextState) { /* eslint-disable-line */
-    const { activeSlide, entries, show } = nextProps;
+    const { show } = this.props;
+    const { activeSlide, entries } = nextProps;
+    const { currentSlide } = this.state;
     const activeSlideIndex = entries.map(entry => entry.id.toString()).indexOf(activeSlide);
 
-    if (show && show !== this.props.show) {
+    if (nextProps.show && nextProps.show !== show) {
       this.setState({
         animRect: { ...nextProps.sourceRect },
         locked: true,
@@ -85,7 +84,7 @@ class WorkSlider extends Component {
       setTimeout(() => {
         sessionStorage.setItem('sliderShown', 'true');
       }, 5500);
-    } else if (!show && show !== this.props.show) {
+    } else if (!nextProps.show && nextProps.show !== show) {
       this.setState({
         animRect: {
           height: '100vh',
@@ -101,7 +100,7 @@ class WorkSlider extends Component {
     }
 
     if (activeSlideIndex >= 0
-        && activeSlideIndex !== this.state.currentSlide) {
+        && activeSlideIndex !== currentSlide) {
       this.setState({
         currentSlide: activeSlideIndex,
       });
@@ -191,9 +190,9 @@ class WorkSlider extends Component {
   }
 
   handleSliderClose() {
-    const { entries } = this.props;
+    const { entries, onClose } = this.props;
     const { currentSlide } = this.state;
-    this.props.onClose(entries[currentSlide].id);
+    onClose(entries[currentSlide].id);
   }
 
   render() {
@@ -221,6 +220,7 @@ class WorkSlider extends Component {
           <button
             className={styles['close-button']}
             onClick={this.handleSliderClose}
+            type="button"
           >
             <i className={`material-icons ${styles['close-button__icon']}`}>
               close

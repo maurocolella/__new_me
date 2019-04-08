@@ -18,9 +18,10 @@ class WorkItem extends Component {
   }
 
   handleClickCapture(event) {
+    const { onClick, id } = this.props;
     event.preventDefault();
     event.stopPropagation();
-    this.props.onClick(event, this.props.id);
+    onClick(event, id);
   }
 
   render() {

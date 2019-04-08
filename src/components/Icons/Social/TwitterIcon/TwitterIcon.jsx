@@ -11,10 +11,12 @@ export default class TwitterIcon extends PureComponent {
   };
 
   render() {
+    const { className } = this.props;
+
     return (
       <svg
         viewBox="0 0 400 400"
-        className={this.props.className}
+        className={className}
       >
         <g>
           <path

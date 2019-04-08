@@ -17,7 +17,8 @@ class ContentPage extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchData();
+    const { fetchData } = this.props;
+    fetchData();
   }
 
   componentDidUpdate() {

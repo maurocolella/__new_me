@@ -1,27 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from '../../assets/styles/page.scss';
 
-class NotFoundPage extends Component {
-  render() {
-    return (
-      <main className={styles.page}>
-        <article className={`${styles.article} ${styles['article--404']}`}>
-          <h1>404</h1>
-          <p>
-            We couldn&apos;t find the document you have requested.
-            <br />
-            Please go back to the
-            {' '}
-            <Link to="/about">homepage</Link>
-            {' '}
+function NotFoundPage() {
+  return (
+    <main className={styles.page}>
+      <article className={`${styles.article} ${styles['article--404']}`}>
+        <h1>404</h1>
+        <p>
+          We couldn&apos;t find the document you have requested.
+          <br />
+          Please go back to the
+          {' '}
+          <Link to="/about">homepage</Link>
+          {' '}
 and try again.
-          </p>
-        </article>
-      </main>
-    );
-  }
+        </p>
+      </article>
+    </main>
+  );
 }
 
 export default NotFoundPage;

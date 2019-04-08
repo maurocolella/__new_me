@@ -61,17 +61,12 @@ class SkillsPage extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchData();
+    const { fetchData } = this.props;
+    fetchData();
   }
 
   componentWillUnmount() {
     document.body.removeEventListener('click', this.handleGlobalCancelRelated, true);
-  }
-
-  lastModified() {
-    const { skills } = this.props;
-    const updateDates = skills.map(skill => moment(skill.updatedAt));
-    return moment.max(updateDates).format('LL');
   }
 
   handleRelated = skill => () => {
@@ -93,6 +88,12 @@ class SkillsPage extends Component {
     } else {
       document.body.removeEventListener('click', this.handleGlobalCancelRelated, true);
     }
+  }
+
+  lastModified() {
+    const { skills } = this.props;
+    const updateDates = skills.map(skill => moment(skill.updatedAt));
+    return moment.max(updateDates).format('LL');
   }
 
   handleGlobalCancelRelated() {
@@ -198,6 +199,7 @@ class SkillsPage extends Component {
             <button
               className={styles.search__button}
               onClick={this.focusSearchInput}
+              type="button"
             >
               <i
                 className={`material-icons ${styles.search__icon}`}
@@ -234,6 +236,7 @@ class SkillsPage extends Component {
                       <button
                         className={classes}
                         onClick={this.handleRelated(skill)}
+                        type="button"
                       >
                         {skill.title}
                       </button>
@@ -250,12 +253,13 @@ class SkillsPage extends Component {
                     <button
                       className={`${styles.tag} ${styles['tag--reset']}`}
                       onClick={this.handleRelated(null)}
+                      type="button"
                     >
                       <i className={`material-icons ${styles.tag__icon}`}>
                         close
                       </i>
                       {' '}
-clear
+                      clear
                     </button>
                   </li>
                   )

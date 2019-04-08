@@ -11,8 +11,10 @@ export default class SunIcon extends PureComponent {
   };
 
   render() {
+    const { className } = this.props;
+
     return (
-      <svg viewBox="0 0 64 64" className={this.props.className}>
+      <svg viewBox="0 0 64 64" className={className}>
         <g>
           <circle
             strokeMiterlimit="10"

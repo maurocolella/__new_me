@@ -11,10 +11,12 @@ export default class FacebookIcon extends PureComponent {
   };
 
   render() {
+    const { className } = this.props;
+
     return (
       <svg
         viewBox="0 0 100 100"
-        className={this.props.className}
+        className={className}
       >
         <g>
           <path
