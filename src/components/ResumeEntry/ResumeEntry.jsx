@@ -29,7 +29,10 @@ class ResumeEntry extends Component {
         <article className={styles.entry}>
           <h5 className={styles.entry__heading}>
             <span>
-              {moment(startDate).format(dateFormat)} - {moment(endDate).format(dateFormat)}
+              {moment(startDate).format(dateFormat)}
+              {' '}
+-
+              {moment(endDate).format(dateFormat)}
             </span>
             <span style={{ textAlign: 'right' }}>
               {title}
@@ -37,8 +40,8 @@ class ResumeEntry extends Component {
           </h5>
           <p>{description}</p>
           <ul>
-            {tasks &&
-              tasks.map(task => (
+            {tasks
+              && tasks.map(task => (
                 <li key={task.id}>{task.description}</li>
               ))
             }

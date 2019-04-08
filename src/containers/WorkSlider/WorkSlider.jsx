@@ -100,8 +100,8 @@ class WorkSlider extends Component {
       document.body.style.overflow = 'auto';
     }
 
-    if (activeSlideIndex >= 0 &&
-        activeSlideIndex !== this.state.currentSlide) {
+    if (activeSlideIndex >= 0
+        && activeSlideIndex !== this.state.currentSlide) {
       this.setState({
         currentSlide: activeSlideIndex,
       });
@@ -236,7 +236,8 @@ class WorkSlider extends Component {
             ))}
           </ul>
         </div>
-        {displayHelp &&
+        {displayHelp
+          && (
           <aside className={styles.toast} style={{ opacity: fadeHelp ? 0 : 1 }}>
             <header>
               Scroll, swipe, or use arrow keys to navigate
@@ -259,6 +260,7 @@ class WorkSlider extends Component {
               />
             </footer>
           </aside>
+          )
         }
       </section>
     );

@@ -7,6 +7,7 @@ export default class Loadable extends Component {
       this.forceUpdate();
     });
   }
+
   render() {
     return this.Component ? <this.Component.default {...this.props} /> : null;
   }

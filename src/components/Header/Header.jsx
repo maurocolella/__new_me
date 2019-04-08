@@ -74,7 +74,9 @@ export default class Header extends Component {
         <section className={styles.cover}>
           <h1 className={styles.cover__title}>Mauro Colella</h1>
           <a href="#footer" onClick={this.constructor.scrollTo} className={styles.hireme}>
-            Hire Me <SunIcon className={styles.hireme__icon} />
+            Hire Me
+            {' '}
+            <SunIcon className={styles.hireme__icon} />
           </a>
         </section>
       </header>

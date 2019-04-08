@@ -102,52 +102,56 @@ class WorkPage extends Component {
     } = this.state;
 
     return (
-      (isLoading) ?
-        <Loader className={globalStyles.page} />
-        :
-        <main className={globalStyles.page}>
-          <header
-            className={globalStyles.page__header}
-          >
-            <div>
-              <small className={globalStyles.lastModified}>
-                Last modified: {this.lastModified()}
-              </small>
-              <h2 className={globalStyles.page__title}>{title}</h2>
-            </div>
-          </header>
-          <article>
-            <p>
+      (isLoading)
+        ? <Loader className={globalStyles.page} />
+        : (
+          <main className={globalStyles.page}>
+            <header
+              className={globalStyles.page__header}
+            >
+              <div>
+                <small className={globalStyles.lastModified}>
+                  Last modified:
+                  {' '}
+                  {this.lastModified()}
+                </small>
+                <h2 className={globalStyles.page__title}>{title}</h2>
+              </div>
+            </header>
+            <article>
+              <p>
               A selection of recent works.
-            </p>
-            <ul className={styles.grid}>
-              {entries.map(entry => (
-                <li
-                  className={styles.grid__entry}
-                  key={entry.id.toString()}
-                >
-                  <WorkItem
-                    id={entry.id.toString()}
-                    title={entry.title}
-                    description={entry.description}
-                    link={entry.links && entry.links.length ? entry.links[0].url : '#'}
-                    cover={entry.images && entry.images.length ? entry.images[0].url : placeholder}
-                    onClick={this.handleSliderToggle}
-                  />
-                </li>
-              ))}
-            </ul>
-            {!isMobile &&
+              </p>
+              <ul className={styles.grid}>
+                {entries.map(entry => (
+                  <li
+                    className={styles.grid__entry}
+                    key={entry.id.toString()}
+                  >
+                    <WorkItem
+                      id={entry.id.toString()}
+                      title={entry.title}
+                      description={entry.description}
+                      link={entry.links && entry.links.length ? entry.links[0].url : '#'}
+                      cover={entry.images && entry.images.length ? entry.images[0].url : placeholder}
+                      onClick={this.handleSliderToggle}
+                    />
+                  </li>
+                ))}
+              </ul>
+              {!isMobile
+            && (
             <WorkSlider
               sourceRect={sourceRect}
               show={showSlider}
               activeSlide={activeSlide.toString()}
               onClose={this.handleSliderClose}
               entries={entries}
-            />}
-          </article>
-        </main>
-    );
+            />
+            )}
+            </article>
+          </main>
+        ));
   }
 }
 

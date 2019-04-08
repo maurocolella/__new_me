@@ -32,17 +32,21 @@ class ContentPage extends Component {
     const { title, body, updatedAt } = article;
 
     return (
-      (isLoading) ?
-        <Loader className={styles.page} />
-        :
-        <main className={styles.page}>
-          <header className={styles.page__header}>
-            <small className={styles.lastModified}>Last modified: {moment(updatedAt).format('LL')}</small>
-            <h2 className={styles.page__title}>{title}</h2>
-          </header>
-          <article dangerouslySetInnerHTML={{ __html: body }} />
-        </main>
-    );
+      (isLoading)
+        ? <Loader className={styles.page} />
+        : (
+          <main className={styles.page}>
+            <header className={styles.page__header}>
+              <small className={styles.lastModified}>
+                Last modified:
+                {' '}
+                {moment(updatedAt).format('LL')}
+              </small>
+              <h2 className={styles.page__title}>{title}</h2>
+            </header>
+            <article dangerouslySetInnerHTML={{ __html: body }} />
+          </main>
+        ));
   }
 }
 
@@ -53,8 +57,8 @@ const mapStateToProps = (state, ownProps) => {
   let isNotFound = false;
   let article = {};
 
-  if (articles.items &&
-      articles.items.length) {
+  if (articles.items
+      && articles.items.length) {
     const hasSlug = slug !== undefined;
     const matchedArticle = hasSlug && articles.items.filter(obj => obj.slug === slug);
 

@@ -7,8 +7,8 @@ export default class GLChart extends Component {
   static detectGL() {
     try {
       const canvas = document.createElement('canvas');
-      const gl = (canvas.getContext('webgl') ||
-                  canvas.getContext('experimental-webgl'));
+      const gl = (canvas.getContext('webgl')
+                  || canvas.getContext('experimental-webgl'));
 
       return !!(window.WebGLRenderingContext && gl);
     } catch (e) {
@@ -51,8 +51,8 @@ export default class GLChart extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.data.length &&
-        nextProps.data.toString() !== this.props.data.toString()) {
+    if (nextProps.data.length
+        && nextProps.data.toString() !== this.props.data.toString()) {
       this.state.GLContext.init(this.canvas, nextProps.data, this.state.baseColor);
     }
   }
@@ -65,18 +65,19 @@ export default class GLChart extends Component {
     const { hasGL } = this.state;
 
     return (
-      hasGL ?
-        <div
-          className={`${styles.viewport} ${this.props.className}`}
-          style={this.props.style}
-        >
-          <canvas
-            ref={(canvas) => { this.canvas = canvas; }}
-            className={styles.gl}
-          />
-        </div>
-        :
-        <div />
+      hasGL
+        ? (
+          <div
+            className={`${styles.viewport} ${this.props.className}`}
+            style={this.props.style}
+          >
+            <canvas
+              ref={(canvas) => { this.canvas = canvas; }}
+              className={styles.gl}
+            />
+          </div>
+        )
+        : <div />
     );
   }
 }

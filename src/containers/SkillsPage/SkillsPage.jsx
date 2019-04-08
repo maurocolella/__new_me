@@ -142,17 +142,17 @@ class SkillsPage extends Component {
     const { filter, activeSkill, searchActive } = this.state;
     const skillStyle = { display: 'flex', flex: '1 1 auto', margin: '3px' };
 
-    const searchResults = filter.length &&
-          skills.filter(skill => skill.title.toLowerCase().indexOf(filter) >= 0);
-    const searchResultsIndex = searchResults &&
-          searchResults.map(result => result.title.toLowerCase());
+    const searchResults = filter.length
+          && skills.filter(skill => skill.title.toLowerCase().indexOf(filter) >= 0);
+    const searchResultsIndex = searchResults
+          && searchResults.map(result => result.title.toLowerCase());
 
     const allRelated = [];
     if (searchResults.length) {
       searchResults.forEach((focusSkill) => {
         skills.forEach((skill) => {
-          if (searchResultsIndex.indexOf(skill.title.toLowerCase()) < 0 &&
-              this.constructor.hasActiveRelation(focusSkill, skill)) {
+          if (searchResultsIndex.indexOf(skill.title.toLowerCase()) < 0
+              && this.constructor.hasActiveRelation(focusSkill, skill)) {
             const label = skill.title.toLowerCase();
             if (allRelated.indexOf(label) < 0) {
               allRelated.push(label);
@@ -165,7 +165,11 @@ class SkillsPage extends Component {
     return (
       <main className={styles.page}>
         <header className={styles.page__header}>
-          <small className={styles.lastModified}>Last modified: {this.lastModified()}</small>
+          <small className={styles.lastModified}>
+            Last modified:
+            {' '}
+            {this.lastModified()}
+          </small>
           <h2 className={styles.page__title}>Skills</h2>
         </header>
         <article className={styles.article}>
@@ -205,19 +209,19 @@ class SkillsPage extends Component {
           <small className={styles.legend}>
             * Related items in blue (tap to highlight).
           </small>
-          { isLoading ?
-            <Loader />
-            :
-            <ul className={styles.flatList}>
-              {
+          { isLoading
+            ? <Loader />
+            : (
+              <ul className={styles.flatList}>
+                {
                 skills.map((skill) => {
                   const label = skill.title.toLowerCase();
-                  const isActive = (activeSkill &&
-                        (skill.id === activeSkill.id ||
-                         this.constructor.hasActiveRelation(activeSkill, skill))) ||
-                        allRelated.indexOf(label) >= 0;
-                  const isDimmed = (filter.length && label.indexOf(filter.toLowerCase()) < 0) ||
-                        (activeSkill && !isActive);
+                  const isActive = (activeSkill
+                        && (skill.id === activeSkill.id
+                         || this.constructor.hasActiveRelation(activeSkill, skill)))
+                        || allRelated.indexOf(label) >= 0;
+                  const isDimmed = (filter.length && label.indexOf(filter.toLowerCase()) < 0)
+                        || (activeSkill && !isActive);
                   const classes = `${styles.tag}
                                    ${isDimmed ? ` ${styles['tag--dim']}` : ''}
                                    ${isActive ? ` ${styles['tag--related']}` : ''}`;
@@ -237,8 +241,9 @@ class SkillsPage extends Component {
                   );
                 })
               }
-              {
-                activeSkill &&
+                {
+                activeSkill
+                  && (
                   <li
                     style={skillStyle}
                   >
@@ -248,12 +253,15 @@ class SkillsPage extends Component {
                     >
                       <i className={`material-icons ${styles.tag__icon}`}>
                         close
-                      </i> clear
+                      </i>
+                      {' '}
+clear
                     </button>
                   </li>
+                  )
               }
-            </ul>
-          }
+              </ul>
+            )}
         </article>
       </main>
     );
