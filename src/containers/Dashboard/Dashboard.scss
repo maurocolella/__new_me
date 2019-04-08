@@ -1,4 +1,25 @@
+@import "../../assets/styles/mixins.scss";
+
 .wrapper{
 	background-color: #fff;
-	width: 100%;
+  width: 100%;
+
+  &__particles {
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+  }
+
+  &__content {
+    box-shadow: 0px 0px 8px 0px #bcbcbc;
+    margin: 0 auto;
+
+    @media (min-width: 768px) {
+      @include container-lg;
+      margin-bottom: 72px;
+    }
+  }
 }

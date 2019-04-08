@@ -2,16 +2,16 @@
 @import "variables.scss";
 
 .page {
-  background-color: #fcfcfc;
+  background-color: rgba(255,255,255,0.4);
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
-  box-shadow: 16px 24px 8px -16px #bcbcbc,
-    -16px 24px 8px -16px #bcbcbc;
   color: #555;
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
   margin: 0 auto;
   padding: 48px 24px 24px 24px;
+  position: relative;
+  z-index: 2;
 
   &__header{
     margin-bottom: 1em;
