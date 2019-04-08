@@ -55,6 +55,7 @@ export default class TOCButton extends Component {
         <button
           className={styles.button__button}
           onClick={this.constructor.scrollToTop}
+          type="button"
         >
           <ScrollUpIcon className={styles.button__icon} />
         </button>

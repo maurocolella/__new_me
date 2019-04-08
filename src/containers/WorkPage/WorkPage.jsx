@@ -40,16 +40,18 @@ class WorkPage extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchData();
+    const { fetchData } = this.props;
+    fetchData();
   }
 
   handleSliderToggle(event, id) {
     const { entries } = this.props;
+    const { isMobile } = this.state;
     const filteredEntries = entries.filter(item => item.id.toString() === id);
     const entry = filteredEntries.length ? filteredEntries[0] : { title: 'N/A' };
     const clientRect = event.target.getBoundingClientRect();
 
-    if (this.state.isMobile) {
+    if (isMobile) {
       const urlHash = hash(event.currentTarget.href);
       window.open(event.currentTarget.href, urlHash);
       return;
@@ -75,7 +77,8 @@ class WorkPage extends Component {
   }
 
   handleSliderClose(lastId) {
-    if (this.state.isMobile) {
+    const { isMobile } = this.state;
+    if (isMobile) {
       return;
     }
 
@@ -133,7 +136,9 @@ class WorkPage extends Component {
                       title={entry.title}
                       description={entry.description}
                       link={entry.links && entry.links.length ? entry.links[0].url : '#'}
-                      cover={entry.images && entry.images.length ? entry.images[0].url : placeholder}
+                      cover={
+                        entry.images && entry.images.length ? entry.images[0].url : placeholder
+                      }
                       onClick={this.handleSliderToggle}
                     />
                   </li>

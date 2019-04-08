@@ -24,10 +24,11 @@ export default class Loadable extends Component {
 
   componentWillMount() {
     import('./WorkItem.jsx').then((component) => {
+      const { cover } = this.props;
       this.Component = component;
 
-      if (this.props.cover) {
-        this.constructor.loadImage(this.props.cover).then(() => {
+      if (cover) {
+        this.constructor.loadImage(cover).then(() => {
           this.forceUpdate();
         });
       } else {
