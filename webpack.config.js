@@ -1,10 +1,13 @@
-var path = require('path');
-var webpack = require('webpack');
-var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const sharpLoader = require('responsive-loader/sharp');
+
+const env = process.env['NODE_ENV'];
 
 module.exports = {
-  mode: 'development',
-  devtool: 'cheap-module-eval-source-map',
+  mode: env,
+  devtool: env === 'development' ? 'cheap-module-eval-source-map' : 'hidden-source-map',
   entry: {
     client : [
       '@babel/polyfill',
@@ -19,7 +22,7 @@ module.exports = {
   },
   target: 'web',
   optimization: {
-    minimize: false,
+    minimize: env !== 'development',
     /* splitChunks: {
       cacheGroups: {
         vendor: {
@@ -96,7 +99,7 @@ module.exports = {
         {
           loader: 'responsive-loader',
           options: {
-            adapter: require('responsive-loader/sharp'),
+            adapter: sharpLoader,
           }
         }
       ]
