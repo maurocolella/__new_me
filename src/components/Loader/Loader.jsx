@@ -21,6 +21,7 @@ export default class Loader extends PureComponent {
           <div className={styles.rect4} />
           <div className={styles.rect5} />
         </div>
-      </div>);
+      </div>
+    );
   }
 }

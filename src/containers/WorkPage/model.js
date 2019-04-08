@@ -2,16 +2,15 @@ import camelize from 'camelize';
 
 function normalizeIncluded(entry, included, type) {
   const related = (
-    entry.relationships &&
-    entry.relationships[`${type}s`] &&
-    entry.relationships[`${type}s`].data
+    entry.relationships
+    && entry.relationships[`${type}s`]
+    && entry.relationships[`${type}s`].data
   ) || [];
 
-  const normalizedRelated = related.map(item =>
-    Object.assign(
-      item,
-      included.find(link => link.type === type && link.id === item.id).attributes,
-    ));
+  const normalizedRelated = related.map(item => Object.assign(
+    item,
+    included.find(link => link.type === type && link.id === item.id).attributes,
+  ));
 
   return normalizedRelated;
 }

@@ -77,7 +77,9 @@ export default class Footer extends PureComponent {
                   className={styles.hireme}
                   onClick={this.constructor.popup}
                 >
-                  Hire Me <SunIcon className={styles.hireme__icon} />
+                  Hire Me
+                  {' '}
+                  <SunIcon className={styles.hireme__icon} />
                 </a>
               </li>
             </ul>
@@ -88,7 +90,8 @@ export default class Footer extends PureComponent {
             >
               <li className={styles.footnotes__note}>
                 <small>
-                  Copyright &copy; 2017-{moment().year()}
+                  Copyright &copy; 2017-
+                  {moment().year()}
                 </small>
               </li>
             </ul>

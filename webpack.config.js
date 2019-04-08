@@ -3,12 +3,12 @@ var webpack = require('webpack');
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  mode: 'production',
-  devtool: 'cheap-module-source-map',
+  mode: 'development',
+  devtool: 'cheap-module-eval-source-map',
   entry: {
     client : [
-      'webpack-hot-middleware/client',
-      'babel-polyfill',
+      '@babel/polyfill',
+      // 'webpack-hot-middleware/client',
       './src/index.client.jsx'
     ],
     /* server : [
@@ -17,8 +17,10 @@ module.exports = {
       './src/index.server.jsx'
     ],*/
   },
+  target: 'web',
   optimization: {
-    splitChunks: {
+    minimize: false,
+    /* splitChunks: {
       cacheGroups: {
         vendor: {
           test: /node_modules/,
@@ -28,7 +30,7 @@ module.exports = {
           enforce: true,
         },
       },
-    },
+    }, */
   },
   output: {
     path: path.join(__dirname, 'dist'),

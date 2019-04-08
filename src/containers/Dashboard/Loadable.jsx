@@ -7,6 +7,7 @@ export default class Loadable extends Component {
       this.forceUpdate();
     });
   }
+
   render = () => (
     this.Component ? <this.Component.default /> : null
   )

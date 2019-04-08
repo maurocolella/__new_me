@@ -10,13 +10,13 @@ export default class Navbar extends Component {
     // In one fell swoop
     return (
       // If we have getComputedStyle
-      getComputedStyle ?
+      getComputedStyle
         // Query it
         // TODO: From CSS-Query notes, we might need (node, null) for FF
-        getComputedStyle(el) :
+        ? getComputedStyle(el)
 
         // Otherwise, we are in IE and use currentStyle
-        el.currentStyle
+        : el.currentStyle
     )[
       // Switch to camelCase for CSSOM
       // DEV: Grabbed from jQuery

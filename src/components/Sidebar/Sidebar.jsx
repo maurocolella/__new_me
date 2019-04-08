@@ -24,6 +24,7 @@ export default class Sidebar extends Component {
             <Link className={styles.nav__link} to="/contact">Contact</Link>
           </li>
         </ul>
-      </section>);
+      </section>
+    );
   }
 }

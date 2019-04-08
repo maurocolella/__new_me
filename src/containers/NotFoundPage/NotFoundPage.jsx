@@ -12,7 +12,11 @@ class NotFoundPage extends Component {
           <p>
             We couldn&apos;t find the document you have requested.
             <br />
-            Please go back to the <Link to="/about">homepage</Link> and try again.
+            Please go back to the
+            {' '}
+            <Link to="/about">homepage</Link>
+            {' '}
+and try again.
           </p>
         </article>
       </main>

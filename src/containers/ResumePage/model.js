@@ -8,16 +8,15 @@ function deserialize(dataSet) {
     formattedEntry = Object.assign(formattedEntry, entry.attributes || {});
 
     const relatedTasks = (
-      formattedEntry.relationships &&
-      formattedEntry.relationships.tasks &&
-      formattedEntry.relationships.tasks.data
+      formattedEntry.relationships
+      && formattedEntry.relationships.tasks
+      && formattedEntry.relationships.tasks.data
     ) || [];
 
-    const tasks = relatedTasks.map(task =>
-      Object.assign(
-        task,
-        included.find(link => link.type === 'task' && link.id === task.id).attributes,
-      ));
+    const tasks = relatedTasks.map(task => Object.assign(
+      task,
+      included.find(link => link.type === 'task' && link.id === task.id).attributes,
+    ));
 
     formattedEntry.tasks = tasks;
     delete formattedEntry.attributes;

@@ -44,41 +44,43 @@ class ResumePage extends Component {
     const { isLoading, entries } = this.props;
 
     return (
-      (isLoading) ?
-        <Loader className={globalStyles.page} />
-        :
-        <main className={globalStyles.page}>
-          <header
-            className={`${globalStyles.page__header} ${styles['page__header--with-tools']}`}
-          >
-            <div>
-              <small className={globalStyles.lastModified}>
-                Last modified: {this.lastModified()}
-              </small>
-              <h2 className={globalStyles.page__title}>{title}</h2>
-            </div>
-            <aside className={styles.toolbox}>
-              <Link
-                to="/resume/print"
-                target={printTarget}
-                className={styles.toolbox__tool}
-              >
-                <i className="material-icons">print</i>
-              </Link>
-            </aside>
-          </header>
-          {entries.map(entry => (
-            <ResumeEntry
-              key={entry.id}
-              title={entry.title}
-              startDate={entry.startDate}
-              endDate={entry.endDate}
-              description={entry.description}
-              tasks={entry.tasks}
-            />
-          ))}
-        </main>
-    );
+      (isLoading)
+        ? <Loader className={globalStyles.page} />
+        : (
+          <main className={globalStyles.page}>
+            <header
+              className={`${globalStyles.page__header} ${styles['page__header--with-tools']}`}
+            >
+              <div>
+                <small className={globalStyles.lastModified}>
+                  Last modified:
+                  {' '}
+                  {this.lastModified()}
+                </small>
+                <h2 className={globalStyles.page__title}>{title}</h2>
+              </div>
+              <aside className={styles.toolbox}>
+                <Link
+                  to="/resume/print"
+                  target={printTarget}
+                  className={styles.toolbox__tool}
+                >
+                  <i className="material-icons">print</i>
+                </Link>
+              </aside>
+            </header>
+            {entries.map(entry => (
+              <ResumeEntry
+                key={entry.id}
+                title={entry.title}
+                startDate={entry.startDate}
+                endDate={entry.endDate}
+                description={entry.description}
+                tasks={entry.tasks}
+              />
+            ))}
+          </main>
+        ));
   }
 }
 
