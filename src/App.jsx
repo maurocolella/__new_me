@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { hot } from 'react-hot-loader/root';
 import sscache from 'session-storage-cache';
 import {
   Router,
@@ -33,7 +34,7 @@ history.listen((location) => {
   });
 });
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
 
@@ -63,3 +64,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default hot(App);

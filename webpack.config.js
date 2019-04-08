@@ -11,12 +11,14 @@ module.exports = {
   entry: {
     client : [
       '@babel/polyfill',
-      // 'webpack-hot-middleware/client',
+      'react-hot-loader/patch',
+      'webpack-hot-middleware/client',
       './src/index.client.jsx'
     ],
     /* server : [
-      'webpack-hot-middleware/client',
       'babel-polyfill',
+      'react-hot-loader/patch',
+      'webpack-hot-middleware/client',
       './src/index.server.jsx'
     ],*/
   },
