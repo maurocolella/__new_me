@@ -4,6 +4,7 @@
   "description": "Portfolio based on ReactJS hot code reloading boilerplate",
   "scripts": {
     "start": "nodemon index.dev.js --exec babel-node",
+    "test": "npm run eslint",
     "eslint": "node node_modules/eslint/bin/eslint src --ext .jsx --ext .js src/",
     "fix": "node node_modules/eslint/bin/eslint src --ext .jsx --ext .js src/ --fix",
     "build": "webpack"
