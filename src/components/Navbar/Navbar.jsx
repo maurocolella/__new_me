@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NavItem from '../NavItem';
+import ProgressIndicator from '../ProgressIndicator';
 
 import styles from './Navbar.scss';
 
@@ -79,6 +80,7 @@ export default class Navbar extends Component {
         className={`${styles.navbar}${sticky ? ` ${styles['navbar--sticky']}` : ''}`}
         ref={this.navbar}
       >
+        <ProgressIndicator />
         <ul className={`${styles.nav}${sticky ? ` ${styles['nav--sticky']}` : ''}`}>
           <li className={styles.nav__item}>
             <NavItem
