@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -42,6 +43,29 @@ class WorkPage extends Component {
   componentDidMount() {
     const { fetchData } = this.props;
     fetchData();
+  }
+
+  componentDidUpdate() {
+    const { entries } = this.props;
+    const {
+      sourceRect,
+      showSlider,
+      activeSlide,
+      isMobile,
+    } = this.state;
+
+    if (!isMobile) {
+      ReactDOM.render(
+        <WorkSlider
+          sourceRect={sourceRect}
+          show={showSlider}
+          activeSlide={activeSlide.toString()}
+          onClose={this.handleSliderClose}
+          entries={entries}
+        />,
+        document.getElementById('modal'),
+      );
+    }
   }
 
   handleSliderToggle(event, id) {
@@ -97,12 +121,6 @@ class WorkPage extends Component {
   render() {
     const title = 'Work';
     const { isLoading, entries } = this.props;
-    const {
-      sourceRect,
-      showSlider,
-      activeSlide,
-      isMobile,
-    } = this.state;
 
     return (
       (isLoading)
@@ -144,16 +162,6 @@ class WorkPage extends Component {
                   </li>
                 ))}
               </ul>
-              {!isMobile
-            && (
-            <WorkSlider
-              sourceRect={sourceRect}
-              show={showSlider}
-              activeSlide={activeSlide.toString()}
-              onClose={this.handleSliderClose}
-              entries={entries}
-            />
-            )}
             </article>
           </main>
         ));
