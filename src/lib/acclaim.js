@@ -3,7 +3,6 @@ export default function loadAcclaimBadge() {
   let elem;
   let nodeUri;
   let i;
-  let l;
   let previouVal;
   /**
    * @param {string} name
@@ -35,7 +34,7 @@ export default function loadAcclaimBadge() {
   const checkSet = initialize('share-badge-id');
   /** @type {number} */
   i = 0;
-  l = checkSet.length;
+  const l = checkSet.length;
   for (; l > i; i += 1) {
     elem = checkSet[i];
     lhsValue = elem.attributes.getNamedItem('data-share-badge-id').value;
