@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
+import { createPortal } from 'react-dom';
 
 import WorkSlide from '../../components/WorkSlide';
 import styles from './WorkSlider.scss';
@@ -46,6 +47,12 @@ class WorkSlider extends Component {
       swiping: false,
       fadeHelp: false,
     };
+
+    this.el = document.createElement('div');
+  }
+
+  componentDidMount() {
+    document.getElementById('modal').appendChild(this.el);
   }
 
   UNSAFE_componentWillReceiveProps(nextProps, nextState) { /* eslint-disable-line */
@@ -203,7 +210,7 @@ class WorkSlider extends Component {
     const shadowEntries = entries.slice(0);
     const computedStyle = { ...animRect };
 
-    return (
+    return createPortal(
       <section
         className={styles.slider}
         style={computedStyle}
@@ -262,7 +269,8 @@ class WorkSlider extends Component {
           </aside>
           )
         }
-      </section>
+      </section>,
+      this.el,
     );
   }
 }
