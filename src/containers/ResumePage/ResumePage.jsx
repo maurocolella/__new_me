@@ -8,6 +8,7 @@ import moment from 'moment';
 import { resumeFetchData } from './actions';
 
 import Loader from '../../components/Loader';
+import OracleAssociateBadge from '../../components/Badges/OracleAssociateBadge';
 import ResumeEntry from '../../components/ResumeEntry';
 import globalStyles from '../../assets/styles/page.scss';
 import styles from './ResumePage.scss';
@@ -70,6 +71,10 @@ class ResumePage extends Component {
                 </Link>
               </aside>
             </header>
+            <article className={globalStyles.article}>
+              <h5>Highlights</h5>
+              <OracleAssociateBadge />
+            </article>
             {entries.map(entry => (
               <ResumeEntry
                 key={entry.id}

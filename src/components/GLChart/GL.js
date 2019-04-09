@@ -105,7 +105,7 @@ export default class GL {
       color: 0x111111,
       wireframe: true,
       transparent: true,
-      opacity: 0.2,
+      opacity: 0.05,
       fog: false,
     });
 
@@ -115,11 +115,12 @@ export default class GL {
       polygonOffset: true,
       polygonOffsetFactor: 1,
       polygonOffsetUnits: 1,
+      // side: THREE.DoubleSide,
       fog: false,
     });
 
     const lineMaterial = new THREE.LineBasicMaterial({
-      color: 0xFF0099,
+      color: 0xFF0022,
       fog: false,
     });
 
@@ -132,11 +133,12 @@ export default class GL {
     if (dataSet.length > 4) {
       const skillsGeometry = new THREE.ConvexGeometry(skillsVertices);
       const envelopeGeometry = new THREE.ConvexGeometry(envelopeVertices);
+      const innerSphereScale = 0.7;
 
       skillsGeometry.dynamic = true;
       skillsGeometry.vertices = skillsGeometry
         .vertices
-        .map((vertex, index) => vertex.multiplyScalar(dataSet[index].value));
+        .map((vertex, index) => vertex.multiplyScalar(dataSet[index].value * innerSphereScale));
       const skillsCloud = new THREE.Mesh(skillsGeometry, flatMaterial);
       skillsCloud.scale.set(radiusOut, radiusOut, radiusOut);
 
@@ -155,7 +157,7 @@ export default class GL {
       });
 
       const spikes = new THREE.LineSegments(spikesGeometry, lineMaterial);
-      spikes.scale.set(40, 40, 40);
+      spikes.scale.set(38, 38, 38);
 
       this.scene.add(skillsCloud);
       this.scene.add(envelope);
@@ -217,7 +219,7 @@ export default class GL {
     canvas.height = textureSize;
 
     const context = canvas.getContext('2d');
-    context.font = '64px Open Sans, sans-serif';
+    context.font = '52px Open Sans, sans-serif';
     context.textBaseline = 'middle';
     context.textAlign = 'center';
     context.fillStyle = '#222222';
