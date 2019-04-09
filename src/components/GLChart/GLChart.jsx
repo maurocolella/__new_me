@@ -34,7 +34,7 @@ export default class GLChart extends Component {
     this.state = {
       hasGL: this.constructor.detectGL(),
       GLContext: {},
-      baseColor: 0x336699,
+      baseColor: 0x666666,
     };
   }
 

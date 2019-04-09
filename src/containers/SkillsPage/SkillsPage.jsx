@@ -7,6 +7,7 @@ import ReactGA from 'react-ga';
 import { skillsFetchData } from './actions';
 
 import Loader from '../../components/Loader';
+import OracleAssociateBadge from '../../components/Badges/OracleAssociateBadge';
 import GLChart from '../../components/GLChart';
 import styles from '../../assets/styles/page.scss';
 
@@ -174,13 +175,24 @@ class SkillsPage extends Component {
           <h2 className={styles.page__title}>Skills</h2>
         </header>
         <article className={styles.article}>
-          <GLChart className={styles.chart} data={topSkills} />
+          <h5>Highlights</h5>
+          <section className={styles.article__highlights}>
+            <OracleAssociateBadge />
+            <GLChart
+              className={styles.chart}
+              data={topSkills}
+              style={{
+                flex: 1,
+                height: 240,
+              }}
+            />
+          </section>
         </article>
         <article className={styles.article}>
-          <h4>All Skills</h4>
-          <p>
+          <h5>All Skills</h5>
+          <small>
             The following skills have been used professionally.
-          </p>
+          </small>
           <div
             className={
               `${styles.search}

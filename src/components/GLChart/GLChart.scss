@@ -4,19 +4,27 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 400px;
-    overflow: hidden;
+    margin: 60px 0;
     position: relative;
+
+    @media (min-width: 768px) {
+      margin: 0;
+    }
 }
 
 .gl{
     cursor: grab;
-    height: 100% !important;
     left: 50%;
+    height: 127% !important;
     position: absolute;
     top: 50%;
-    width: 100% !important;
     transform: translate(-50%,-50%);
+    width: 127% !important;
+
+    @media (min-width: 768px) {
+      height: 180% !important;
+      width: 180% !important;
+    }
 
 }
 
