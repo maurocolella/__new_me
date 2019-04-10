@@ -8,28 +8,26 @@ function deserialize(dataSet) {
   if (profile.attributes) {
     normalizedProfile = Object.assign(normalizedProfile, profile.attributes);
     const relatedLanguages = (
-      normalizedProfile.relationships &&
-      normalizedProfile.relationships.languages &&
-      normalizedProfile.relationships.languages.data
+      normalizedProfile.relationships
+      && normalizedProfile.relationships.languages
+      && normalizedProfile.relationships.languages.data
     ) || [];
 
-    const languages = relatedLanguages.map(language =>
-      Object.assign(
-        language,
-        included.find(link => link.type === 'language' && link.id === language.id).attributes,
-      ));
+    const languages = relatedLanguages.map(language => Object.assign(
+      language,
+      included.find(link => link.type === 'language' && link.id === language.id).attributes,
+    ));
 
     const relatedCertifications = (
-      normalizedProfile.relationships &&
-      normalizedProfile.relationships.certifications &&
-      normalizedProfile.relationships.certifications.data
+      normalizedProfile.relationships
+      && normalizedProfile.relationships.certifications
+      && normalizedProfile.relationships.certifications.data
     ) || [];
 
-    const certifications = relatedCertifications.map(certification =>
-      Object.assign(
-        certification,
-        included.find(link => link.type === 'certification' && link.id === certification.id).attributes,
-      ));
+    const certifications = relatedCertifications.map(certification => Object.assign(
+      certification,
+      included.find(link => link.type === 'certification' && link.id === certification.id).attributes,
+    ));
 
     normalizedProfile.languages = languages;
     normalizedProfile.certifications = certifications;

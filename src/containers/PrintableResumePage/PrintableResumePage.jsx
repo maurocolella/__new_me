@@ -20,10 +20,15 @@ class PrintableResumePage extends Component {
   };
 
   componentDidMount() {
+    const {
+      fetchSkillsData,
+      fetchResumeData,
+      fetchProfileData,
+    } = this.props;
     document.title = 'Mauro Colella | consultant profile';
-    this.props.fetchSkillsData();
-    this.props.fetchResumeData();
-    this.props.fetchProfileData();
+    fetchSkillsData();
+    fetchResumeData();
+    fetchProfileData();
   }
 
   componentDidUpdate() {
@@ -43,8 +48,11 @@ class PrintableResumePage extends Component {
         <header className={styles.page__header}>
           <h2 className={styles.page__title}>{profile.name}</h2>
           <h3 className={styles.page__title}>Curriculum Vitae</h3>
-          {profile.email}<br />
-          Nationality: {profile.nationality}
+          {profile.email}
+          <br />
+          Nationality:
+          {' '}
+          {profile.nationality}
         </header>
         <section className={styles.section}>
           <h5 className={styles.section__header}>Languages</h5>
@@ -81,7 +89,7 @@ class PrintableResumePage extends Component {
               <li key={skill.id} className={styles.skills__skill}>
                 <small>{skill.title}</small>
               </li>
-             ))}
+            ))}
           </ul>
         </section>
         <section className={styles.section}>

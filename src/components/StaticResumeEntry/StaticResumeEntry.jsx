@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import styles from './StaticResumeEntry.scss';
 
-class StaticResumeEntry extends Component {
-
+class StaticResumeEntry extends PureComponent {
   static propTypes = {
     title: PropTypes.string.isRequired,
     startDate: PropTypes.string.isRequired,
@@ -28,7 +27,10 @@ class StaticResumeEntry extends Component {
       <div className={styles.entry}>
         <h6 className={styles.entry__heading}>
           <span>
-            {moment(startDate).format(dateFormat)} - {moment(endDate).format(dateFormat)}
+            {moment(startDate).format(dateFormat)}
+            {' '}
+-
+            {moment(endDate).format(dateFormat)}
           </span>
           <span style={{ textAlign: 'right' }}>
             {title}
@@ -36,8 +38,8 @@ class StaticResumeEntry extends Component {
         </h6>
         <p>{description}</p>
         <ul>
-          {tasks &&
-            tasks.map(task => (
+          {tasks
+            && tasks.map(task => (
               <li key={task.id}>{task.description}</li>
             ))
           }
