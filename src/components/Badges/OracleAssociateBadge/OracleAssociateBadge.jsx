@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import loadAcclaimBadge from '../../../lib/acclaim';
 
-export default class OracleAssociateBadge extends PureComponent {
+class OracleAssociateBadge extends PureComponent {
   componentDidMount() {
     loadAcclaimBadge();
   }
@@ -16,3 +16,5 @@ export default class OracleAssociateBadge extends PureComponent {
     );
   }
 }
+
+export default OracleAssociateBadge;

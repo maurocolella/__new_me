@@ -1,35 +1,19 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import smoothscroll from 'smoothscroll-polyfill';
 import 'picturefill';
 import ReactGA from 'react-ga';
 
 import SunIcon from '../Icons/SunIcon';
-import styles from './Header.scss';
 // eslint-disable-next-line import/no-unresolved
 import coverImage from '../../assets/images/blue-peaks.jpg?sizes[]=480,sizes[]=640,sizes[]=800,sizes[]=1280,sizes[]=1600';
 
+import styles from './Header.scss';
 
 smoothscroll.polyfill();
 
-export default class Header extends Component {
-  static scrollTo(event) {
-    event.preventDefault();
-    const target = event.target.getAttribute('href');
-
-    ReactGA.event({
-      category: 'Click',
-      action: 'Header',
-      label: 'Hire Me',
-    });
-
-    document.querySelector(target).scrollIntoView({
-      behavior: 'smooth',
-    });
-  }
-
+class Header extends PureComponent {
   constructor(props) {
     super(props);
-    this.handleScroll = this.handleScroll.bind(this);
 
     this.state = {
       scrollOffset: 0,
@@ -45,7 +29,7 @@ export default class Header extends Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
-  handleScroll() {
+  handleScroll = () => {
     const { scrollOffset } = this.state;
     const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
 
@@ -55,6 +39,22 @@ export default class Header extends Component {
       });
     }
   }
+
+  handleScrollToTarget = (event) => {
+    event.preventDefault();
+    const target = event.target.getAttribute('href');
+
+    ReactGA.event({
+      category: 'Click',
+      action: 'Header',
+      label: 'Hire Me',
+    });
+
+    document.querySelector(target).scrollIntoView({
+      behavior: 'smooth',
+    });
+  }
+
 
   render() {
     const { scrollOffset, parallaxSpeed } = this.state;
@@ -74,7 +74,7 @@ export default class Header extends Component {
         />
         <section className={styles.cover}>
           <h1 className={styles.cover__title}>Mauro Colella</h1>
-          <a href="#footer" onClick={this.constructor.scrollTo} className={styles.hireme}>
+          <a href="#footer" onClick={this.handleScrollToTarget} className={styles.hireme}>
             Hire Me
             {' '}
             <SunIcon className={styles.hireme__icon} />
@@ -84,3 +84,5 @@ export default class Header extends Component {
     );
   }
 }
+
+export default Header;

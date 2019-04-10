@@ -5,8 +5,6 @@ import {
 } from 'react-router-dom';
 import Particles from 'react-particles-js';
 
-import styles from './Dashboard.scss';
-
 import Header from '../../components/Header';
 import SkillsPage from '../SkillsPage';
 import ResumePage from '../ResumePage';
@@ -15,7 +13,9 @@ import ContentPage from '../ContentPage';
 import NotFoundPage from '../NotFoundPage';
 import Footer from '../../components/Footer';
 
-export default class Dashboard extends PureComponent {
+import styles from './Dashboard.scss';
+
+class Dashboard extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -78,3 +78,5 @@ export default class Dashboard extends PureComponent {
     );
   }
 }
+
+export default Dashboard;

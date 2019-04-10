@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import GL from './GL';
+
 import styles from './GLChart.scss';
 
-export default class GLChart extends Component {
+class GLChart extends Component {
   static detectGL() {
     try {
       const canvas = document.createElement('canvas');
@@ -33,15 +35,9 @@ export default class GLChart extends Component {
 
     this.state = {
       hasGL: this.constructor.detectGL(),
-      GLContext: {},
+      GLContext: new GL(),
       baseColor: 0x666666,
     };
-  }
-
-  componentWillMount() {
-    this.setState({
-      GLContext: new GL(),
-    });
   }
 
   componentDidMount() {
@@ -52,12 +48,12 @@ export default class GLChart extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     const { data } = this.props;
     const { GLContext, baseColor } = this.state;
-    if (nextProps.data.length
-        && nextProps.data.toString() !== data.toString()) {
-      GLContext.init(this.canvas, nextProps.data, baseColor);
+    if (data.length
+        && data.toString() !== prevProps.data.toString()) {
+      GLContext.init(this.canvas, data, baseColor);
     }
   }
 
@@ -87,3 +83,5 @@ export default class GLChart extends Component {
     );
   }
 }
+
+export default GLChart;

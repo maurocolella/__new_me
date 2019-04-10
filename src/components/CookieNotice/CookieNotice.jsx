@@ -1,27 +1,26 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
+
 import styles from './CookieNotice.scss';
 
-class CookieNotice extends Component {
-  static handleDismissEnd() {
-    if (localStorage) {
-      localStorage.setItem('noticeDelivered', true);
-    }
-  }
-
+class CookieNotice extends PureComponent {
   constructor(props) {
     super(props);
-    this.handleDismiss = this.handleDismiss.bind(this);
-
     this.state = {
       dismissing: false,
     };
   }
 
-  handleDismiss() {
+  handleDismiss = () => {
     this.setState({
       dismissing: true,
     });
+  }
+
+  handleDismissEnd = () => {
+    if (localStorage) {
+      localStorage.setItem('noticeDelivered', true);
+    }
   }
 
   render() {
@@ -30,7 +29,7 @@ class CookieNotice extends Component {
     return (
       <div
         className={`${styles.notice}${dismissing ? ` ${styles['notice--fade']}` : ''}`}
-        onTransitionEnd={this.constructor.handleDismissEnd}
+        onTransitionEnd={this.handleDismissEnd}
       >
         <button
           onClick={this.handleDismiss}

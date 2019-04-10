@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-// import LazyLoad from 'react-lazyload';
 import moment from 'moment';
+
 import styles from './ResumeEntry.scss';
 
 class ResumeEntry extends PureComponent {

@@ -4,10 +4,11 @@ import ReactGA from 'react-ga';
 import { createPortal } from 'react-dom';
 
 import WorkSlide from '../../components/WorkSlide';
-import styles from './WorkSlider.scss';
+
 import scrollIcon from '../../assets/images/mousewheel.png';
 import swipeIcon from '../../assets/images/swipe.png';
 import keysIcon from '../../assets/images/arrow-keys.png';
+import styles from './WorkSlider.scss';
 
 class WorkSlider extends Component {
   static propTypes = {
@@ -23,13 +24,6 @@ class WorkSlider extends Component {
 
   constructor(props) {
     super(props);
-    this.apply = this.apply.bind(this);
-    this.handleTouchStart = this.handleTouchStart.bind(this);
-    this.handleTouchMove = this.handleTouchMove.bind(this);
-    this.handleTouchEnd = this.handleTouchEnd.bind(this);
-    this.handleWheel = this.handleWheel.bind(this);
-    this.handleKeyUp = this.handleKeyUp.bind(this);
-    this.handleSliderClose = this.handleSliderClose.bind(this);
 
     this.state = {
       animRect: {
@@ -114,7 +108,7 @@ class WorkSlider extends Component {
     }
   }
 
-  apply(delta) {
+  apply = (delta) => {
     const { entries } = this.props;
     const { currentSlide, deltay, locked } = this.state;
     if (locked) {
@@ -149,13 +143,13 @@ class WorkSlider extends Component {
     });
   }
 
-  handleWheel(event) {
+  handleWheel = (event) => {
     event.preventDefault();
     event.stopPropagation();
     this.apply(event.deltaY);
   }
 
-  handleTouchStart(event) {
+  handleTouchStart = (event) => {
     event.preventDefault();
     const isTouch = event.targetTouches && event.targetTouches.length;
     const clientY = isTouch ? event.targetTouches[0].clientY : event.clientY;
@@ -166,7 +160,7 @@ class WorkSlider extends Component {
     });
   }
 
-  handleTouchMove(event) {
+  handleTouchMove = (event) => {
     const isTouch = event.targetTouches && event.targetTouches.length;
     const clientY = isTouch ? event.targetTouches[0].clientY : event.clientY;
     const { touchyLast, swiping } = this.state;
@@ -178,11 +172,11 @@ class WorkSlider extends Component {
     }
   }
 
-  handleTouchEnd() {
+  handleTouchEnd = () => {
     this.apply();
   }
 
-  handleKeyUp(event) {
+  handleKeyUp = (event) => {
     const key = event.key || event.keyCode;
 
     const prev = ['ArrowUp', 'ArrowLeft', 37, 38];
@@ -196,7 +190,7 @@ class WorkSlider extends Component {
     }
   }
 
-  handleSliderClose() {
+  handleSliderClose = () => {
     const { entries, onClose } = this.props;
     const { currentSlide } = this.state;
     onClose(entries[currentSlide].id);

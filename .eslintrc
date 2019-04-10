@@ -11,7 +11,8 @@
       "components": [ "Link" ],
       "specialLink": [ "to", "hrefLeft", "hrefRight" ],
       "aspects": [ "noHref", "invalidHref", "preferButton" ],
-    }]
+    }],
+    "import/exports-last": [ "error" ],
   },
   "plugins": [
     "react",

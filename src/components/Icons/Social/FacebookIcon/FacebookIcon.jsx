@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export default class FacebookIcon extends PureComponent {
+class FacebookIcon extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
   };
@@ -32,3 +32,5 @@ export default class FacebookIcon extends PureComponent {
     );
   }
 }
+
+export default FacebookIcon;

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export default class SunIcon extends PureComponent {
+class SunIcon extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
   };
@@ -83,3 +83,5 @@ export default class SunIcon extends PureComponent {
     );
   }
 }
+
+export default SunIcon;

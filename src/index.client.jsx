@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render as domRender } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureStore from './store/config';
@@ -9,7 +9,7 @@ import App from './App.jsx';
 
 const store = configureStore();
 
-ReactDOM.render(
+domRender(
   (
     <Provider store={store}>
       <BrowserRouter>

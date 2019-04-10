@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import { render as domRender } from 'react-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -8,11 +8,12 @@ import MobileDetect from 'mobile-detect';
 import hash from 'object-hash';
 
 import { worksFetchData } from './actions';
-import placeholder from '../../assets/images/placeholder.svg';
 
 import Loader from '../../components/Loader';
 import WorkItem from '../../components/WorkItem';
 import WorkSlider from '../WorkSlider';
+
+import placeholder from '../../assets/images/placeholder.svg';
 import globalStyles from '../../assets/styles/page.scss';
 import styles from './WorkPage.scss';
 
@@ -25,9 +26,6 @@ class WorkPage extends Component {
 
   constructor(props) {
     super(props);
-    this.lastModified = this.lastModified.bind(this);
-    this.handleSliderToggle = this.handleSliderToggle.bind(this);
-    this.handleSliderClose = this.handleSliderClose.bind(this);
 
     const detector = new MobileDetect(window.navigator.userAgent);
     const isMobile = (detector.mobile() || detector.tablet());
@@ -55,7 +53,7 @@ class WorkPage extends Component {
     } = this.state;
 
     if (!isMobile) {
-      ReactDOM.render(
+      domRender(
         <WorkSlider
           sourceRect={sourceRect}
           show={showSlider}
@@ -68,7 +66,7 @@ class WorkPage extends Component {
     }
   }
 
-  handleSliderToggle(event, id) {
+  handleSliderToggle = (event, id) => {
     const { entries } = this.props;
     const { isMobile } = this.state;
     const filteredEntries = entries.filter(item => item.id.toString() === id);
@@ -100,7 +98,7 @@ class WorkPage extends Component {
     });
   }
 
-  handleSliderClose(lastId) {
+  handleSliderClose = (lastId) => {
     const { isMobile } = this.state;
     if (isMobile) {
       return;
@@ -112,7 +110,7 @@ class WorkPage extends Component {
     });
   }
 
-  lastModified() {
+  lastModified = () => {
     const { entries } = this.props;
     const updateDates = entries.map(entry => moment(entry.updatedAt));
     return moment.max(updateDates).format('LL');

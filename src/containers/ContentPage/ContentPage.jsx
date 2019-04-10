@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
+
 import { articlesFetchData } from './actions';
 
 import Loader from '../../components/Loader';
+
 import styles from '../../assets/styles/page.scss';
 
 class ContentPage extends Component {

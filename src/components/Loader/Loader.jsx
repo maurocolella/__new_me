@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+
 import styles from './Loader.scss';
 
-export default class Loader extends PureComponent {
+class Loader extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
   };
@@ -27,3 +28,5 @@ export default class Loader extends PureComponent {
     );
   }
 }
+
+export default Loader;
