@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import { render as domRender } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -13,7 +13,9 @@ domRender(
   (
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <StrictMode>
+          <App />
+        </StrictMode>
       </BrowserRouter>
     </Provider>
   ), document.getElementById('root'),
