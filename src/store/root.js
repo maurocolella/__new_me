@@ -4,6 +4,7 @@ import articles from '../containers/ContentPage/reducers';
 import skills from '../containers/SkillsPage/reducers';
 import resume from '../containers/ResumePage/reducers';
 import works from '../containers/WorkPage/reducers';
+import profile from '../containers/PrintableResumePage/reducers';
 
 /* TODO: implement
 const initialState = {
@@ -38,5 +39,6 @@ export default combineReducers({
   skills,
   resume,
   works,
+  profile,
   // entities,
 });

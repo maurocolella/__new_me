@@ -62,13 +62,13 @@ class ResumePage extends Component {
                 <h2 className={globalStyles.page__title}>{title}</h2>
               </div>
               <aside className={styles.toolbox}>
-                <Link
-                  to="/resume/print"
+                <a
+                  href="https://api.mauro-colella.com/assets/Mauro%20Colella%20_%20consultant%20profile.pdf"
                   target={printTarget}
                   className={styles.toolbox__tool}
                 >
                   <i className="material-icons">print</i>
-                </Link>
+                </a>
               </aside>
             </header>
             <article className={globalStyles.article}>
