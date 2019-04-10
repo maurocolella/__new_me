@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { debounce } from 'lodash';
 
 const getDimensions = () => {
   const { body } = document;
@@ -39,16 +38,16 @@ class ScrollProvider extends PureComponent {
     children: null,
   };
 
-  eventListener = debounce(() => {
-    this.setState(getDimensions());
-  }, 30);
-
   componentDidMount() {
     window.addEventListener('scroll', this.eventListener);
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.eventListener);
+  }
+
+  eventListener = () => {
+    this.setState(getDimensions());
   }
 
   render() {
