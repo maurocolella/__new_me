@@ -221,22 +221,22 @@ class SkillsPage extends Component {
           { isLoading
             ? <Loader />
             : (
-              <Fade>
-                <ul className={styles.flatList}>
-                  {
-                  skills.map((skill) => {
-                    const label = skill.title.toLowerCase();
-                    const isActive = (activeSkill
-                          && (skill.id === activeSkill.id
-                          || this.constructor.hasActiveRelation(activeSkill, skill)))
-                          || allRelated.indexOf(label) >= 0;
-                    const isDimmed = (filter.length && label.indexOf(filter.toLowerCase()) < 0)
-                          || (activeSkill && !isActive);
-                    const classes = `${styles.tag}
-                                    ${isDimmed ? ` ${styles['tag--dim']}` : ''}
-                                    ${isActive ? ` ${styles['tag--related']}` : ''}`;
+              <ul className={styles.flatList}>
+                {
+                skills.map((skill) => {
+                  const label = skill.title.toLowerCase();
+                  const isActive = (activeSkill
+                        && (skill.id === activeSkill.id
+                        || this.constructor.hasActiveRelation(activeSkill, skill)))
+                        || allRelated.indexOf(label) >= 0;
+                  const isDimmed = (filter.length && label.indexOf(filter.toLowerCase()) < 0)
+                        || (activeSkill && !isActive);
+                  const classes = `${styles.tag}
+                                  ${isDimmed ? ` ${styles['tag--dim']}` : ''}
+                                  ${isActive ? ` ${styles['tag--related']}` : ''}`;
 
-                    return (
+                  return (
+                    <Fade>
                       <li
                         key={skill.id}
                         style={skillStyle}
@@ -249,31 +249,33 @@ class SkillsPage extends Component {
                           {skill.title}
                         </button>
                       </li>
-                    );
-                  })
-                }
-                  {
-                  activeSkill
-                    && (
-                    <li
-                      style={skillStyle}
-                    >
-                      <button
-                        className={`${styles.tag} ${styles['tag--reset']}`}
-                        onClick={this.handleRelated(null)}
-                        type="button"
+                    </Fade>
+                  );
+                })
+              }
+                {
+                activeSkill
+                  && (
+                    <Fade>
+                      <li
+                        style={skillStyle}
                       >
-                        <i className={`material-icons ${styles.tag__icon}`}>
-                          close
-                        </i>
-                        {' '}
-                        clear
-                      </button>
-                    </li>
-                    )
-                }
-                </ul>
-              </Fade>
+                        <button
+                          className={`${styles.tag} ${styles['tag--reset']}`}
+                          onClick={this.handleRelated(null)}
+                          type="button"
+                        >
+                          <i className={`material-icons ${styles.tag__icon}`}>
+                            close
+                          </i>
+                          {' '}
+                          clear
+                        </button>
+                      </li>
+                    </Fade>
+                  )
+              }
+              </ul>
             )}
         </article>
       </main>
