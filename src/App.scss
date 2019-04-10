@@ -5,6 +5,11 @@
 }
 
 html,
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
+html,
 body,
 :global(#root) {
   height: 100%;
