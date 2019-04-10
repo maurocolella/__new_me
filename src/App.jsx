@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import { createBrowserHistory as createHistory } from 'history';
 import ReactGA from 'react-ga';
+import ScrollProvider from './lib/ScrollContext';
 
 import 'normalize.css';
 import './assets/styles/typeplate.scss';
@@ -52,11 +53,13 @@ class App extends Component {
           <Switch>
             <Route exact path="/resume/print" component={PrintableResumePage} />
             <Route>
-              <span style={{ width: '100%' }}>
-                <Navbar />
-                <Dashboard />
-                {!noticeDelivered && <CookieNotice />}
-              </span>
+              <ScrollProvider>
+                <span style={{ width: '100%' }}>
+                  <Navbar />
+                  <Dashboard />
+                  {!noticeDelivered && <CookieNotice />}
+                </span>
+              </ScrollProvider>
             </Route>
           </Switch>
         </div>

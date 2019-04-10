@@ -1,51 +1,38 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import { withScrolling } from '../../lib/ScrollContext';
 
 import styles from './ProgressIndicator.scss';
 
 class ProgressIndicator extends PureComponent {
+  static propTypes = {
+    scrollTop: PropTypes.number.isRequired,
+    documentHeight: PropTypes.number.isRequired,
+    viewportHeight: PropTypes.number.isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
-      scrollTop: 0,
       progress: 0,
     };
 
     this.timer = setInterval(() => { this.updateProgress(); }, 30);
   }
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
-  }
-
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
     clearInterval(this.timer);
   }
 
-  handleScroll = () => {
-    const doc = document.documentElement;
-
-    let scrollTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0) - 312;
-    scrollTop = Math.max(0, scrollTop);
-
-    this.setState({
-      scrollTop,
-    });
-  }
-
   updateProgress = () => {
-    const { body } = document;
-    const { scrollTop } = this.state;
-    const doc = document.documentElement;
+    const {
+      viewportHeight,
+      documentHeight,
+    } = this.props;
+    let { scrollTop } = this.props;
+    scrollTop = Math.max(0, scrollTop - 312);
 
-    const vh = Math.max(doc.clientHeight, window.innerHeight || 0);
-    const height = Math.max(
-      body.scrollHeight,
-      body.offsetHeight,
-      doc.clientHeight,
-      doc.scrollHeight,
-      doc.offsetHeight,
-    ) - 312 - vh;
+    const height = documentHeight - 312 - viewportHeight;
     const percent = Math.round(scrollTop * 100 / height);
 
     requestAnimationFrame(() => {
@@ -71,4 +58,4 @@ class ProgressIndicator extends PureComponent {
   }
 }
 
-export default ProgressIndicator;
+export default withScrolling(ProgressIndicator);
