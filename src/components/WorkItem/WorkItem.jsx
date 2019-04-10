@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import styles from './WorkItem.scss';
 
 class WorkItem extends Component {
@@ -11,13 +12,7 @@ class WorkItem extends Component {
     onClick: PropTypes.func.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.handleClickCapture = this.handleClickCapture.bind(this);
-  }
-
-  handleClickCapture(event) {
+  handleClickCapture = (event) => {
     const { onClick, id } = this.props;
     event.preventDefault();
     event.stopPropagation();

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
-export default class NavItem extends Component {
+class NavItem extends Component {
   static propTypes = {
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
@@ -26,21 +26,19 @@ export default class NavItem extends Component {
 
   constructor(props) {
     super(props);
-    this.handleMouseEnter = this.handleMouseEnter.bind(this);
-    this.handleMouseLeave = this.handleMouseLeave.bind(this);
 
     this.state = {
       hover: false,
     };
   }
 
-  handleMouseEnter() {
+  handleMouseEnter = () => {
     this.setState({
       hover: true,
     });
   }
 
-  handleMouseLeave() {
+  handleMouseLeave = () => {
     this.setState({
       hover: false,
     });
@@ -72,3 +70,5 @@ export default class NavItem extends Component {
     );
   }
 }
+
+export default NavItem;

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export default class LinkedinIcon extends PureComponent {
+class LinkedinIcon extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     style: PropTypes.shape({}),
@@ -33,3 +33,5 @@ export default class LinkedinIcon extends PureComponent {
     );
   }
 }
+
+export default LinkedinIcon;

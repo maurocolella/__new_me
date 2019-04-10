@@ -6,6 +6,7 @@ class ProgressIndicator extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+      scrollTop: 0,
       progress: 0,
     };
 
@@ -13,21 +14,31 @@ class ProgressIndicator extends PureComponent {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.handleProgress);
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleProgress);
+    window.removeEventListener('scroll', this.handleScroll);
     clearInterval(this.timer);
   }
 
-  handleProgress = () => {
+  handleScroll = () => {
+    const doc = document.documentElement;
+
+    let scrollTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0) - 312;
+    scrollTop = Math.max(0, scrollTop);
+
+    this.setState({
+      scrollTop,
+    });
+  }
+
+  updateProgress = () => {
     const { body } = document;
+    const { scrollTop } = this.state;
     const doc = document.documentElement;
 
     const vh = Math.max(doc.clientHeight, window.innerHeight || 0);
-    let top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0) - 312;
-    top = Math.max(0, top);
     const height = Math.max(
       body.scrollHeight,
       body.offsetHeight,
@@ -35,15 +46,11 @@ class ProgressIndicator extends PureComponent {
       doc.scrollHeight,
       doc.offsetHeight,
     ) - 312 - vh;
-    const percent = Math.round(top * 100 / height);
+    const percent = Math.round(scrollTop * 100 / height);
 
-    this.innerProgress = percent;
-  }
-
-  updateProgress = () => {
     requestAnimationFrame(() => {
       this.setState({
-        progress: this.innerProgress,
+        progress: percent,
       });
     });
   }

@@ -4,15 +4,16 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import hash from 'object-hash';
 
-import globalStyles from '../../assets/styles/page.scss';
-import styles from './Footer.scss';
 import SunIcon from '../Icons/SunIcon';
 import TOCButton from '../TOCButton';
 import TwitterIcon from '../Icons/Social/TwitterIcon';
 import FacebookIcon from '../Icons/Social/FacebookIcon';
 import LinkedinIcon from '../Icons/Social/LinkedinIcon';
 
-export default class Footer extends PureComponent {
+import globalStyles from '../../assets/styles/page.scss';
+import styles from './Footer.scss';
+
+class Footer extends PureComponent {
   static popup(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -138,3 +139,5 @@ export default class Footer extends PureComponent {
     );
   }
 }
+
+export default Footer;

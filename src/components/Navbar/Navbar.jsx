@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+
 import NavItem from '../NavItem';
 import ProgressIndicator from '../ProgressIndicator';
 
 import styles from './Navbar.scss';
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   static getComputedStyle(el, prop) {
     const { getComputedStyle } = window;
 
@@ -31,7 +32,6 @@ export default class Navbar extends Component {
 
   constructor(props) {
     super(props);
-    this.handleScroll = this.handleScroll.bind(this);
     this.navbar = React.createRef();
 
     this.state = {
@@ -42,7 +42,7 @@ export default class Navbar extends Component {
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
-    this.setState({ /* eslint-disable-line */
+    this.setState({
       top: parseInt(this.constructor.getComputedStyle(this.navbar.current, 'top'), 10),
     });
   }
@@ -51,7 +51,7 @@ export default class Navbar extends Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
-  handleScroll() {
+  handleScroll = () => {
     const { sticky, top } = this.state;
 
     const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
@@ -139,3 +139,5 @@ export default class Navbar extends Component {
     );
   }
 }
+
+export default Navbar;

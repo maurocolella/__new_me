@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export default class TwitterIcon extends PureComponent {
+class TwitterIcon extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
   };
@@ -31,3 +31,5 @@ export default class TwitterIcon extends PureComponent {
     );
   }
 }
+
+export default TwitterIcon;

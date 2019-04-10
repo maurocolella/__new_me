@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const sharpLoader = require('responsive-loader/sharp');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const env = process.env['NODE_ENV'];
 
@@ -45,18 +45,11 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    /* new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
-    }), new UglifyJSPlugin({
-      parallel: true,
-      sourceMap: true,
-      uglifyOptions: {
-        ie8: false,
-        compress: true
-      }
-    }), */
+    new BundleAnalyzerPlugin({
+      analyzerMode: env === 'development' ? 'disabled' : 'static',
+      openAnalyzer: false,
+      reportFilename: '../report.html',
+    }),
   ],
   module: {
     rules: [{

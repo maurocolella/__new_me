@@ -3,7 +3,7 @@ import './OrbitControls';
 import './QuickHull';
 import './ConvexGeometry';
 
-export default class GL {
+class GL {
   constructor() {
     this.renderer = null;
     this.controls = null;
@@ -18,17 +18,13 @@ export default class GL {
     this.resizeListener = () => {
       this.resize();
     };
-
-    this.init = this.init.bind(this);
-    this.resize = this.resize.bind(this);
-    this.render = this.render.bind(this);
   }
 
   setAutoRotate(autoRotate) {
     this.controls.autoRotate = autoRotate;
   }
 
-  init(canvas, dataSet, baseColor) {
+  init = (canvas, dataSet, baseColor) => {
     const color = new THREE.Color(baseColor);
     const luminance = new THREE.Color(baseColor);
 
@@ -203,7 +199,7 @@ export default class GL {
     return points;
   }
 
-  resize() {
+  resize = () => {
     if (this.camera && this.renderer) {
       this.camera.aspect = this.el.offsetWidth / this.el.offsetHeight;
       this.camera.updateProjectionMatrix();
@@ -236,7 +232,7 @@ export default class GL {
     return sprite;
   }
 
-  render() {
+  render = () => {
     if (!this.renderer) {
       return;
     }
@@ -264,3 +260,5 @@ export default class GL {
     }
   }
 }
+
+export default GL;

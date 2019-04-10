@@ -10,6 +10,7 @@ import { resumeFetchData } from './actions';
 import Loader from '../../components/Loader';
 import OracleAssociateBadge from '../../components/Badges/OracleAssociateBadge';
 import ResumeEntry from '../../components/ResumeEntry';
+
 import globalStyles from '../../assets/styles/page.scss';
 import styles from './ResumePage.scss';
 
@@ -22,7 +23,6 @@ class ResumePage extends Component {
 
   constructor(props) {
     super(props);
-    this.lastModified = this.lastModified.bind(this);
 
     this.state = {
       printTarget: hash('mcl_resume_print'),
@@ -34,7 +34,7 @@ class ResumePage extends Component {
     fetchData();
   }
 
-  lastModified() {
+  lastModified = () => {
     const { entries } = this.props;
     const updateDates = entries.map(entry => moment(entry.updatedAt));
     return moment.max(updateDates).format('LL');

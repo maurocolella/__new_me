@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export default class RulerIcon extends PureComponent {
+class RulerIcon extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
   };
@@ -29,3 +29,5 @@ export default class RulerIcon extends PureComponent {
     );
   }
 }
+
+export default RulerIcon;

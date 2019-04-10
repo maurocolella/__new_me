@@ -9,6 +9,7 @@ import { skillsFetchData } from './actions';
 import Loader from '../../components/Loader';
 import OracleAssociateBadge from '../../components/Badges/OracleAssociateBadge';
 import GLChart from '../../components/GLChart';
+
 import styles from '../../assets/styles/page.scss';
 
 class SkillsPage extends Component {
@@ -45,13 +46,6 @@ class SkillsPage extends Component {
 
   constructor(props) {
     super(props);
-    this.lastModified = this.lastModified.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
-    this.handleFocusInput = this.handleFocusInput.bind(this);
-    this.handleBlurInput = this.handleBlurInput.bind(this);
-    this.focusSearchInput = this.focusSearchInput.bind(this);
-    this.handleGlobalCancelRelated = this.handleGlobalCancelRelated.bind(this);
-
     this.searchInput = React.createRef();
 
     this.state = {
@@ -91,20 +85,20 @@ class SkillsPage extends Component {
     }
   }
 
-  lastModified() {
+  lastModified = () => {
     const { skills } = this.props;
     const updateDates = skills.map(skill => moment(skill.updatedAt));
     return moment.max(updateDates).format('LL');
   }
 
-  handleGlobalCancelRelated() {
+  handleGlobalCancelRelated = () => {
     this.setState({
       filter: '',
       activeSkill: null,
     });
   }
 
-  handleSearch(event) {
+  handleSearch = (event) => {
     const filter = event.target.value;
 
     if (filter.length >= 3) {
@@ -121,7 +115,7 @@ class SkillsPage extends Component {
     });
   }
 
-  handleFocusInput(event) {
+  handleFocusInput = (event) => {
     this.setState({
       searchActive: true,
     });
@@ -129,13 +123,13 @@ class SkillsPage extends Component {
     this.handleSearch(event);
   }
 
-  handleBlurInput() {
+  handleBlurInput = () => {
     this.setState({
       searchActive: false,
     });
   }
 
-  focusSearchInput() {
+  focusSearchInput = () => {
     this.searchInput.current.focus();
   }
 
