@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export default class Loadable extends Component {
-  componentWillMount = () => {
+  componentDidMount = () => {
     import('./Dashboard.jsx').then((component) => {
       this.Component = component;
       this.forceUpdate();

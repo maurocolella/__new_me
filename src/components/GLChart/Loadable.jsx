@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Loader from '../Loader';
 
 export default class Loadable extends Component {
-  componentWillMount() {
+  componentDidMount() {
     import('./GLChart.jsx').then((component) => {
       this.Component = component;
       this.forceUpdate();

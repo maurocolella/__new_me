@@ -3,7 +3,7 @@ import Loader from '../../components/Loader';
 import styles from '../../assets/styles/page.scss';
 
 export default class Loadable extends Component {
-  componentWillMount = () => {
+  componentDidMount = () => {
     import('./SkillsPage.jsx').then((component) => {
       this.Component = component;
       this.forceUpdate();

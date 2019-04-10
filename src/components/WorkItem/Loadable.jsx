@@ -22,7 +22,7 @@ export default class Loadable extends Component {
     onClick: PropTypes.func.isRequired,
   };
 
-  componentWillMount() {
+  componentDidMount() {
     import('./WorkItem.jsx').then((component) => {
       const { cover } = this.props;
       this.Component = component;
