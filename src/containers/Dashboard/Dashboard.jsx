@@ -58,12 +58,12 @@ class Dashboard extends PureComponent {
 
     return (
       <div className={styles.wrapper}>
-        <Header />
         <Particles
           key={key}
           className={styles.wrapper__particles}
           params={particleOptions}
         />
+        <Header />
         <section className={styles.wrapper__content}>
           <Switch>
             <Route exact path="/skills" component={SkillsPage} />

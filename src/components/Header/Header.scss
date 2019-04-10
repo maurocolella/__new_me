@@ -1,13 +1,14 @@
 @import "../../assets/styles/mixins.scss";
 
 .cover{
-  background-color: rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
   margin: 0 auto;
   padding: 24px 24px 48px 24px;
+  position: relative;
+  z-index: 2;
 
   &__title{
     color: #fff;
@@ -16,17 +17,20 @@
 
   @media (min-width: 768px) {
     @include container-lg;
+    background-color: rgba(0, 23, 55, 0.5);
     padding-top: 14px;
   }
 }
 
 .header{
-  background: #005577;
+  background: #004466;
+  background-image: url('../../assets/images/orange-blue.7.png');
+  background-position: bottom;
+  background-size: cover;
   font-family: 'Open Sans', sans-serif;
   height: 312px;
   overflow: hidden;
   position: relative;
-  z-index: 2;
 }
 
 .coverImage{
