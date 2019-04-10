@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import smoothscroll from 'smoothscroll-polyfill';
 import ReactGA from 'react-ga';
+import { withScrolling } from '../../lib/ScrollContext';
 
 import ScrollUpIcon from '../Icons/ScrollUpIcon';
 
@@ -9,25 +11,23 @@ import styles from './TOCButton.scss';
 smoothscroll.polyfill();
 
 class TOCButton extends Component {
+  static propTypes = {
+    scrollTop: PropTypes.number.isRequired,
+  };
+
   constructor(props) {
     super(props);
 
     this.state = {
       display: false,
     };
+
+    this.timer = setInterval(() => { this.updateDisplay(); }, 30);
   }
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
-  }
-
-  handleScroll = () => {
+  updateDisplay = () => {
     const { display } = this.state;
-    const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    const { scrollTop } = this.props;
     const scrolled = scrollTop !== 0;
 
     if (scrolled !== display) {
@@ -72,4 +72,4 @@ class TOCButton extends Component {
   }
 }
 
-export default TOCButton;
+export default withScrolling(TOCButton);
