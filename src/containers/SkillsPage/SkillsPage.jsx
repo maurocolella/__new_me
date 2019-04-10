@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import Fade from 'react-reveal/Fade';
 import ReactGA from 'react-ga';
 
 import { skillsFetchData } from './actions';
@@ -220,57 +221,59 @@ class SkillsPage extends Component {
           { isLoading
             ? <Loader />
             : (
-              <ul className={styles.flatList}>
-                {
-                skills.map((skill) => {
-                  const label = skill.title.toLowerCase();
-                  const isActive = (activeSkill
-                        && (skill.id === activeSkill.id
-                         || this.constructor.hasActiveRelation(activeSkill, skill)))
-                        || allRelated.indexOf(label) >= 0;
-                  const isDimmed = (filter.length && label.indexOf(filter.toLowerCase()) < 0)
-                        || (activeSkill && !isActive);
-                  const classes = `${styles.tag}
-                                   ${isDimmed ? ` ${styles['tag--dim']}` : ''}
-                                   ${isActive ? ` ${styles['tag--related']}` : ''}`;
+              <Fade>
+                <ul className={styles.flatList}>
+                  {
+                  skills.map((skill) => {
+                    const label = skill.title.toLowerCase();
+                    const isActive = (activeSkill
+                          && (skill.id === activeSkill.id
+                          || this.constructor.hasActiveRelation(activeSkill, skill)))
+                          || allRelated.indexOf(label) >= 0;
+                    const isDimmed = (filter.length && label.indexOf(filter.toLowerCase()) < 0)
+                          || (activeSkill && !isActive);
+                    const classes = `${styles.tag}
+                                    ${isDimmed ? ` ${styles['tag--dim']}` : ''}
+                                    ${isActive ? ` ${styles['tag--related']}` : ''}`;
 
-                  return (
+                    return (
+                      <li
+                        key={skill.id}
+                        style={skillStyle}
+                      >
+                        <button
+                          className={classes}
+                          onClick={this.handleRelated(skill)}
+                          type="button"
+                        >
+                          {skill.title}
+                        </button>
+                      </li>
+                    );
+                  })
+                }
+                  {
+                  activeSkill
+                    && (
                     <li
-                      key={skill.id}
                       style={skillStyle}
                     >
                       <button
-                        className={classes}
-                        onClick={this.handleRelated(skill)}
+                        className={`${styles.tag} ${styles['tag--reset']}`}
+                        onClick={this.handleRelated(null)}
                         type="button"
                       >
-                        {skill.title}
+                        <i className={`material-icons ${styles.tag__icon}`}>
+                          close
+                        </i>
+                        {' '}
+                        clear
                       </button>
                     </li>
-                  );
-                })
-              }
-                {
-                activeSkill
-                  && (
-                  <li
-                    style={skillStyle}
-                  >
-                    <button
-                      className={`${styles.tag} ${styles['tag--reset']}`}
-                      onClick={this.handleRelated(null)}
-                      type="button"
-                    >
-                      <i className={`material-icons ${styles.tag__icon}`}>
-                        close
-                      </i>
-                      {' '}
-                      clear
-                    </button>
-                  </li>
-                  )
-              }
-              </ul>
+                    )
+                }
+                </ul>
+              </Fade>
             )}
         </article>
       </main>

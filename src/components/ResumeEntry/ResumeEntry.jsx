@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import Fade from 'react-reveal/Fade';
 import moment from 'moment';
 
 import styles from './ResumeEntry.scss';
@@ -25,28 +26,30 @@ class ResumeEntry extends PureComponent {
     const dateFormat = 'MMMM YYYY';
 
     return (
-      <article className={styles.entry}>
-        <h5 className={styles.entry__heading}>
-          <span>
-            {moment(startDate).format(dateFormat)}
-            {' '}
-            -
-            {' '}
-            {moment(endDate).format(dateFormat)}
-          </span>
-          <span style={{ textAlign: 'right' }}>
-            {title}
-          </span>
-        </h5>
-        <p>{description}</p>
-        <ul>
-          {tasks
-            && tasks.map(task => (
-              <li key={task.id}>{task.description}</li>
-            ))
-          }
-        </ul>
-      </article>
+      <Fade>
+        <article className={styles.entry}>
+          <h5 className={styles.entry__heading}>
+            <span>
+              {moment(startDate).format(dateFormat)}
+              {' '}
+              -
+              {' '}
+              {moment(endDate).format(dateFormat)}
+            </span>
+            <span style={{ textAlign: 'right' }}>
+              {title}
+            </span>
+          </h5>
+          <p>{description}</p>
+          <ul>
+            {tasks
+              && tasks.map(task => (
+                <li key={task.id}>{task.description}</li>
+              ))
+            }
+          </ul>
+        </article>
+      </Fade>
     );
   }
 }

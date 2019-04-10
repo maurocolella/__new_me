@@ -6,6 +6,7 @@ import moment from 'moment';
 import ReactGA from 'react-ga';
 import MobileDetect from 'mobile-detect';
 import hash from 'object-hash';
+import Fade from 'react-reveal/Fade';
 
 import { worksFetchData } from './actions';
 
@@ -143,21 +144,23 @@ class WorkPage extends Component {
               </p>
               <ul className={styles.grid}>
                 {entries.map(entry => (
-                  <li
-                    className={styles.grid__entry}
-                    key={entry.id.toString()}
-                  >
-                    <WorkItem
-                      id={entry.id.toString()}
-                      title={entry.title}
-                      description={entry.description}
-                      link={entry.links && entry.links.length ? entry.links[0].url : '#'}
-                      cover={
-                        entry.images && entry.images.length ? entry.images[0].url : placeholder
-                      }
-                      onClick={this.handleSliderToggle}
-                    />
-                  </li>
+                  <Fade>
+                    <li
+                      className={styles.grid__entry}
+                      key={entry.id.toString()}
+                    >
+                      <WorkItem
+                        id={entry.id.toString()}
+                        title={entry.title}
+                        description={entry.description}
+                        link={entry.links && entry.links.length ? entry.links[0].url : '#'}
+                        cover={
+                          entry.images && entry.images.length ? entry.images[0].url : placeholder
+                        }
+                        onClick={this.handleSliderToggle}
+                      />
+                    </li>
+                  </Fade>
                 ))}
               </ul>
             </article>
