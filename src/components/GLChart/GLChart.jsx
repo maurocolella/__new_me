@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import Loader from '../Loader';
 import GL from './GL';
 
 import styles from './GLChart.scss';
@@ -41,19 +42,13 @@ class GLChart extends Component {
   }
 
   componentDidMount() {
-    const { data } = this.props;
-    const { GLContext, baseColor } = this.state;
-    if (data.length) {
-      GLContext.init(this.canvas, data, baseColor);
-    }
+    this.updateDataset();
   }
 
   componentDidUpdate(prevProps) {
     const { data } = this.props;
-    const { GLContext, baseColor } = this.state;
-    if (data.length
-        && data.toString() !== prevProps.data.toString()) {
-      GLContext.init(this.canvas, data, baseColor);
+    if (data.toString() !== prevProps.data.toString()) {
+      this.updateDataset();
     }
   }
 
@@ -62,9 +57,29 @@ class GLChart extends Component {
     GLContext.teardown();
   }
 
+  updateDataset = () => {
+    const { data } = this.props;
+
+    if (data.length) {
+      const { GLContext, baseColor } = this.state;
+
+      if (window.requestIdleCallback) {
+        window.requestIdleCallback(() => {
+          GLContext.init(this.canvas, data, baseColor);
+        });
+      } else {
+        GLContext.init(this.canvas, data, baseColor);
+      }
+    }
+  }
+
   render() {
-    const { className, style } = this.props;
+    const { className, style, data } = this.props;
     const { hasGL } = this.state;
+
+    if (!data.length) {
+      return (<Loader />);
+    }
 
     return (
       hasGL
