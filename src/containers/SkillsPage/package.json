@@ -2,5 +2,5 @@
   "name": "SkillsPage",
   "version": "0.0.0",
   "private": true,
-  "main": "./Loadable.jsx"
+  "main": "./SkillsPage.jsx"
 }

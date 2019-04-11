@@ -67,7 +67,6 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.3",
     "babel-polyfill": "^6.26.0",
-    "bluebird": "^3.5.4",
     "body-parser": "^1.18.3",
     "camelize": "^1.0.0",
     "cookie-parser": "^1.4.4",

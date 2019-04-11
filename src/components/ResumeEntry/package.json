@@ -2,5 +2,5 @@
   "name": "ResumeEntry",
   "version": "0.0.0",
   "private": true,
-  "main": "./Loadable.jsx"
+  "main": "./ResumeEntry.jsx"
 }

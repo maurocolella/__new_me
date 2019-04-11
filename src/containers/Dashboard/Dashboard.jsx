@@ -1,12 +1,12 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Suspense } from 'react';
 import {
   Route,
   Switch,
 } from 'react-router-dom';
 import Particles from 'react-particles-js';
 
+import Loader from '../../components/Loader';
 import Header from '../../components/Header';
-import SkillsPage from '../SkillsPage';
 import ResumePage from '../ResumePage';
 import WorkPage from '../WorkPage';
 import ContentPage from '../ContentPage';
@@ -14,6 +14,8 @@ import NotFoundPage from '../NotFoundPage';
 import Footer from '../../components/Footer';
 
 import styles from './Dashboard.scss';
+
+const SkillsPage = React.lazy(() => import('../SkillsPage'));
 
 class Dashboard extends PureComponent {
   constructor(props) {
@@ -65,13 +67,15 @@ class Dashboard extends PureComponent {
         />
         <Header />
         <section className={styles.wrapper__content}>
-          <Switch>
-            <Route exact path="/skills" component={SkillsPage} />
-            <Route exact path="/work" component={WorkPage} />
-            <Route exact path="/resume" component={ResumePage} />
-            <Route exact path="/:slug?" component={ContentPage} />
-            <Route component={NotFoundPage} />
-          </Switch>
+          <Suspense fallback={<Loader />}>
+            <Switch>
+              <Route exact path="/skills" component={SkillsPage} />
+              <Route exact path="/work" component={WorkPage} />
+              <Route exact path="/resume" component={ResumePage} />
+              <Route exact path="/:slug?" component={ContentPage} />
+              <Route component={NotFoundPage} />
+            </Switch>
+          </Suspense>
           <Footer />
         </section>
       </div>

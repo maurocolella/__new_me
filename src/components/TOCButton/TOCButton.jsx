@@ -21,7 +21,9 @@ class TOCButton extends Component {
     this.state = {
       display: false,
     };
+  }
 
+  componentDidMount() {
     this.timer = setInterval(() => { this.updateDisplay(); }, 30);
   }
 

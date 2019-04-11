@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -9,9 +9,10 @@ import { skillsFetchData } from './actions';
 
 import Loader from '../../components/Loader';
 import OracleAssociateBadge from '../../components/Badges/OracleAssociateBadge';
-import GLChart from '../../components/GLChart';
 
 import styles from '../../assets/styles/page.scss';
+
+const GLChart = React.lazy(() => import('../../components/GLChart'));
 
 class SkillsPage extends Component {
   static propTypes = {
@@ -173,14 +174,16 @@ class SkillsPage extends Component {
           <h5>Highlights</h5>
           <section className={styles.article__highlights}>
             <OracleAssociateBadge />
-            <GLChart
-              className={styles.chart}
-              data={topSkills}
-              style={{
-                flex: 1,
-                height: 240,
-              }}
-            />
+            <Suspense fallback={<Loader />}>
+              <GLChart
+                className={styles.chart}
+                data={topSkills}
+                style={{
+                  flex: 1,
+                  height: 240,
+                }}
+              />
+            </Suspense>
           </section>
         </article>
         <article className={styles.article}>
@@ -236,9 +239,10 @@ class SkillsPage extends Component {
                                   ${isActive ? ` ${styles['tag--related']}` : ''}`;
 
                   return (
-                    <Fade>
+                    <Fade
+                      key={skill.id}
+                    >
                       <li
-                        key={skill.id}
                         style={skillStyle}
                       >
                         <button

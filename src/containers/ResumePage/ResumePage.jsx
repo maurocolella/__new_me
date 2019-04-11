@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import hash from 'object-hash';
@@ -8,10 +8,11 @@ import { resumeFetchData } from './actions';
 
 import Loader from '../../components/Loader';
 import OracleAssociateBadge from '../../components/Badges/OracleAssociateBadge';
-import ResumeEntry from '../../components/ResumeEntry';
 
 import globalStyles from '../../assets/styles/page.scss';
 import styles from './ResumePage.scss';
+
+const ResumeEntry = React.lazy(() => import('../../components/ResumeEntry'));
 
 class ResumePage extends Component {
   static propTypes = {
@@ -75,14 +76,18 @@ class ResumePage extends Component {
               <OracleAssociateBadge />
             </article>
             {entries.map(entry => (
-              <ResumeEntry
+              <Suspense
                 key={entry.id}
-                title={entry.title}
-                startDate={entry.startDate}
-                endDate={entry.endDate}
-                description={entry.description}
-                tasks={entry.tasks}
-              />
+                fallback={<Loader />}
+              >
+                <ResumeEntry
+                  title={entry.title}
+                  startDate={entry.startDate}
+                  endDate={entry.endDate}
+                  description={entry.description}
+                  tasks={entry.tasks}
+                />
+              </Suspense>
             ))}
           </main>
         ));

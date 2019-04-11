@@ -16,7 +16,9 @@ class ProgressIndicator extends PureComponent {
     this.state = {
       progress: 0,
     };
+  }
 
+  componentDidMount() {
     this.timer = setInterval(() => { this.updateProgress(); }, 30);
   }
 

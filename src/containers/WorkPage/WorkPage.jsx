@@ -144,10 +144,11 @@ class WorkPage extends Component {
               </p>
               <ul className={styles.grid}>
                 {entries.map(entry => (
-                  <Fade>
+                  <Fade
+                    key={entry.id.toString()}
+                  >
                     <li
                       className={styles.grid__entry}
-                      key={entry.id.toString()}
                     >
                       <WorkItem
                         id={entry.id.toString()}

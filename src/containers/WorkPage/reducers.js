@@ -7,6 +7,7 @@ const initialState = {
 function works(state = initialState, action) {
   switch (action.type) {
     case 'WORKS_HAS_ERRORED':
+    case 'WORKS_IS_CANCELLED':
       return {
         ...state,
         isLoading: false,

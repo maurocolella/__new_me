@@ -17,6 +17,7 @@
   &__header{
     margin-bottom: 1.655cm;
     padding-top: 1.65em;
+    page-break-after: always;
     text-align: center;
   }
 
@@ -64,6 +65,7 @@
 .skills {
   display: flex;
   flex-wrap: wrap;
+  font-size: 110%;
   list-style-type: none;
   padding: 0;
 

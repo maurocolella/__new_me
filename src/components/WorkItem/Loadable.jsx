@@ -3,17 +3,6 @@ import PropTypes from 'prop-types';
 import Loader from '../Loader';
 
 export default class Loadable extends Component {
-  static loadImage(url) {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.addEventListener('load', () => { resolve(img); });
-      img.addEventListener('error', () => {
-        reject(new Error(`Failed to load image's URL: ${url}`));
-      });
-      img.src = url;
-    });
-  }
-
   static propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -23,22 +12,36 @@ export default class Loadable extends Component {
   };
 
   componentDidMount() {
-    import('./WorkItem.jsx').then((component) => {
+    import('./WorkItem.jsx').then((module) => {
       const { cover } = this.props;
-      this.Component = component;
+      this.Component = module;
 
       if (cover) {
-        this.constructor.loadImage(cover).then(() => {
-          this.forceUpdate();
+        this.loadImage(cover).then(() => {
+          if (!this.lock) {
+            this.forceUpdate();
+          }
         });
-      } else {
-        this.forceUpdate();
       }
     });
   }
 
+  componentWillUnmount() {
+    this.lock = true;
+  }
+
+  loadImage = url => new Promise((resolve, reject) => {
+    const img = new Image();
+    img.addEventListener('load', () => {
+      resolve(img);
+    });
+    img.addEventListener('error', () => {
+      reject(new Error(`Failed to load image's URL: ${url}`));
+    });
+    img.src = url;
+  });
 
   render() {
-    return this.Component ? <this.Component.default {...this.props} /> : <Loader />;
+    return this.Component ? (<this.Component.default {...this.props} />) : (<Loader />);
   }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { hot } from 'react-hot-loader/root';
 import sscache from 'session-storage-cache';
 import {
@@ -14,10 +14,12 @@ import 'normalize.css';
 import './assets/styles/typeplate.scss';
 import styles from './App.scss';
 
-import Dashboard from './containers/Dashboard';
+import Loader from './components/Loader';
 import PrintableResumePage from './containers/PrintableResumePage';
 import Navbar from './components/Navbar';
 import CookieNotice from './components/CookieNotice';
+
+const Dashboard = React.lazy(() => import('./containers/Dashboard'));
 
 sscache.flush();
 
@@ -56,7 +58,9 @@ class App extends Component {
               <ScrollProvider>
                 <span style={{ width: '100%' }}>
                   <Navbar />
-                  <Dashboard />
+                  <Suspense fallback={<Loader />}>
+                    <Dashboard />
+                  </Suspense>
                   {!noticeDelivered && <CookieNotice />}
                 </span>
               </ScrollProvider>

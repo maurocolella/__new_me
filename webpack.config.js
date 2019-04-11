@@ -45,6 +45,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
     new BundleAnalyzerPlugin({
       analyzerMode: env === 'development' ? 'disabled' : 'static',
       openAnalyzer: false,
