@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import smoothscroll from 'smoothscroll-polyfill';
 import ReactGA from 'react-ga';
@@ -10,7 +10,7 @@ import styles from './TOCButton.scss';
 
 smoothscroll.polyfill();
 
-class TOCButton extends Component {
+class TOCButton extends PureComponent {
   static propTypes = {
     scrollTop: PropTypes.number.isRequired,
   };

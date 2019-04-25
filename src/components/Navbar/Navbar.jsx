@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import NavItem from '../NavItem';
 import ProgressIndicator from '../ProgressIndicator';
 
 import styles from './Navbar.scss';
 
-class Navbar extends Component {
+class Navbar extends PureComponent {
   static getComputedStyle(el, prop) {
     const { getComputedStyle } = window;
 

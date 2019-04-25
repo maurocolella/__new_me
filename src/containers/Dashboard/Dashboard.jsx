@@ -1,4 +1,4 @@
-import React, { PureComponent, Suspense } from 'react';
+import React, { Component, Suspense } from 'react';
 import {
   Route,
   Switch,
@@ -17,7 +17,7 @@ import styles from './Dashboard.scss';
 
 const SkillsPage = React.lazy(() => import('../SkillsPage'));
 
-class Dashboard extends PureComponent {
+class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {

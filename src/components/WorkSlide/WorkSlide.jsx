@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import hash from 'object-hash';
 
 import styles from './WorkSlide.scss';
 import placeholder from '../../assets/images/placeholder.svg';
 
-class WorkSlide extends Component {
+class WorkSlide extends PureComponent {
   static propTypes = {
     entry: PropTypes.shape({}).isRequired,
     active: PropTypes.bool.isRequired,
