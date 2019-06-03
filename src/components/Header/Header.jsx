@@ -4,6 +4,7 @@ import 'picturefill';
 import ReactGA from 'react-ga';
 
 import SunIcon from '../Icons/SunIcon';
+import Logo from '../Logo';
 
 import styles from './Header.scss';
 
@@ -31,7 +32,7 @@ class Header extends PureComponent {
         className={styles.header}
       >
         <section className={styles.cover}>
-          <h1 className={styles.cover__title}>Mauro Colella</h1>
+          <h1 className={styles.cover__title}><Logo /></h1>
           <a href="#footer" onClick={this.handleScrollToTarget} className={styles.hireme}>
             Hire Me
             {' '}
