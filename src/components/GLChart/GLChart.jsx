@@ -66,6 +66,9 @@ class GLChart extends Component {
       if (window.requestIdleCallback) {
         window.requestIdleCallback(() => {
           GLContext.init(this.canvas, data, baseColor);
+        },
+        {
+          timeout: 800,
         });
       } else {
         GLContext.init(this.canvas, data, baseColor);
