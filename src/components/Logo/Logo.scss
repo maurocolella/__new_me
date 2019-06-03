@@ -3,11 +3,12 @@
   &__path {
     animation: dash 2.1s ease-out forwards, fade 0.8s ease-in 2s forwards;
     fill:	rgba(255,255,255,0);
-    filter: url(#f3);
     stroke: #FFFFFF;
     stroke-dasharray: 70;
     stroke-dashoffset: 68%;
     stroke-width: 0.05px;
+
+    // filter: url("#halo-filter");
   }
 }
 

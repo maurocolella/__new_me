@@ -9,7 +9,7 @@ class Logo extends PureComponent {
   };
 
   static defaultProps = {
-    width: 360,
+    width: 400,
   };
 
   render() {
@@ -18,15 +18,9 @@ class Logo extends PureComponent {
     return (
       <svg style={{ width }} viewBox="0 0 159 23">
         <defs>
-          <filter id="f3" x="0" y="0">
-            <feOffset result="offOut" in="SourceAlpha" dx="20" dy="20" />
-            <feColorMatrix
-              result="matrixOut"
-              in="offOut"
-              type="matrix"
-              values="0.2 0 0 0 0 0 0.2 0 0 0 0 0 0.2 0 0 0 0 0 1 0"
-            />
-            <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
+          <filter id="halo-filter" x="-50%" y="-50%" width="200%" height="200%">
+            <feOffset result="offOut" in="SourceGraphic" dx="0.1" dy="0.1" />
+            <feGaussianBlur result="blurOut" in="offOut" stdDeviation="0.4" />
             <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
           </filter>
         </defs>
