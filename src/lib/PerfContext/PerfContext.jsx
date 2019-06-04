@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 const PerfContext = React.createContext();
 
+const debugTag = '[PERF]';
+
 /**
  * Context Provider that runs an initial benchmark on application FPS.
  */
@@ -36,7 +38,7 @@ class PerfProvider extends Component {
   }
 
   componentDidMount() {
-    console.log('Starting benchmark');
+    console.log(`${debugTag} Starting benchmark`);
     this.setState({
       startTime: (performance || Date).now(),
       timer: requestAnimationFrame(this.tick),
@@ -80,15 +82,15 @@ class PerfProvider extends Component {
       });
 
       // Report
-      console.log(`Benchmark: ${benchAverage}FPS average over ${((time - startTime) / 1000).toFixed(2)}s`);
-      console.log(`Performance is: ${benchAverage < 40 ? 'slow' : 'fast'}`);
+      console.log(`${debugTag} Benchmark: ${benchAverage}FPS average over ${((time - startTime) / 1000).toFixed(2)}s`);
+      console.log(`${debugTag} Performance is: ${benchAverage < 40 ? 'slow' : 'fast'}`);
 
       // If slow, flag as such and exit.
       if (benchAverage < threshold) {
         this.setState({
           fast: false,
         });
-        console.log('Exiting benchmark');
+        console.log(`${debugTag} Exiting benchmark`);
         cancelAnimationFrame(timer);
         return;
       }
