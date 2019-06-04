@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import smoothscroll from 'smoothscroll-polyfill';
-import 'picturefill';
 import ReactGA from 'react-ga';
 
 import SunIcon from '../Icons/SunIcon';

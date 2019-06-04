@@ -90,15 +90,11 @@ module.exports = {
         }
       ]
     }, {
-      test: /\.(jpg|png)$/,
-      use: [
-        {
-          loader: 'responsive-loader',
-          options: {
-            adapter: sharpLoader,
-          }
-        }
-      ]
+      test: /\.(jpe?g|png)$/i,
+      loader: 'responsive-loader',
+      options: {
+          adapter: sharpLoader,
+      }
     }, {
       test: /\.(svg)$/,
       use: [
