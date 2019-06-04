@@ -5,6 +5,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import Particles from 'react-particles-js';
+import { debounce } from 'lodash';
 import { withPerf } from '../../lib/PerfContext';
 
 import Loader from '../../components/Loader';
@@ -23,6 +24,12 @@ class Dashboard extends Component {
   static propTypes = {
     benchIsSlow: PropTypes.bool.isRequired,
   };
+
+  handleResize = debounce(() => {
+    this.setState({
+      key: (Math.random() * 10000).toString(),
+    });
+  }, 200);
 
   constructor(props) {
     super(props);
@@ -53,12 +60,6 @@ class Dashboard extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
-  }
-
-  handleResize = () => {
-    this.setState({
-      key: (Math.random() * 10000).toString(),
-    });
   }
 
   render() {
