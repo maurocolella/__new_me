@@ -1,9 +1,11 @@
 import React, { Component, Suspense } from 'react';
+import PropTypes from 'prop-types';
 import {
   Route,
   Switch,
 } from 'react-router-dom';
 import Particles from 'react-particles-js';
+import { withPerf } from '../../lib/PerfContext';
 
 import Loader from '../../components/Loader';
 import Header from '../../components/Header';
@@ -18,6 +20,10 @@ import styles from './Dashboard.scss';
 const SkillsPage = React.lazy(() => import('../SkillsPage'));
 
 class Dashboard extends Component {
+  static propTypes = {
+    benchIsSlow: PropTypes.bool.isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -57,14 +63,20 @@ class Dashboard extends Component {
 
   render() {
     const { particleOptions, key } = this.state;
+    const { benchIsSlow } = this.props;
 
     return (
       <div className={styles.wrapper}>
-        <Particles
-          key={key}
-          className={styles.wrapper__particles}
-          params={particleOptions}
-        />
+        {
+          !benchIsSlow
+          && (
+          <Particles
+            key={key}
+            className={styles.wrapper__particles}
+            params={particleOptions}
+          />
+          )
+        }
         <Header />
         <section className={styles.wrapper__content}>
           <Suspense fallback={<Loader />}>
@@ -83,4 +95,4 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default withPerf(Dashboard);

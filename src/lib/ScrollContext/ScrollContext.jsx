@@ -24,6 +24,9 @@ const getDimensions = () => {
 
 const ScrollContext = React.createContext(getDimensions());
 
+/**
+ * Context Provider that handles/informs scroll events.
+ */
 class ScrollProvider extends PureComponent {
   state = getDimensions();
 

@@ -9,6 +9,7 @@ import {
 import { createBrowserHistory as createHistory } from 'history';
 import ReactGA from 'react-ga';
 import ScrollProvider from './lib/ScrollContext';
+import PerfProvider from './lib/PerfContext';
 
 import 'normalize.css';
 import './assets/styles/typeplate.scss';
@@ -55,15 +56,17 @@ class App extends Component {
           <Switch>
             <Route exact path="/resume/print" component={PrintableResumePage} />
             <Route>
-              <ScrollProvider>
-                <span style={{ width: '100%' }}>
-                  <Navbar />
-                  <Suspense fallback={<Loader />}>
-                    <Dashboard />
-                  </Suspense>
-                  {!noticeDelivered && <CookieNotice />}
-                </span>
-              </ScrollProvider>
+              <PerfProvider>
+                <ScrollProvider>
+                  <span style={{ width: '100%' }}>
+                    <Navbar />
+                    <Suspense fallback={<Loader />}>
+                      <Dashboard />
+                    </Suspense>
+                    {!noticeDelivered && <CookieNotice />}
+                  </span>
+                </ScrollProvider>
+              </PerfProvider>
             </Route>
           </Switch>
         </div>
