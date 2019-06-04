@@ -1,7 +1,24 @@
-import * as THREE from 'three';
-import './OrbitControls';
-import './QuickHull';
-import './ConvexGeometry';
+import {
+  Color,
+  Scene,
+  Fog,
+  PerspectiveCamera,
+  WebGLRenderer,
+  Vector3,
+  MeshBasicMaterial,
+  MeshLambertMaterial,
+  LineBasicMaterial,
+  SpriteMaterial,
+  Geometry,
+  SphereGeometry,
+  LineSegments,
+  Mesh,
+  Texture,
+  Sprite,
+  DirectionalLight,
+} from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { ConvexGeometry } from 'three/examples/jsm/geometries/ConvexGeometry';
 
 class GL {
   constructor() {
@@ -25,10 +42,10 @@ class GL {
   }
 
   init = (canvas, dataSet, baseColor) => {
-    const color = new THREE.Color(baseColor);
-    const luminance = new THREE.Color(baseColor);
+    const color = new Color(baseColor);
+    const luminance = new Color(baseColor);
 
-    luminance.sub(new THREE.Color(0x333333));
+    luminance.sub(new Color(0x333333));
 
 
     if (!canvas) {
@@ -38,14 +55,14 @@ class GL {
 
     window.addEventListener('resize', this.resizeListener);
 
-    this.scene = new THREE.Scene();
+    this.scene = new Scene();
     // this.scene.background = new THREE.Color(0xffffff);
-    this.scene.fog = new THREE.Fog(0x00ffffff, 80, 170);
+    this.scene.fog = new Fog(0x00ffffff, 80, 170);
 
     this.dimensions.x = this.el.offsetWidth;
     this.dimensions.y = this.el.offsetHeight;
 
-    this.camera = new THREE.PerspectiveCamera(
+    this.camera = new PerspectiveCamera(
       45,
       this.el.offsetWidth / this.el.offsetHeight,
       0.1,
@@ -53,7 +70,7 @@ class GL {
     );
     this.camera.position.set(0, 0, 120);
 
-    this.renderer = new THREE.WebGLRenderer({
+    this.renderer = new WebGLRenderer({
       canvas,
       antialias: true,
       alpha: true,
@@ -62,7 +79,7 @@ class GL {
     // TODO: use stronger antialiasing / higher pixel ratio?
     this.renderer.setPixelRatio(1.5);
 
-    this.controls = new THREE.OrbitControls(this.camera, canvas);
+    this.controls = new OrbitControls(this.camera, canvas);
     this.controls.enableDamping = true;
     this.controls.enableZoom = false;
     this.controls.enablePan = false;
@@ -79,15 +96,15 @@ class GL {
 
     const spheroid = this.constructor.distribute(dataSet.length, false);
 
-    const skillsVertices = spheroid.map(vertex => new THREE.Vector3(...vertex));
-    const envelopeVertices = spheroid.map(vertex => new THREE.Vector3(...vertex));
+    const skillsVertices = spheroid.map(vertex => new Vector3(...vertex));
+    const envelopeVertices = spheroid.map(vertex => new Vector3(...vertex));
 
     const labelSprites = dataSet.map(entry => this.constructor.renderText(entry.name));
 
     // const innerSphereGeometry = new THREE.SphereGeometry(radiusIn, segments, rings);
-    const outerSphereGeometry = new THREE.SphereGeometry(radiusOut, segments, rings);
+    const outerSphereGeometry = new SphereGeometry(radiusOut, segments, rings);
 
-    const wireframeMaterial = new THREE.MeshBasicMaterial({
+    const wireframeMaterial = new MeshBasicMaterial({
       color: 0x00999999,
       depthTest: true,
       depthWrite: false,
@@ -97,7 +114,7 @@ class GL {
       fog: true,
     });
 
-    const darkWireframeMaterial = new THREE.MeshBasicMaterial({
+    const darkWireframeMaterial = new MeshBasicMaterial({
       color: 0x111111,
       wireframe: true,
       transparent: true,
@@ -105,7 +122,7 @@ class GL {
       fog: false,
     });
 
-    const flatMaterial = new THREE.MeshLambertMaterial({
+    const flatMaterial = new MeshLambertMaterial({
       color: color.getHex(),
       emissive: luminance.getHex(),
       polygonOffset: true,
@@ -115,44 +132,44 @@ class GL {
       fog: false,
     });
 
-    const lineMaterial = new THREE.LineBasicMaterial({
+    const lineMaterial = new LineBasicMaterial({
       color: 0xFF0022,
       fog: false,
     });
 
-    const outerSphere = new THREE.Mesh(outerSphereGeometry, wireframeMaterial);
+    const outerSphere = new Mesh(outerSphereGeometry, wireframeMaterial);
     // const innerSphere = new THREE.Mesh(innerSphereGeometry, wireframeMaterial);
 
     this.scene.add(outerSphere);
     // this.scene.add(innerSphere);
 
     if (dataSet.length > 4) {
-      const skillsGeometry = new THREE.ConvexGeometry(skillsVertices);
-      const envelopeGeometry = new THREE.ConvexGeometry(envelopeVertices);
+      const skillsGeometry = new ConvexGeometry(skillsVertices);
+      const envelopeGeometry = new ConvexGeometry(envelopeVertices);
       const innerSphereScale = 0.7;
 
       skillsGeometry.dynamic = true;
       skillsGeometry.vertices = skillsGeometry
         .vertices
         .map((vertex, index) => vertex.multiplyScalar(dataSet[index].value * innerSphereScale));
-      const skillsCloud = new THREE.Mesh(skillsGeometry, flatMaterial);
+      const skillsCloud = new Mesh(skillsGeometry, flatMaterial);
       skillsCloud.scale.set(radiusOut, radiusOut, radiusOut);
 
-      const envelope = new THREE.Mesh(envelopeGeometry, darkWireframeMaterial);
+      const envelope = new Mesh(envelopeGeometry, darkWireframeMaterial);
       envelope.scale.set(radiusOut, radiusOut, radiusOut);
 
       const spikesVertices = envelope.geometry.vertices.slice();
-      const spikesGeometry = new THREE.Geometry();
+      const spikesGeometry = new Geometry();
 
       spikesVertices.forEach((vertex, index) => {
-        spikesGeometry.vertices.push(new THREE.Vector3(0, 0, 0));
+        spikesGeometry.vertices.push(new Vector3(0, 0, 0));
         spikesGeometry.vertices.push(vertex);
         labelSprites[index].position.set(vertex.x * 40, vertex.y * 40, vertex.z * 40);
         labelSprites[index].scale.set(36.0, 36.0, 36.0);
         this.scene.add(labelSprites[index]);
       });
 
-      const spikes = new THREE.LineSegments(spikesGeometry, lineMaterial);
+      const spikes = new LineSegments(spikesGeometry, lineMaterial);
       spikes.scale.set(38, 38, 38);
 
       this.scene.add(skillsCloud);
@@ -160,7 +177,7 @@ class GL {
       this.scene.add(spikes);
     }
 
-    this.light = new THREE.DirectionalLight(0xffffff, 1);
+    this.light = new DirectionalLight(0xffffff, 1);
     this.scene.add(this.light);
     this.light.position.set(0, 0, 150);
 
@@ -221,14 +238,14 @@ class GL {
     context.fillStyle = '#222222';
     context.fillText(text.toUpperCase(), textureSize / 2, textureSize / 2);
 
-    const texture = new THREE.Texture(canvas);
+    const texture = new Texture(canvas);
     texture.needsUpdate = true;
 
-    const spriteMaterial = new THREE.SpriteMaterial({
+    const spriteMaterial = new SpriteMaterial({
       map: texture,
       fog: true,
     });
-    const sprite = new THREE.Sprite(spriteMaterial);
+    const sprite = new Sprite(spriteMaterial);
     return sprite;
   }
 

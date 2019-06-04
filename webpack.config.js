@@ -25,17 +25,9 @@ module.exports = {
   target: 'web',
   optimization: {
     minimize: env !== 'development',
-    /* splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /node_modules/,
-          chunks: 'initial',
-          name: 'vendor',
-          priority: 10,
-          enforce: true,
-        },
-      },
-    }, */
+    splitChunks: {
+      chunks: 'all',
+    },
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -56,7 +48,7 @@ module.exports = {
     rules: [{
       test: /\.(js|jsx)$/,
       use: [
-        { loader: 'babel-loader'}
+        { loader: 'babel-loader' }
       ],
       include: path.join(__dirname, 'src')
     }, {

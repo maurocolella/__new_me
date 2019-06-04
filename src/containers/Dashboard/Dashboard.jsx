@@ -5,7 +5,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import Particles from 'react-particles-js';
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 import { withPerf } from '../../lib/PerfContext';
 
 import Loader from '../../components/Loader';
