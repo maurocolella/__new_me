@@ -64,14 +64,14 @@ class ScrollProvider extends PureComponent {
   }
 }
 
-const withScrolling = Component => props => (
+const withScrolling = TargetComponent => props => (
   <ScrollContext.Consumer>
     {({
       scrollTop,
       viewportHeight,
       documentHeight,
     }) => (
-      <Component
+      <TargetComponent
         {...props}
         scrollTop={scrollTop}
         viewportHeight={viewportHeight}

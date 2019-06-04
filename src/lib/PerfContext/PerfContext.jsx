@@ -133,12 +133,12 @@ class PerfProvider extends Component {
   }
 }
 
-const withPerf = Component => props => (
+const withPerf = TargetComponent => props => (
   <PerfContext.Consumer>
     {({
       benchIsSlow,
     }) => (
-      <Component
+      <TargetComponent
         {...props}
         benchIsSlow={benchIsSlow}
       />
