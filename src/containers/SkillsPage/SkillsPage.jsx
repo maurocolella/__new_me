@@ -179,7 +179,6 @@ class SkillsPage extends Component {
                 className={styles.chart}
                 data={topSkills}
                 style={{
-                  flex: 1,
                   height: 240,
                 }}
               />
