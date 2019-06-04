@@ -16,7 +16,7 @@ class Logo extends PureComponent {
     const { width } = this.props;
 
     return (
-      <svg style={{ width }} viewBox="0 0 159 23">
+      <svg style={{ width }} className={styles.logo} viewBox="0 0 159 23">
         <defs>
           <filter id="halo-filter" x="-50%" y="-50%" width="200%" height="200%">
             <feOffset result="offOut" in="SourceGraphic" dx="0.1" dy="0.1" />
