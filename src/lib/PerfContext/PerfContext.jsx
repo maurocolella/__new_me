@@ -38,7 +38,9 @@ class PerfProvider extends Component {
   }
 
   componentDidMount() {
-    console.log(`${debugTag} Starting benchmark`);
+    const debug = process.env.NODE_ENV && process.env.NODE_ENV === 'development';
+    if (debug) console.log(`${debugTag} Starting benchmark`);
+
     this.setState({
       startTime: (performance || Date).now(),
       timer: requestAnimationFrame(this.tick),
@@ -65,6 +67,8 @@ class PerfProvider extends Component {
     } = this.state;
     let { frames } = this.state;
 
+    const debug = process.env.NODE_ENV && process.env.NODE_ENV === 'development';
+
     // Calculate new values
     frames += 1;
     const time = (performance || Date).now();
@@ -72,7 +76,7 @@ class PerfProvider extends Component {
     benchResults.push(fps);
 
     // Calculate results;
-    if (benchResults.length > 1000) {
+    if (benchResults.length > 150) {
       const benchAverage = benchResults.reduce((total, amount, index, array) => {
         const val = total + amount;
         if (index === array.length - 1) {
@@ -82,15 +86,15 @@ class PerfProvider extends Component {
       });
 
       // Report
-      console.log(`${debugTag} Benchmark: ${benchAverage}FPS average over ${((time - startTime) / 1000).toFixed(2)}s`);
-      console.log(`${debugTag} Performance is: ${benchAverage < 40 ? 'slow' : 'fast'}`);
+      if (debug) console.log(`${debugTag} Benchmark: ${benchAverage}FPS average over ${((time - startTime) / 1000).toFixed(2)}s`);
+      if (debug) console.log(`${debugTag} Performance is: ${benchAverage < 40 ? 'slow' : 'fast'}`);
 
       // If slow, flag as such and exit.
       if (benchAverage < threshold) {
         this.setState({
           fast: false,
         });
-        console.log(`${debugTag} Exiting benchmark`);
+        if (debug) console.log(`${debugTag} Exiting benchmark`);
         cancelAnimationFrame(timer);
         return;
       }
