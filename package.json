@@ -7,7 +7,6 @@
     "start:dev": "NODE_ENV=development npm start",
     "test": "npm run eslint",
     "eslint": "node node_modules/eslint/bin/eslint src --ext .jsx --ext .js src/",
-    "fix": "node node_modules/eslint/bin/eslint src --ext .jsx --ext .js src/ --fix",
     "build": "rimraf dist/* && webpack"
   },
   "repository": {
