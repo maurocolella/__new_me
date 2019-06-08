@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { TweenLite, Linear } from 'gsap/all';
 import PropTypes from 'prop-types';
 
 import styles from './Logo.scss';
@@ -11,6 +12,15 @@ class Logo extends PureComponent {
   static defaultProps = {
     width: 400,
   };
+
+  componentDidMount() {
+    const paths = document.getElementsByClassName(styles.logo__path);
+    // Patch for IE
+    TweenLite
+      .to(paths, 2.1, { strokeDashoffset: '0%', ease: Linear.easeOut });
+    TweenLite
+      .to(paths, 0.8, { delay: 2, fill: 'rgba(255,255,255,1)', ease: Linear.easeIn });
+  }
 
   render() {
     const { width } = this.props;

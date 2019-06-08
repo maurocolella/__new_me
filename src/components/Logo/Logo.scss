@@ -1,25 +1,29 @@
 .logo {
   max-width: 100%;
   &__path {
-    animation: dash 2.1s ease-out forwards, fade 0.8s ease-in 2s forwards;
+    // animation: dash 2.1s ease-out forwards, fade 0.8s ease-in 2s forwards;
     fill:	rgba(255,255,255,0);
     stroke: #FFFFFF;
     stroke-dasharray: 70;
     stroke-dashoffset: 68%;
     stroke-width: 0.05px;
-
-    // filter: url("#halo-filter");
   }
 }
 
 
 @keyframes dash {
+  from {
+    stroke-dashoffset: 68%;
+  }
   to {
     stroke-dashoffset: 0%;
   }
 }
 
 @keyframes fade {
+  from {
+    fill: rgba(255,255,255,0);
+  }
   to {
     fill: rgba(255,255,255,1);
   }
