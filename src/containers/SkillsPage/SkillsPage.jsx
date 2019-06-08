@@ -256,28 +256,24 @@ class SkillsPage extends Component {
                   );
                 })
               }
-                {
-                activeSkill
-                  && (
-                    <Fade>
-                      <li
-                        style={skillStyle}
-                      >
-                        <button
-                          className={`${styles.tag} ${styles['tag--reset']}`}
-                          onClick={this.handleRelated(null)}
-                          type="button"
-                        >
-                          <i className={`material-icons ${styles.tag__icon}`}>
-                            close
-                          </i>
-                          {' '}
-                          clear
-                        </button>
-                      </li>
-                    </Fade>
-                  )
-              }
+                <Fade>
+                  <li
+                    style={skillStyle}
+                  >
+                    <button
+                      className={`${styles.tag} ${activeSkill ? styles['tag--reset'] : styles['tag--dim']}`}
+                      onClick={this.handleRelated(null)}
+                      type="button"
+                      enabled={activeSkill}
+                    >
+                      <i className={`material-icons ${styles.tag__icon}`}>
+                        close
+                      </i>
+                      {' '}
+                      clear
+                    </button>
+                  </li>
+                </Fade>
               </ul>
             )}
         </article>
