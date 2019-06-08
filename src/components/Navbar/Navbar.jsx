@@ -33,22 +33,30 @@ class Navbar extends PureComponent {
   constructor(props) {
     super(props);
     this.navbar = React.createRef();
+    this.posIndicator = React.createRef();
 
     this.state = {
       sticky: false,
       top: 0,
+      indicatorLeft: 0,
+      indicatorWidth: 0,
+      indicatorVisible: false,
     };
   }
 
   componentDidMount() {
+    const navActiveRef = this.navbar.current;
     window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('resize', this.handleResize);
     this.setState({
       top: parseInt(this.constructor.getComputedStyle(this.navbar.current, 'top'), 10),
+      indicatorWidth: (navActiveRef && navActiveRef.offsetWidth) / 4,
     });
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('resize', this.handleResize);
   }
 
   handleScroll = () => {
@@ -72,17 +80,50 @@ class Navbar extends PureComponent {
     }
   }
 
+  handleResize = () => {
+    const navActiveRef = this.navbar.current;
+    this.setState({
+      indicatorWidth: (navActiveRef && navActiveRef.offsetWidth) / 4,
+    });
+  }
+
+  handleMouseOver = (event) => {
+    const navActiveRef = this.navbar.current;
+    this.setState({
+      indicatorLeft: event.currentTarget.offsetLeft,
+      indicatorWidth: (navActiveRef && navActiveRef.offsetWidth) / 4,
+      indicatorVisible: true,
+    });
+  }
+
+  handleMouseOut = () => {
+    this.setState({
+      indicatorVisible: false,
+    });
+  }
+
   render() {
-    const { sticky } = this.state;
+    const {
+      sticky,
+      indicatorLeft,
+      indicatorWidth,
+      indicatorVisible,
+    } = this.state;
 
     return (
       <nav
         className={`${styles.navbar}${sticky ? ` ${styles['navbar--sticky']}` : ''}`}
         ref={this.navbar}
+        onMouseLeave={this.handleMouseOut}
+        onBlur={this.handleMouseOut}
       >
         <ProgressIndicator />
         <ul className={`${styles.nav}${sticky ? ` ${styles['nav--sticky']}` : ''}`}>
-          <li className={styles.nav__item}>
+          <li
+            className={styles.nav__item}
+            onMouseOver={this.handleMouseOver}
+            onFocus={this.handleMouseOver}
+          >
             <NavItem
               activeClassName={styles['nav__link--active']}
               className={`${styles.nav__link}${sticky ? ` ${styles['nav__link--sticky']}` : ''}`}
@@ -95,7 +136,11 @@ class Navbar extends PureComponent {
               <span className={styles.nav__label}>About</span>
             </NavItem>
           </li>
-          <li className={styles.nav__item}>
+          <li
+            className={styles.nav__item}
+            onMouseOver={this.handleMouseOver}
+            onFocus={this.handleMouseOver}
+          >
             <NavItem
               activeClassName={styles['nav__link--active']}
               className={`${styles.nav__link}${sticky ? ` ${styles['nav__link--sticky']}` : ''}`}
@@ -108,7 +153,11 @@ class Navbar extends PureComponent {
               <span className={styles.nav__label}>Skills</span>
             </NavItem>
           </li>
-          <li className={styles.nav__item}>
+          <li
+            className={styles.nav__item}
+            onMouseOver={this.handleMouseOver}
+            onFocus={this.handleMouseOver}
+          >
             <NavItem
               activeClassName={styles['nav__link--active']}
               className={`${styles.nav__link}${sticky ? ` ${styles['nav__link--sticky']}` : ''}`}
@@ -121,7 +170,11 @@ class Navbar extends PureComponent {
               <span className={styles.nav__label}>Work</span>
             </NavItem>
           </li>
-          <li className={styles.nav__item}>
+          <li
+            className={styles.nav__item}
+            onMouseOver={this.handleMouseOver}
+            onFocus={this.handleMouseOver}
+          >
             <NavItem
               activeClassName={styles['nav__link--active']}
               className={`${styles.nav__link}${sticky ? ` ${styles['nav__link--sticky']}` : ''}`}
@@ -134,6 +187,14 @@ class Navbar extends PureComponent {
               <span className={styles.nav__label}>Resume</span>
             </NavItem>
           </li>
+          <span
+            className={styles.nav__indicator}
+            style={{
+              width: indicatorWidth,
+              left: indicatorLeft,
+              height: indicatorVisible ? '3px' : 0,
+            }}
+          />
         </ul>
       </nav>
     );
