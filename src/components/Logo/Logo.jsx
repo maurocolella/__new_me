@@ -1,8 +1,14 @@
 import React, { PureComponent } from 'react';
-import { TweenLite, Linear } from 'gsap/all';
+import {
+  TweenLite,
+  Linear,
+  CSSPlugin,
+} from 'gsap/all';
 import PropTypes from 'prop-types';
 
 import styles from './Logo.scss';
+
+const plugins = [CSSPlugin]; /* eslint-disable-line no-unused-vars */
 
 class Logo extends PureComponent {
   static propTypes = {
