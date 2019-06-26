@@ -242,24 +242,22 @@ class SkillsPage extends Component {
           { isLoading
             ? <Loader />
             : (
-              <ul className={styles.flatList}>
-                {
-                skills.map((skill) => {
-                  const label = skill.title.toLowerCase();
-                  const isActive = (activeSkill
-                        && (skill.id === activeSkill.id
-                        || this.constructor.hasActiveRelation(activeSkill, skill)))
-                        || allRelated.indexOf(label) >= 0;
-                  const isDimmed = (filter.length && label.indexOf(filter.toLowerCase()) < 0)
-                        || (activeSkill && !isActive);
-                  const classes = `${styles.tag}
-                                  ${isDimmed ? ` ${styles['tag--dim']}` : ''}
-                                  ${isActive ? ` ${styles['tag--related']}` : ''}`;
+              <Fade>
+                <ul className={styles.flatList}>
+                  {
+                  skills.map((skill) => {
+                    const label = skill.title.toLowerCase();
+                    const isActive = (activeSkill
+                          && (skill.id === activeSkill.id
+                          || this.constructor.hasActiveRelation(activeSkill, skill)))
+                          || allRelated.indexOf(label) >= 0;
+                    const isDimmed = (filter.length && label.indexOf(filter.toLowerCase()) < 0)
+                          || (activeSkill && !isActive);
+                    const classes = `${styles.tag}
+                                    ${isDimmed ? ` ${styles['tag--dim']}` : ''}
+                                    ${isActive ? ` ${styles['tag--related']}` : ''}`;
 
-                  return (
-                    <Fade
-                      key={skill.id}
-                    >
+                    return (
                       <li
                         style={skillStyle}
                       >
@@ -271,14 +269,10 @@ class SkillsPage extends Component {
                           {skill.title}
                         </button>
                       </li>
-                    </Fade>
-                  );
-                })
-              }
-                <Fade>
-                  <li
-                    style={skillStyle}
-                  >
+                    );
+                  })
+                }
+                  <li style={skillStyle}>
                     <button
                       className={`${styles.tag} ${activeSkill ? styles['tag--reset'] : styles['tag--dim']}`}
                       onClick={this.handleRelated(null)}
@@ -292,8 +286,8 @@ class SkillsPage extends Component {
                       clear
                     </button>
                   </li>
-                </Fade>
-              </ul>
+                </ul>
+              </Fade>
             )}
         </article>
       </main>
