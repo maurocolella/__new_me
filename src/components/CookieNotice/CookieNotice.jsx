@@ -7,28 +7,32 @@ class CookieNotice extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      dismissing: false,
+      dismissed: false,
+      noticeDelivered: localStorage ? localStorage.getItem('noticeDelivered') : null,
     };
   }
 
   handleDismiss = () => {
     this.setState({
-      dismissing: true,
+      dismissed: true,
     });
   }
 
-  handleDismissEnd = () => {
-    if (localStorage) {
+  handleDismissEnd = (event) => {
+    if (localStorage && event.target === event.currentTarget) {
       localStorage.setItem('noticeDelivered', true);
+      this.setState({
+        noticeDelivered: true,
+      });
     }
   }
 
   render() {
-    const { dismissing } = this.state;
+    const { dismissed, noticeDelivered } = this.state;
 
-    return (
+    return (Boolean(noticeDelivered) === false && (
       <div
-        className={`${styles.notice}${dismissing ? ` ${styles['notice--fade']}` : ''}`}
+        className={`${styles.notice}${dismissed ? ` ${styles['notice--fade']}` : ''}`}
         onTransitionEnd={this.handleDismissEnd}
       >
         <button
@@ -53,7 +57,7 @@ class CookieNotice extends PureComponent {
           Accept
         </button>
       </div>
-    );
+    ));
   }
 }
 

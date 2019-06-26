@@ -1,4 +1,4 @@
-import React, { Component, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { hot } from 'react-hot-loader/root';
 import sscache from 'session-storage-cache';
 import {
@@ -38,41 +38,29 @@ history.listen((location) => {
   });
 });
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      noticeDelivered: localStorage ? localStorage.getItem('noticeDelivered') : null,
-    };
-  }
-
-  render() {
-    const { noticeDelivered } = this.state;
-
-    return (
-      <Router history={history}>
-        <div className={styles.app}>
-          <Switch>
-            <Route exact path="/resume/print" component={PrintableResumePage} />
-            <Route>
-              <PerfProvider>
-                <ScrollProvider>
-                  <span style={{ width: '100%' }}>
-                    <Navbar />
-                    <Suspense fallback={<Loader />}>
-                      <Dashboard />
-                    </Suspense>
-                    {!noticeDelivered && <CookieNotice />}
-                  </span>
-                </ScrollProvider>
-              </PerfProvider>
-            </Route>
-          </Switch>
-        </div>
-      </Router>
-    );
-  }
+function App() {
+  return (
+    <Router history={history}>
+      <div className={styles.app}>
+        <Switch>
+          <Route exact path="/resume/print" component={PrintableResumePage} />
+          <Route>
+            <PerfProvider>
+              <ScrollProvider>
+                <span style={{ width: '100%' }}>
+                  <Navbar />
+                  <Suspense fallback={<Loader />}>
+                    <Dashboard />
+                  </Suspense>
+                  <CookieNotice />
+                </span>
+              </ScrollProvider>
+            </PerfProvider>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
 export default hot(App);
