@@ -1,5 +1,6 @@
 import React, { Component, Suspense } from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import Fade from 'react-reveal/Fade';
@@ -16,15 +17,19 @@ const GLChart = React.lazy(() => import('../../components/GLChart'));
 
 class SkillsPage extends Component {
   static propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
     fetchData: PropTypes.func.isRequired,
     topSkills: PropTypes.arrayOf(Object),
     skills: PropTypes.arrayOf(Object),
     isLoading: PropTypes.bool.isRequired,
+    // eslint-disable-next-line react/no-unused-prop-types
+    selected: PropTypes.shape({}),
   };
 
   static defaultProps = {
     topSkills: [],
     skills: [],
+    selected: null,
   };
 
   static hasActiveRelation(focusSkill, skill) {
@@ -62,15 +67,28 @@ class SkillsPage extends Component {
     fetchData();
   }
 
+  componentDidUpdate(prevProps) {
+    const { selected } = this.props;
+
+    if (!prevProps.selected
+      && selected
+      && selected.title) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ activeSkill: selected });
+    }
+  }
+
   componentWillUnmount() {
     document.body.removeEventListener('click', this.handleGlobalCancelRelated, true);
   }
 
   handleRelated = skill => () => {
+    const { history } = this.props;
+
     ReactGA.event({
       category: 'Related',
       action: 'Skills Page',
-      label: skill.title,
+      label: skill && skill.title,
     });
 
     this.setState({
@@ -82,6 +100,7 @@ class SkillsPage extends Component {
 
     if (skill) {
       document.body.addEventListener('click', this.handleGlobalCancelRelated, true);
+      history.push(`/skills/${skill.title.toLowerCase()}`);
     } else {
       document.body.removeEventListener('click', this.handleGlobalCancelRelated, true);
     }
@@ -282,10 +301,12 @@ class SkillsPage extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  const { selected } = ownProps.match.params;
   const { skills } = state;
   const topSkills = [];
   const allSkills = [];
+  let selectedSkill = null;
 
   skills.items.forEach((skill) => {
     const formattedSkill = {
@@ -296,6 +317,11 @@ const mapStateToProps = (state) => {
     if (skill.featured) {
       topSkills.push(formattedSkill);
     }
+
+    if (selected
+      && skill.title.toLowerCase() === selected.toLowerCase()) {
+      selectedSkill = Object.assign({}, skill);
+    }
     allSkills.push(Object.assign({}, skill));
   });
 
@@ -304,6 +330,7 @@ const mapStateToProps = (state) => {
     isLoading: skills.isLoading,
     topSkills,
     skills: allSkills,
+    selected: selectedSkill,
   };
 };
 

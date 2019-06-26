@@ -82,7 +82,7 @@ class Dashboard extends Component {
         <section className={styles.wrapper__content}>
           <Suspense fallback={<Loader />}>
             <Switch>
-              <Route exact path="/skills" component={SkillsPage} />
+              <Route exact path="/skills/:selected?" component={SkillsPage} />
               <Route exact path="/work" component={WorkPage} />
               <Route exact path="/resume" component={ResumePage} />
               <Route exact path="/:slug?" component={ContentPage} />

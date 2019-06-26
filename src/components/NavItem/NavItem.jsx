@@ -44,6 +44,16 @@ class NavItem extends PureComponent {
     });
   }
 
+  handleClick = () => {
+    this.setState({
+      hover: false,
+    });
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
+  }
+
   render() {
     const {
       children,
@@ -63,7 +73,7 @@ class NavItem extends PureComponent {
         to={to}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
-        onClick={this.handleMouseLeave}
+        onClick={this.handleClick}
       >
         {children}
       </NavLink>
