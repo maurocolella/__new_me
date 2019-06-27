@@ -39,10 +39,9 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
     new BundleAnalyzerPlugin({
-      analyzerMode: env === 'development' ? 'disabled' : 'static',
+      analyzerMode: 'static',
       openAnalyzer: false,
-      // defaultSizes: 'parsed',
-      reportFilename: '../bundle-sizes.html',
+      reportFilename: '../reports/bundle-sizes.html',
     }),
   ],
   module: {

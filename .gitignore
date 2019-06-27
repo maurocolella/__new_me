@@ -6,5 +6,4 @@ dist
 .env
 
 ## Reports
-bundle-sizes.html
-coverage
+reports
