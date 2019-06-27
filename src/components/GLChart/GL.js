@@ -227,11 +227,11 @@ class GL {
   }
 
   static renderText(text, textureSize = 512) {
-    const canvas = document.createElement('canvas');
+    let canvas = document.createElement('canvas');
     canvas.width = textureSize;
     canvas.height = textureSize;
 
-    const context = canvas.getContext('2d');
+    let context = canvas.getContext('2d');
     context.font = '52px Open Sans, sans-serif';
     context.textBaseline = 'middle';
     context.textAlign = 'center';
@@ -246,6 +246,8 @@ class GL {
       fog: true,
     });
     const sprite = new Sprite(spriteMaterial);
+    context = null;
+    canvas = null;
     return sprite;
   }
 
@@ -263,17 +265,32 @@ class GL {
     this.light.position.copy(this.camera.position);
   }
 
+  clearScene(obj) {
+    while (obj.children.length > 0) {
+      this.clearScene(obj.children[0]);
+      obj.remove(obj.children[0]);
+    }
+    if (obj.texture) obj.texture.dispose();
+    if (obj.material) obj.material.dispose();
+    if (obj.geometry) obj.geometry.dispose();
+  }
+
   teardown() {
     if (this.renderer) {
-      try {
+      /* try {
         this.renderer.forceContextLoss();
       } catch (e) {
         console.debug(e);
-      }
+      } */
       window.removeEventListener('resize', this.resizeListener);
-      this.renderer.context = null;
-      this.renderer.domElement = null;
+      this.controls.dispose();
+      this.renderer.dispose(); /* .context = null;
+      this.renderer.domElement = null; */
       this.renderer = null;
+      this.el = null;
+      this.clearScene(this.scene);
+      this.scene = null;
+      this.light = null;
     }
   }
 }

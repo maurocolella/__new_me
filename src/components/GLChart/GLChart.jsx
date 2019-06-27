@@ -34,6 +34,7 @@ class GLChart extends Component {
   constructor(props) {
     super(props);
 
+    this.canvas = React.createRef();
     this.state = {
       hasGL: this.constructor.detectGL(),
       GLContext: new GL(),
@@ -64,7 +65,7 @@ class GLChart extends Component {
       const { GLContext, baseColor } = this.state;
 
       window.requestAnimationFrame(() => {
-        GLContext.init(this.canvas, data, baseColor);
+        GLContext.init(this.canvas.current, data, baseColor);
       });
     }
   }
@@ -85,7 +86,7 @@ class GLChart extends Component {
             style={style}
           >
             <canvas
-              ref={(canvas) => { this.canvas = canvas; }}
+              ref={this.canvas}
               className={styles.gl}
             />
           </div>
