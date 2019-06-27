@@ -41,7 +41,8 @@ module.exports = {
     new BundleAnalyzerPlugin({
       analyzerMode: env === 'development' ? 'disabled' : 'static',
       openAnalyzer: false,
-      reportFilename: '../report.html',
+      // defaultSizes: 'parsed',
+      reportFilename: '../bundle-sizes.html',
     }),
   ],
   module: {
@@ -58,8 +59,9 @@ module.exports = {
         {
           loader: 'css-loader',
           options: {
-            modules: true,
-            localIdentName: '[name]__[local]___[hash:base64:5]'
+            modules: {
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+            }
           }
         }
       ]
@@ -70,8 +72,9 @@ module.exports = {
         {
           loader: 'css-loader',
           options: {
-            modules: true,
-            localIdentName: '[name]__[local]___[hash:base64:5]'
+            modules: {
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+            }
           }
         },
         {
