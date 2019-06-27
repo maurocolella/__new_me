@@ -56,7 +56,7 @@ jobs:
           fingerprints:
             - "ac:0c:df:3d:5e:97:77:fb:12:de:78:ff:55:70:47:cd"
 
-      - run: ./scripts/publish-reports.sh
+      - run: chmod +x ./scripts/publish-reports.sh && ./scripts/publish-reports.sh
 
 workflows:
   version: 2
