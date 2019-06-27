@@ -6,8 +6,8 @@
     "start": "nodemon index.dev.js --exec babel-node",
     "start:dev": "NODE_ENV=development npm start",
     "test": "jest --coverage",
-    "test:ci": "npm run eslint && npm test",
-    "eslint": "node node_modules/eslint/bin/eslint src --ext .jsx --ext .js src/",
+    "test:ci": "npm run lint && npm test && npm run build",
+    "lint": "node node_modules/eslint/bin/eslint src --ext .jsx --ext .js src/",
     "build": "rimraf dist/* && webpack"
   },
   "jest": {

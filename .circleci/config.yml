@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  build:
+  test:
     docker:
       # specify the version you desire here
       - image: circleci/node:11.4.0
@@ -18,6 +18,8 @@ jobs:
 
     steps:
       - checkout
+      - attach_workspace:
+          at: ~/workflow
 
       # Download and cache dependencies
       - restore_cache:
@@ -34,4 +36,33 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: npm test
+      - run: npm run lint && npm test && npm run build && ls -al reports
+
+      - persist_to_workspace:
+          root: .
+          paths: reports
+  publish:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:11.4.0
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/workflow
+      - add_ssh_keys:
+          fingerprints:
+            - "ac:0c:df:3d:5e:97:77:fb:12:de:78:ff:55:70:47:cd"
+
+      - run: chmod +x ./scripts/publish-reports.sh && ./scripts/publish-reports.sh
+
+workflows:
+  version: 2
+  test_and_publish_report:
+    jobs:
+      - test
+      - publish:
+          requires:
+            - test

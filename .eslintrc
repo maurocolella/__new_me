@@ -7,14 +7,14 @@
   "extends": "airbnb",
   "parser": "babel-eslint",
   "rules": {
-    "import/no-extraneous-dependencies": [false],
+    "import/no-extraneous-dependencies": [ "off" ],
     "jsx-a11y/anchor-is-valid": [ "error", {
       "components": [ "Link" ],
       "specialLink": [ "to", "hrefLeft", "hrefRight" ],
       "aspects": [ "noHref", "invalidHref", "preferButton" ]
     }],
     "import/exports-last": [ "error" ],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [ "warn", { "extensions": [".js", ".jsx"] }]
   },
   "plugins": [
     "react"

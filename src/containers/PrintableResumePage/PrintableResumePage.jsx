@@ -16,7 +16,14 @@ class PrintableResumePage extends Component {
     fetchProfileData: PropTypes.func.isRequired,
     skills: PropTypes.arrayOf(Object).isRequired,
     resumeEntries: PropTypes.arrayOf(Object).isRequired,
-    profile: PropTypes.shape({}).isRequired,
+    profile: PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      email: PropTypes.string,
+      nationality: PropTypes.string,
+      languages: PropTypes.array,
+      certifications: PropTypes.array,
+    }).isRequired,
   };
 
   componentDidMount() {

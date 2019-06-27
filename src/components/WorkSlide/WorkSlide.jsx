@@ -7,7 +7,13 @@ import placeholder from '../../assets/images/placeholder.svg';
 
 class WorkSlide extends PureComponent {
   static propTypes = {
-    entry: PropTypes.shape({}).isRequired,
+    entry: PropTypes.shape({
+      title: PropTypes.string,
+      description: PropTypes.string,
+      images: PropTypes.array,
+      links: PropTypes.array,
+      skills: PropTypes.array,
+    }).isRequired,
     active: PropTypes.bool.isRequired,
   };
 

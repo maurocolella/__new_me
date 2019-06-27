@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -11,10 +12,14 @@ import styles from '../../assets/styles/page.scss';
 
 class ContentPage extends Component {
   static propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
     fetchData: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
-    article: PropTypes.shape({}).isRequired,
-    history: PropTypes.shape({}).isRequired,
+    article: PropTypes.shape({
+      title: PropTypes.string,
+      body: PropTypes.string,
+      updatedAt: PropTypes.string,
+    }).isRequired,
     isNotFound: PropTypes.bool.isRequired,
   };
 

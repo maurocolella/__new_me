@@ -23,7 +23,9 @@ class SkillsPage extends Component {
     skills: PropTypes.arrayOf(Object),
     isLoading: PropTypes.bool.isRequired,
     // eslint-disable-next-line react/no-unused-prop-types
-    selected: PropTypes.shape({}),
+    selected: PropTypes.shape({
+      title: PropTypes.string,
+    }),
   };
 
   static defaultProps = {
