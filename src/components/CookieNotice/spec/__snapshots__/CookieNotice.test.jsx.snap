@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="notice"
+  onTransitionEnd={[Function]}
+>
+  <button
+    className="notice__dismiss"
+    onClick={[Function]}
+    type="button"
+  >
+    <i
+      className="material-icons"
+    >
+      close
+    </i>
+  </button>
+  This website uses Google Analytics in order to collect anonymous usage data. You can find out more in my
+   
+  <a
+    className="notice__link"
+    href="/privacy"
+    onClick={[Function]}
+  >
+    privacy policy.
+  </a>
+   
+  By using this website, you consent to the use of statistical information according to the privacy policy.
+  <button
+    className="notice__accept"
+    onClick={[Function]}
+    type="button"
+  >
+    Accept
+  </button>
+</div>
+`;
