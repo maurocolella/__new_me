@@ -7,7 +7,7 @@
     "start:dev": "NODE_ENV=development npm start",
     "test": "jest --coverage",
     "test:bench": "node utils/lighthouse-runner.js",
-    "test:ci": "npm run lint && jest -w 1 --coverage && npm run build && npm run test:bench",
+    "test:ci": "npm run lint && jest -w 1 --coverage && npm run build",
     "lint": "node node_modules/eslint/bin/eslint src --ext .jsx --ext .js src/",
     "build": "rimraf dist/* && webpack"
   },

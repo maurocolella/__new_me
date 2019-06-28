@@ -36,10 +36,10 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run:
-          name: Start front-end
-          background: true
-          command: npm start
+      # - run:
+      #    name: Start front-end
+      #    background: true
+      #    command: npm start
 
       - run:
           name: Run tests
