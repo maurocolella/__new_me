@@ -14,7 +14,8 @@ function launchChromeAndRunLighthouse(url, opts, config = null) {
 
 const opts = {
   chromeFlags: ['--show-paint-rects'],
-  logLevel: 'verbose',
+  logLevel: 'info',
+  output: 'html',
 };
 
 // Usage:
