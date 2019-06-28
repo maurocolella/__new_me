@@ -2,7 +2,10 @@ const lighthouse = require('lighthouse');
 const chromeLauncher = require('chrome-launcher');
 
 function launchChromeAndRunLighthouse(url, opts, config = null) {
-  return chromeLauncher.launch({ chromeFlags: opts.chromeFlags }).then((chrome) => {
+  return chromeLauncher.launch({
+    chromeFlags: opts.chromeFlags,
+    logLevel: opts.logLevel,
+  }).then((chrome) => {
     // eslint-disable-next-line no-param-reassign
     opts.port = chrome.port;
     return lighthouse(url, opts, config).then(results => chrome.kill().then(() => results.lhr));
@@ -11,6 +14,7 @@ function launchChromeAndRunLighthouse(url, opts, config = null) {
 
 const opts = {
   chromeFlags: ['--show-paint-rects'],
+  logLevel: 'verbose',
 };
 
 // Usage:
