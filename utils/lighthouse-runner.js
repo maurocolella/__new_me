@@ -31,6 +31,7 @@ const opts = {
 
 // Usage:
 launchChromeAndRunLighthouse('http://localhost:3000', opts).then((results) => {
+  console.log(results);
   writeFile('./reports/lighthouse-audit.html', results, function logAuditWrite() {
     console.log('All done');
   });
