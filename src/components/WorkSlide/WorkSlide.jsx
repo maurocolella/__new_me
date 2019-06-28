@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import hash from 'object-hash';
 
 import styles from './WorkSlide.scss';
 import placeholder from '../../assets/images/placeholder.svg';
@@ -20,7 +19,7 @@ class WorkSlide extends PureComponent {
   static handleClick(event) {
     event.preventDefault();
     event.stopPropagation();
-    const urlHash = hash(event.currentTarget.href);
+    const urlHash = btoa(event.currentTarget.href);
     window.open(event.currentTarget.href, urlHash);
   }
 
@@ -59,7 +58,7 @@ class WorkSlide extends PureComponent {
             {skills.map(skill => (
               <li
                 className={styles.skills__skill}
-                key={hash(skill)}
+                key={btoa(skill)}
               >
                 {skill}
               </li>

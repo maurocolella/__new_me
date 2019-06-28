@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import ReactGA from 'react-ga';
 import MobileDetect from 'mobile-detect';
-import hash from 'object-hash';
 import Fade from 'react-reveal/Fade';
 
 import { worksFetchData } from './actions';
@@ -75,7 +74,7 @@ class WorkPage extends Component {
     const clientRect = event.target.getBoundingClientRect();
 
     if (isMobile) {
-      const urlHash = hash(event.currentTarget.href);
+      const urlHash = btoa(event.currentTarget.href);
       window.open(event.currentTarget.href, urlHash);
       return;
     }

@@ -1,7 +1,6 @@
 import React, { Component, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import hash from 'object-hash';
 import moment from 'moment';
 
 import { resumeFetchData } from './actions';
@@ -25,7 +24,7 @@ class ResumePage extends Component {
     super(props);
 
     this.state = {
-      printTarget: hash('mcl_resume_print'),
+      printTarget: btoa('mcl_resume_print'),
     };
   }
 

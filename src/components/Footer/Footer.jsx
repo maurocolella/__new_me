@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import ReactGA from 'react-ga';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import hash from 'object-hash';
 
 import SunIcon from '../Icons/SunIcon';
 import TOCButton from '../TOCButton';
@@ -18,7 +17,7 @@ class Footer extends PureComponent {
     event.preventDefault();
     event.stopPropagation();
     const url = event.currentTarget.getAttribute('href');
-    const urlHash = hash(url);
+    const urlHash = btoa(url);
 
     ReactGA.outboundLink(
       {
