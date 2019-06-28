@@ -19,7 +19,7 @@ function launchChromeAndRunLighthouse(url, opts, config = null) {
   }).then((chrome) => {
     // eslint-disable-next-line no-param-reassign
     opts.port = chrome.port;
-    return lighthouse(url, opts, config).then(results => chrome.kill().then(() => results.lhr));
+    return lighthouse(url, opts, config).then(results => chrome.kill().then(() => results.report));
   });
 }
 
@@ -31,8 +31,7 @@ const opts = {
 
 // Usage:
 launchChromeAndRunLighthouse('http://localhost:3000', opts).then((results) => {
-  console.log(results);
-  writeFile('./reports/lighthouse-audit.html', results.report, function logAuditWrite() {
+  writeFile('./reports/lighthouse-audit.html', results, function logAuditWrite() {
     console.log('All done');
   });
 });
