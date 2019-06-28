@@ -26,7 +26,7 @@ const compiler = webpack(config);
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
-app.use('/icons', express.static(path.join(__dirname, 'icons')));
+app.use('/icons', express.static(path.join(__dirname, 'src/assets/images/icons')));
 
 // app.use(require('morgan')('combined'));
 /* app.use(cookieParser());
