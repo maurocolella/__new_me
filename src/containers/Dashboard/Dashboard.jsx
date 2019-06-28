@@ -49,6 +49,8 @@ class Dashboard extends Component {
           },
           line_linked: {
             color: '#DEDEDE',
+            opacity: 0.6,
+            width: 1,
           },
           move: {
             speed: 0.5,
@@ -67,6 +69,7 @@ class Dashboard extends Component {
             resize: true,
           },
         },
+        retina_detect: true,
       },
     };
   }
