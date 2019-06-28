@@ -27,6 +27,7 @@ const opts = {
   chromeFlags: ['--show-paint-rects'],
   logLevel: 'info',
   output: 'html',
+  emulatedFormFactor: 'desktop',
 };
 
 // Usage:
