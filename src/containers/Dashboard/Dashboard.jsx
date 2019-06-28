@@ -4,7 +4,6 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import Particles from 'react-particles-js';
 import debounce from 'lodash/debounce';
 import { withPerf } from '../../lib/PerfContext';
 
@@ -18,6 +17,7 @@ import Footer from '../../components/Footer';
 
 import styles from './Dashboard.scss';
 
+const Particles = React.lazy(() => import('react-particles-js'));
 const SkillsPage = React.lazy(() => import('../SkillsPage'));
 
 class Dashboard extends Component {
@@ -91,11 +91,13 @@ class Dashboard extends Component {
         {
           !benchIsSlow
           && (
-          <Particles
-            key={key}
-            className={styles.wrapper__particles}
-            params={particleOptions}
-          />
+            <Suspense>
+              <Particles
+                key={key}
+                className={styles.wrapper__particles}
+                params={particleOptions}
+              />
+            </Suspense>
           )
         }
         <Header />
