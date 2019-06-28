@@ -37,17 +37,34 @@ class Dashboard extends Component {
       key: 0,
       particleOptions: {
         particles: {
+          number: {
+            value: 48,
+            density: {
+              enable: true,
+              value_area: 360,
+            },
+          },
           color: {
             value: '#FEFEFE',
-          },
-          number: {
-            value: 96,
           },
           line_linked: {
             color: '#DEDEDE',
           },
           move: {
             speed: 0.5,
+          },
+        },
+        interactivity: {
+          detect_on: 'window',
+          events: {
+            onhover: {
+              enable: true,
+              mode: 'grab',
+            },
+            onclick: {
+              enable: false,
+            },
+            resize: true,
           },
         },
       },

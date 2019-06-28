@@ -76,7 +76,7 @@ class PerfProvider extends Component {
     benchResults.push(fps);
 
     // Calculate results;
-    if (benchResults.length > 150) {
+    if (benchResults.length > 300) {
       const benchAverage = benchResults.reduce((total, amount, index, array) => {
         const val = total + amount;
         if (index === array.length - 1) {
