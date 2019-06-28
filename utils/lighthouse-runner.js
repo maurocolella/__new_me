@@ -1,5 +1,16 @@
+/* eslint-disable prefer-arrow-callback */
 const lighthouse = require('lighthouse');
 const chromeLauncher = require('chrome-launcher');
+
+const fs = require('fs');
+const mkdirp = require('mkdirp');
+const getDirName = require('path').dirname;
+
+function writeFile(path, contents, cb) {
+  mkdirp(getDirName(path), function commitFileWrite(err) {
+    return err ? cb(err) : fs.writeFile(path, contents, cb);
+  });
+}
 
 function launchChromeAndRunLighthouse(url, opts, config = null) {
   return chromeLauncher.launch({
@@ -20,6 +31,7 @@ const opts = {
 
 // Usage:
 launchChromeAndRunLighthouse('http://localhost:3000', opts).then((results) => {
-  // Use results!
-  console.log(results);
+  writeFile('./reports/lighthouse-audit.html', results, function logAuditWrite() {
+    console.log('All done');
+  });
 });
