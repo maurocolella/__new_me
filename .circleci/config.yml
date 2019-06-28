@@ -36,9 +36,14 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: npm start
+      - run:
+          name: Start front-end
+          background: true
+          command: npm start
 
-      - run: npm run test:ci && ls -al reports
+      - run:
+          name: Run tests
+          command: npm run test:ci && ls -al reports
 
       - persist_to_workspace:
           root: .
