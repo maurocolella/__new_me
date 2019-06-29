@@ -28,6 +28,10 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
+      - run:
+          name: Install Graphviz
+          command: sudo apt-get -q -y update && sudo apt-get install -y graphviz
+
       - run: npm install
 
       - save_cache:
@@ -40,9 +44,6 @@ jobs:
       #    name: Start front-end
       #    background: true
       #    command: npm start
-      - run:
-          name: Install Graphviz
-          command: apt-get -q -y update && apt-get install -y graphviz
 
       - run:
           name: Run tests
