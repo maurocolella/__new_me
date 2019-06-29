@@ -7,7 +7,8 @@
     "start:dev": "NODE_ENV=development npm start",
     "test": "jest --coverage",
     "test:bench": "node utils/lighthouse-runner.js",
-    "test:ci": "npm run lint && jest -w 1 --coverage && npm run build",
+    "test:ci": "npm run lint && jest -w 1 --coverage && npm run build && npm run uml:generate",
+    "uml:generate": "node utils/plantuml-runner.js",
     "lint": "node node_modules/eslint/bin/eslint src --ext .jsx --ext .js src/",
     "build": "rimraf dist/* && webpack"
   },
@@ -68,6 +69,7 @@
     "jest": "^24.8.0",
     "lighthouse": "^5.1.0",
     "mkdirp": "^0.5.1",
+    "node-plantuml": "^0.8.1",
     "node-sass": "^4.12.0",
     "node-style-loader": "^0.0.1-alpha",
     "nodemon": "^1.19.1",

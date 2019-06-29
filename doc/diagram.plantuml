@@ -1,0 +1,66 @@
+@startuml
+title https://mauro-colella.com
+
+class Redux << (P,yellow) Provider>> {
+    ~store
+}
+
+class BrowserRouter << (P,yellow) Provider>> {
+    ~router
+}
+
+class App << (C,red) container>> {
+    ~store
+}
+
+class Signup << (C,red) container>> {
+    ~store
+    ==props==
+    # history:object
+    # user:object
+    # onSignup()
+}
+
+class Catalog << (C,red) container>> {
+    ~store
+    ==props==
+    # user:object
+    # cartID:string
+    # departments:array()
+    # departmentDetails:object
+    # categories:array()
+    # categoryDetails:object
+    # onFetchCartID()
+    # onLoadDepartments()
+    # onLoadDepartmentDetails()
+    # onClearDepartmentDetails()
+    # onLoadCategories()
+    # onClearCategories()
+    # onLoadCategoryDetails()
+    # onClearCategoryDetails()
+}
+
+class Footer << (C,blue) component >> {
+
+}
+
+class SearchResults << (C,blue) component>> {
+    ==props==
+    # department:object
+    # departments:array()
+    # category:object
+    # categories:array()
+}
+
+Redux *-- BrowserRouter
+BrowserRouter <..> App
+
+Redux <..> Signup
+
+App *-- Signup
+App o-- Footer
+
+BrowserRouter <.. Signup
+BrowserRouter ..> SearchResults
+
+@enduml

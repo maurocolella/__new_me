@@ -40,6 +40,9 @@ jobs:
       #    name: Start front-end
       #    background: true
       #    command: npm start
+      - run:
+          name: Install Graphviz
+          command: apt-get -q -y update && apt-get install -y graphviz
 
       - run:
           name: Run tests
