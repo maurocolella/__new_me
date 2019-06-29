@@ -1,5 +1,9 @@
-@startuml
-title https://mauro-colella.com
+@startuml name Component Diagram
+skinparam roundcorner 20
+skinparam class {
+    BackgroundColor Beige
+    BorderColor BlanchedAlmond
+}
 
 class Redux << (P,yellow) Provider>> {
     ~store
@@ -9,58 +13,279 @@ class BrowserRouter << (P,yellow) Provider>> {
     ~router
 }
 
-class App << (C,red) container>> {
-    ~store
+class PerfProvider << (P,yellow) Provider>> {
+    ~benchIsSlow
+    ==props==
+    children
 }
 
-class Signup << (C,red) container>> {
+class ScrollProvider << (P,yellow) Provider>> {
+    ~scrollTop
+    ~viewportHeight
+    ~documentHeight
+    ==props==
+    children
+}
+
+class App << (C,red) container>> {
+
+}
+
+class PrintableResumePage << (C,red) container>> {
     ~store
+    ==props==
+    # skills:array()
+    # resumeEntries:array()
+    # profile:object
+    # fetchSkillsData()
+    # fetchResumeData()
+    # fetchProfileData()
+}
+
+class Dashboard << (C,red) container>> {
+    ~benchIsSlow
+}
+
+class SkillsPage << (C,red) container>> {
+    ~store
+    ~router
     ==props==
     # history:object
-    # user:object
-    # onSignup()
+    # topSkills:array()
+    # skills:array()
+    # isLoading:bool
+    # selected:object
+    # fetchData()
 }
 
-class Catalog << (C,red) container>> {
+class WorkPage << (C,red) container>> {
     ~store
     ==props==
-    # user:object
-    # cartID:string
-    # departments:array()
-    # departmentDetails:object
-    # categories:array()
-    # categoryDetails:object
-    # onFetchCartID()
-    # onLoadDepartments()
-    # onLoadDepartmentDetails()
-    # onClearDepartmentDetails()
-    # onLoadCategories()
-    # onClearCategories()
-    # onLoadCategoryDetails()
-    # onClearCategoryDetails()
+    # entries:array()
+    # isLoading:bool
+    # fetchData()
+}
+
+class ResumePage << (C,red) container>> {
+    ~store
+    ==props==
+    # entries:array()
+    # isLoading:bool
+    # fetchData()
+}
+
+class WorkSlider << (C,red) container>> {
+    ==props==
+    # sourceRect:object
+    # show:bool
+    # entries:array()
+    # onClose()
+}
+
+class ContentPage << (C,red) container>> {
+    ~store
+    ~router
+    ==props==
+    # history:object
+    # article:object
+    # isLoading:bool
+    # isNotFound:bool
+    # fetchData()
+}
+
+class NotFoundPage << (C,red) container>> {
+
+}
+
+class StaticResumeEntry << (C,blue) component >> {
+    ==props==
+    # title:string
+    # startDate:string
+    # endDate:string
+    # description:text
+    # tasks:array()
+}
+
+class Navbar << (C,blue) component >> {
+    ~scrollTop
+}
+
+class NavItem << (C,blue) component >> {
+    ==props==
+    # children:object
+    # activeClassName:string
+    # activeStyle:object
+    # className:string
+    # hoverClassName:string
+    # to:string
+}
+
+class ProgressIndicator << (C,blue) component >> {
+    ~scrollTop
+    ~documentHeight
+    ~viewportHeight
+}
+
+class Loader << (C,blue) component >> {
+    ==props==
+    # className:string
+}
+
+class Header << (C,blue) component >> {
+
+}
+
+class SunIcon << (C,blue) component >> {
+    ==props==
+    # className:string
+}
+
+class Logo << (C,blue) component >> {
+    ==props==
+    # width:number
+}
+
+class OracleAssociateBadge << (C,blue) component >> {
+
+}
+
+class GLChart << (C,blue) component >> {
+    ==props==
+    # data:array()
+    # className:string
+    # style:object
+}
+
+class WorkItem << (C,blue) component >> {
+    ==props==
+    # id:string
+    # title:string
+    # link:string
+    # cover:string
+    # onClick()
+}
+
+class WorkSlide << (C,blue) component >> {
+    ==props==
+    # entry:object
+    # active:bool
+}
+
+class ResumeEntry << (C,blue) component >> {
+    ==props==
+    # title:string
+    # startDate:string
+    # endDate:string
+    # description:text
+    # tasks:array()
 }
 
 class Footer << (C,blue) component >> {
 
 }
 
-class SearchResults << (C,blue) component>> {
+class TOCButton << (C,blue) component >> {
+    ~scrollTop
+}
+
+class TwitterIcon << (C,blue) component >> {
     ==props==
-    # department:object
-    # departments:array()
-    # category:object
-    # categories:array()
+    # className:string
+}
+
+class FacebookIcon << (C,blue) component >> {
+    ==props==
+    # className:string
+}
+
+class LinkedinIcon << (C,blue) component >> {
+    ==props==
+    # className:string
+    # style:object
+}
+
+class CookieNotice << (C,blue) component >> {
+
+}
+
+class ScrollUpIcon << (C,blue) component >> {
+
+}
+
+class GL << (C,white) class >> {
+
 }
 
 Redux *-- BrowserRouter
-BrowserRouter <..> App
+BrowserRouter *-- App
+App *-- PerfProvider
+PerfProvider *-- ScrollProvider
 
-Redux <..> Signup
+Redux <..> PrintableResumePage
+Redux <..> SkillsPage
+Redux <..> WorkPage
+Redux <..> ResumePage
+Redux <..> ContentPage
 
-App *-- Signup
-App o-- Footer
+App *-- PrintableResumePage
 
-BrowserRouter <.. Signup
-BrowserRouter ..> SearchResults
+PerfProvider ..> Dashboard
+
+ScrollProvider ..> Navbar
+ScrollProvider ..> ProgressIndicator
+ScrollProvider o-- Loader
+ScrollProvider *-- Dashboard
+ScrollProvider ..> TOCButton
+
+PrintableResumePage o-- StaticResumeEntry
+
+Navbar o-- NavItem
+Navbar o-- ProgressIndicator
+
+Dashboard o-- Loader
+Dashboard o-- Header
+Dashboard *-- SkillsPage
+Dashboard *-- WorkPage
+Dashboard *-- ResumePage
+Dashboard *-- ContentPage
+Dashboard *-- NotFoundPage
+Dashboard o-- Footer
+Dashboard o-- CookieNotice
+
+Header o-- SunIcon
+Header o-- Logo
+
+SkillsPage o-- Loader
+SkillsPage o-- OracleAssociateBadge
+SkillsPage o-- GLChart
+
+GLChart o-- Loader
+GLChart <|-- GL
+
+WorkPage o-- Loader
+WorkPage o-- WorkItem
+WorkPage *-- WorkSlider
+
+ResumePage o-- Loader
+ResumePage o-- OracleAssociateBadge
+ResumePage o-- ResumeEntry
+
+WorkSlider o-- WorkSlide
+
+ContentPage o-- Loader
+
+Footer o-- SunIcon
+Footer o-- TOCButton
+Footer o-- TwitterIcon
+Footer o-- FacebookIcon
+Footer o-- LinkedinIcon
+
+TOCButton o-- ScrollUpIcon
+
+BrowserRouter ..> PrintableResumePage
+BrowserRouter <.. NavItem
+BrowserRouter <..> SkillsPage
+BrowserRouter <.. ContentPage
+BrowserRouter <.. NotFoundPage
 
 @enduml

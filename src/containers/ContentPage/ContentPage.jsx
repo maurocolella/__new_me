@@ -13,14 +13,14 @@ import styles from '../../assets/styles/page.scss';
 class ContentPage extends Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
-    fetchData: PropTypes.func.isRequired,
-    isLoading: PropTypes.bool.isRequired,
     article: PropTypes.shape({
       title: PropTypes.string,
       body: PropTypes.string,
       updatedAt: PropTypes.string,
     }).isRequired,
+    isLoading: PropTypes.bool.isRequired,
     isNotFound: PropTypes.bool.isRequired,
+    fetchData: PropTypes.func.isRequired,
   };
 
   componentDidMount() {

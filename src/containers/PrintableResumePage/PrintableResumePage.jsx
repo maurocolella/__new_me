@@ -11,9 +11,6 @@ import StaticResumeEntry from '../../components/StaticResumeEntry';
 
 class PrintableResumePage extends Component {
   static propTypes = {
-    fetchSkillsData: PropTypes.func.isRequired,
-    fetchResumeData: PropTypes.func.isRequired,
-    fetchProfileData: PropTypes.func.isRequired,
     skills: PropTypes.arrayOf(Object).isRequired,
     resumeEntries: PropTypes.arrayOf(Object).isRequired,
     profile: PropTypes.shape({
@@ -24,6 +21,9 @@ class PrintableResumePage extends Component {
       languages: PropTypes.array,
       certifications: PropTypes.array,
     }).isRequired,
+    fetchSkillsData: PropTypes.func.isRequired,
+    fetchResumeData: PropTypes.func.isRequired,
+    fetchProfileData: PropTypes.func.isRequired,
   };
 
   componentDidMount() {

@@ -43,13 +43,13 @@ function App() {
           <Route>
             <PerfProvider>
               <ScrollProvider>
-                <span style={{ width: '100%' }}>
+                <>
                   <Navbar />
                   <Suspense fallback={<Loader />}>
                     <Dashboard />
                   </Suspense>
                   <CookieNotice />
-                </span>
+                </>
               </ScrollProvider>
             </PerfProvider>
           </Route>

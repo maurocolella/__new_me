@@ -1,11 +1,17 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import NavItem from '../NavItem';
 import ProgressIndicator from '../ProgressIndicator';
+import { withScrolling } from '../../lib/ScrollContext';
 
 import styles from './Navbar.scss';
 
 class Navbar extends PureComponent {
+  static propTypes = {
+    scrollTop: PropTypes.number.isRequired,
+  };
+
   static getComputedStyle(el, prop) {
     const { getComputedStyle } = window;
 
@@ -46,8 +52,8 @@ class Navbar extends PureComponent {
 
   componentDidMount() {
     const navActiveRef = this.navbar.current;
-    window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('resize', this.handleResize);
+    window.addEventListener('scroll', this.handleScroll);
     this.setState({
       top: parseInt(this.constructor.getComputedStyle(this.navbar.current, 'top'), 10),
       indicatorWidth: (navActiveRef && navActiveRef.offsetWidth) / 4,
@@ -60,9 +66,9 @@ class Navbar extends PureComponent {
   }
 
   handleScroll = () => {
+    const { scrollTop } = this.props;
     const { sticky, top } = this.state;
 
-    const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
     const clientRect = this.navbar.current.getBoundingClientRect();
     const isOffScreen = scrollTop > top && clientRect.top < 0;
 
@@ -201,4 +207,4 @@ class Navbar extends PureComponent {
   }
 }
 
-export default Navbar;
+export default withScrolling(Navbar);

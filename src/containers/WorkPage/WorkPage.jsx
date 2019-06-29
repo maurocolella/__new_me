@@ -19,9 +19,9 @@ import styles from './WorkPage.scss';
 
 class WorkPage extends Component {
   static propTypes = {
-    fetchData: PropTypes.func.isRequired,
-    isLoading: PropTypes.bool.isRequired,
     entries: PropTypes.arrayOf(Object).isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    fetchData: PropTypes.func.isRequired,
   };
 
   constructor(props) {

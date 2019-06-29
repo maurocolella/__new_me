@@ -18,7 +18,6 @@ const GLChart = React.lazy(() => import('../../components/GLChart'));
 class SkillsPage extends Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
-    fetchData: PropTypes.func.isRequired,
     topSkills: PropTypes.arrayOf(Object),
     skills: PropTypes.arrayOf(Object),
     isLoading: PropTypes.bool.isRequired,
@@ -26,6 +25,7 @@ class SkillsPage extends Component {
     selected: PropTypes.shape({
       title: PropTypes.string,
     }),
+    fetchData: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
