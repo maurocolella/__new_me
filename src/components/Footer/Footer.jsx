@@ -122,6 +122,17 @@ class Footer extends PureComponent {
               <li className={styles.footnotes__note}>
                 <small>
                   <a
+                    href="https://maurocolella.github.io/"
+                    className={styles.footnotes__link}
+                    onClick={this.constructor.popup}
+                  >
+                    metrics
+                  </a>
+                </small>
+              </li>
+              <li className={styles.footnotes__note}>
+                <small>
+                  <a
                     href="https://api.mauro-colella.com"
                     className={styles.footnotes__link}
                     onClick={this.constructor.popup}
