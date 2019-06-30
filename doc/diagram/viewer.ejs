@@ -1,0 +1,40 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Component Diagram Viewer</title>
+  <meta name="description" content="Component Diagram Viewer">
+  <meta name="author" content="SitePoint">
+  <style>
+    * {
+      box-sizing:   border-box;
+      margin:       0;
+      padding:      0;
+    }
+
+    svg {
+      max-width:        100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id='root'>
+    <noscript>
+      This application requires javascript.
+    </noscript>
+    <div id="svg-viewer">
+      <%-svg%>
+    </div>
+  </div>
+  <script src="svg-pan-zoom.js"></script>
+  <script>
+    var svgElement = document.getElementsByTagName('svg')[0];
+    var panZoomControl = svgPanZoom(svgElement, {
+      zoomScaleSensitivity: 0.4,
+    });
+  </script>
+</body>
+</html>
