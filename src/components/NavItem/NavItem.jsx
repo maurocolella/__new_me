@@ -48,10 +48,8 @@ class NavItem extends PureComponent {
     this.setState({
       hover: false,
     });
-    window.scrollTo({
-      top: 0,
-      left: 0,
-    });
+    window.scrollTo(0, 0);
+    window.dispatchEvent(new CustomEvent('scroll'));
   }
 
   render() {

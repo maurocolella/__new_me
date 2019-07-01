@@ -53,7 +53,8 @@ class Navbar extends PureComponent {
   componentDidMount() {
     const navActiveRef = this.navbar.current;
     window.addEventListener('resize', this.handleResize);
-    window.addEventListener('scroll', this.handleScroll);
+    this.timer = global.setInterval(this.handleScroll, 17);
+
     this.setState({
       top: parseInt(this.constructor.getComputedStyle(this.navbar.current, 'top'), 10),
       indicatorWidth: (navActiveRef && navActiveRef.offsetWidth) / 4,
@@ -61,8 +62,8 @@ class Navbar extends PureComponent {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
     window.removeEventListener('resize', this.handleResize);
+    clearInterval(this.timer);
   }
 
   handleScroll = () => {
