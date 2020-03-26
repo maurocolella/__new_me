@@ -139,7 +139,7 @@ class WorkPage extends Component {
             </header>
             <article>
               <p>
-              A selection of recent works.
+                A selection of recent works.
               </p>
               <ul className={styles.grid}>
                 {entries.map(entry => (

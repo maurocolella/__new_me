@@ -21,15 +21,15 @@ const Particles = React.lazy(() => import('react-particles-js'));
 const SkillsPage = React.lazy(() => import('../SkillsPage'));
 
 class Dashboard extends Component {
-  static propTypes = {
-    benchIsSlow: PropTypes.bool.isRequired,
-  };
-
   handleResize = debounce(() => {
     this.setState({
       key: (Math.random() * 10000).toString(),
     });
   }, 200);
+
+  static propTypes = {
+    benchIsSlow: PropTypes.bool.isRequired,
+  };
 
   constructor(props) {
     super(props);

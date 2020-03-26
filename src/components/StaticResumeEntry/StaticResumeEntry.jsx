@@ -29,7 +29,7 @@ class StaticResumeEntry extends PureComponent {
           <span>
             {moment(startDate).format(dateFormat)}
             {' '}
--
+            -
             {moment(endDate).format(dateFormat)}
           </span>
           <span style={{ textAlign: 'right' }}>
