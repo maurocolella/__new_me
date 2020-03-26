@@ -15,7 +15,7 @@ function NotFoundPage() {
           {' '}
           <Link to="/about">homepage</Link>
           {' '}
-and try again.
+          and try again.
         </p>
       </article>
     </main>

@@ -16,24 +16,6 @@ import styles from '../../assets/styles/page.scss';
 const GLChart = React.lazy(() => import('../../components/GLChart'));
 
 class SkillsPage extends Component {
-  static propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
-    topSkills: PropTypes.arrayOf(Object),
-    skills: PropTypes.arrayOf(Object),
-    isLoading: PropTypes.bool.isRequired,
-    // eslint-disable-next-line react/no-unused-prop-types
-    selected: PropTypes.shape({
-      title: PropTypes.string,
-    }),
-    fetchData: PropTypes.func.isRequired,
-  };
-
-  static defaultProps = {
-    topSkills: [],
-    skills: [],
-    selected: null,
-  };
-
   static hasActiveRelation(focusSkill, skill) {
     if (focusSkill && focusSkill.relationships) {
       const { relationships } = focusSkill;
@@ -52,6 +34,24 @@ class SkillsPage extends Component {
 
     return false;
   }
+
+  static propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
+    topSkills: PropTypes.arrayOf(Object),
+    skills: PropTypes.arrayOf(Object),
+    isLoading: PropTypes.bool.isRequired,
+    // eslint-disable-next-line react/no-unused-prop-types
+    selected: PropTypes.shape({
+      title: PropTypes.string,
+    }),
+    fetchData: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    topSkills: [],
+    skills: [],
+    selected: null,
+  };
 
   constructor(props) {
     super(props);

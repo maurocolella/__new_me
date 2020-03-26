@@ -5,6 +5,13 @@ import styles from './WorkSlide.scss';
 import placeholder from '../../assets/images/placeholder.svg';
 
 class WorkSlide extends PureComponent {
+  static handleClick(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const urlHash = btoa(event.currentTarget.href);
+    window.open(event.currentTarget.href, urlHash);
+  }
+
   static propTypes = {
     entry: PropTypes.shape({
       title: PropTypes.string,
@@ -15,13 +22,6 @@ class WorkSlide extends PureComponent {
     }).isRequired,
     active: PropTypes.bool.isRequired,
   };
-
-  static handleClick(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const urlHash = btoa(event.currentTarget.href);
-    window.open(event.currentTarget.href, urlHash);
-  }
 
   render() {
     const { entry, active } = this.props;
