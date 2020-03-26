@@ -1,26 +1,26 @@
 const path = require('path');
 const webpack = require('webpack');
 const sharpLoader = require('responsive-loader/sharp');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
-const env = process.env['NODE_ENV'];
+const env = process.env.NODE_ENV;
 
 module.exports = {
   mode: env,
   devtool: env === 'development' ? 'cheap-module-eval-source-map' : 'hidden-source-map',
   entry: {
-    client : [
+    client: [
       '@babel/polyfill',
       'react-hot-loader/patch',
       'webpack-hot-middleware/client',
-      './src/index.client.jsx'
+      './src/index.client.jsx',
     ],
     /* server : [
       'babel-polyfill',
       'react-hot-loader/patch',
       'webpack-hot-middleware/client',
       './src/index.server.jsx'
-    ],*/
+    ], */
   },
   target: 'web',
   optimization: {
@@ -33,7 +33,7 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
     chunkFilename: '[name].bundle.js',
-    publicPath: '/'
+    publicPath: '/',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -48,9 +48,9 @@ module.exports = {
     rules: [{
       test: /\.(js|jsx)$/,
       use: [
-        { loader: 'babel-loader' }
+        { loader: 'babel-loader' },
       ],
-      include: path.join(__dirname, 'src')
+      include: path.join(__dirname, 'src'),
     }, {
       test: /\.css$/,
       use: [
@@ -60,10 +60,10 @@ module.exports = {
           options: {
             modules: {
               localIdentName: '[name]__[local]___[hash:base64:5]',
-            }
-          }
-        }
-      ]
+            },
+          },
+        },
+      ],
     }, {
       test: /\.scss$/,
       use: [
@@ -73,22 +73,24 @@ module.exports = {
           options: {
             modules: {
               localIdentName: '[name]__[local]___[hash:base64:5]',
-            }
-          }
+            },
+          },
         },
         {
           loader: 'sass-loader',
           options: {
-            outputStyle: 'expanded'
-          }
-        }
-      ]
+            sassOptions: {
+              outputStyle: 'expanded',
+            },
+          },
+        },
+      ],
     }, {
       test: /\.(jpe?g|png)$/i,
       loader: 'responsive-loader',
       options: {
-          adapter: sharpLoader,
-      }
+        adapter: sharpLoader,
+      },
     }, {
       test: /\.(svg)$/,
       use: [
@@ -96,9 +98,9 @@ module.exports = {
           loader: 'url-loader',
           options: {
             limit: 25000,
-          }
-        }
-      ]
-    }]
-  }
+          },
+        },
+      ],
+    }],
+  },
 };
