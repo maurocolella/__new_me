@@ -42,16 +42,20 @@ class TOCButton extends PureComponent {
   handleScrollToTop = (event) => {
     event.preventDefault();
 
-    ReactGA.event({
-      category: 'Click',
-      action: 'TOC',
-      label: 'Top of Content',
-    });
-
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: 'smooth',
+    });
+
+    const cookiesAccepted = localStorage ? localStorage.getItem('cookiesAccepted') : false;
+    if (!cookiesAccepted) {
+      return;
+    }
+    ReactGA.event({
+      category: 'Click',
+      action: 'TOC',
+      label: 'Top of Content',
     });
   }
 

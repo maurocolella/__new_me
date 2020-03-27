@@ -19,6 +19,10 @@ class Footer extends PureComponent {
     const url = event.currentTarget.getAttribute('href');
     const urlHash = btoa(url);
 
+    const cookiesAccepted = localStorage ? localStorage.getItem('cookiesAccepted') : false;
+    if (!cookiesAccepted) {
+      return;
+    }
     ReactGA.outboundLink(
       {
         label: url,
