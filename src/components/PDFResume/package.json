@@ -1,0 +1,6 @@
+{
+  "name": "PDFResume",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./PDFResume.jsx"
+}

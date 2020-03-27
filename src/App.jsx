@@ -16,7 +16,6 @@ import './assets/styles/typeplate.scss';
 import styles from './App.scss';
 
 import Loader from './components/Loader';
-import PrintableResumePage from './containers/PrintableResumePage';
 import Navbar from './components/Navbar';
 import CookieNotice from './components/CookieNotice';
 
@@ -39,7 +38,6 @@ function App() {
     <Router history={history}>
       <div className={styles.app}>
         <Switch>
-          <Route exact path="/resume/print" component={PrintableResumePage} />
           <Route>
             <PerfProvider>
               <ScrollProvider>
