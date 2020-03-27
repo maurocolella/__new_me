@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import ReactGA from 'react-ga';
-import OracleAssociateImg from '../../../assets/images/oracle-certified-associate-java-se-8-programmer.png';
+import JSNADImg from '../../../assets/images/jsnad-openjs-node-js-application-developer.png';
 
 import styles from '../styles.scss';
 
-class OracleAssociateBadge extends PureComponent {
+class JSNADBadge extends PureComponent {
   popup = (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -28,12 +28,12 @@ class OracleAssociateBadge extends PureComponent {
   render() {
     return (
       <a
-        href="https://www.youracclaim.com/badges/82b8a687-2958-4e07-b34d-9fae29eb9a62/public_url"
+        href="https://www.youracclaim.com/badges/7a04bd6f-3013-47b9-9cd9-96c8573fc86e/public_url"
         onClick={this.popup}
       >
         <img
-          src={OracleAssociateImg}
-          alt="Oracle Certified Associate, Java SE 8 Programmer"
+          src={JSNADImg}
+          alt="JSNAD: OpenJS Node.js Application Developer"
           className={styles.badge}
         />
       </a>
@@ -41,4 +41,4 @@ class OracleAssociateBadge extends PureComponent {
   }
 }
 
-export default OracleAssociateBadge;
+export default JSNADBadge;

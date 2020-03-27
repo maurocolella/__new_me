@@ -1,0 +1,6 @@
+{
+  "name": "AWSArchitectAssociateBadge",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./AWSArchitectAssociateBadge.jsx"
+}
