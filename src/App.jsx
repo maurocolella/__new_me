@@ -29,6 +29,10 @@ ReactGA.initialize('UA-9138282-16');
 ReactGA.set({ anonymizeIp: true });
 
 history.listen((location) => {
+  const cookiesAccepted = localStorage ? localStorage.getItem('cookiesAccepted') : false;
+  if (!cookiesAccepted) {
+    return;
+  }
   ReactGA.set({ page: location.pathname });
   ReactGA.pageview(location.pathname);
 });

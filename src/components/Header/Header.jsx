@@ -14,14 +14,18 @@ class Header extends PureComponent {
     event.preventDefault();
     const target = event.target.getAttribute('href');
 
+    document.querySelector(target).scrollIntoView({
+      behavior: 'smooth',
+    });
+
+    const cookiesAccepted = localStorage ? localStorage.getItem('cookiesAccepted') : false;
+    if (!cookiesAccepted) {
+      return;
+    }
     ReactGA.event({
       category: 'Click',
       action: 'Header',
       label: 'Hire Me',
-    });
-
-    document.querySelector(target).scrollIntoView({
-      behavior: 'smooth',
     });
   }
 
