@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import ReactGA from 'react-ga';
-import OracleAssociateImg from '../../../assets/images/oracle-certified-associate-java-se-8-programmer.png';
+import AWSDeveloperAssociateImg from '../../../assets/images/AWS-Certified_Developer_Associate.png';
 
 import styles from '../styles.scss';
 
-class OracleAssociateBadge extends PureComponent {
+class AWSDeveloperAssociateBadge extends PureComponent {
   popup = (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -28,12 +28,12 @@ class OracleAssociateBadge extends PureComponent {
   render() {
     return (
       <a
-        href="https://www.youracclaim.com/badges/82b8a687-2958-4e07-b34d-9fae29eb9a62/public_url"
+        href="https://www.certmetrics.com/amazon/public/badge.aspx?i=2&t=c&d=2019-08-16&ci=AWS00594118"
         onClick={this.popup}
       >
         <img
-          src={OracleAssociateImg}
-          alt="Oracle Certified Associate, Java SE 8 Programmer"
+          src={AWSDeveloperAssociateImg}
+          alt="AWS Certified Developer Associate"
           className={styles.badge}
         />
       </a>
@@ -41,4 +41,4 @@ class OracleAssociateBadge extends PureComponent {
   }
 }
 
-export default OracleAssociateBadge;
+export default AWSDeveloperAssociateBadge;

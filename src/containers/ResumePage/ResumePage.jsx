@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
+import BadgeContainer from '../BadgeContainer';
 import PDFResume from '../../components/PDFResume';
 import resume from '../../components/PDFResume/Mauro Colella_Resume_2020.pdf';
-import OracleAssociateBadge from '../../components/Badges/OracleAssociateBadge';
 
 import globalStyles from '../../assets/styles/page.scss';
 import styles from './ResumePage.scss';
@@ -50,10 +50,11 @@ class ResumePage extends Component {
           </aside>
         </header>
         <article className={globalStyles.article}>
-          <h5>Highlights</h5>
-          <OracleAssociateBadge />
+          <h5>Achievements</h5>
+          <BadgeContainer />
         </article>
         <article style={{ width: '100%' }}>
+          <h5>Outline</h5>
           <PDFResume />
           <aside className={`${styles.toolbox} ${styles['toolbox-footer']}`}>
             <a
