@@ -10,7 +10,7 @@
     "test:ci": "npm run lint && jest -w 1 --coverage && npm run build && npm run uml:generate",
     "uml:generate": "node utils/plantuml-runner.js",
     "lint": "node node_modules/eslint/bin/eslint src --ext .jsx --ext .js src/",
-    "build": "rimraf dist/* && webpack && cp public/index.html dist/index.html"
+    "build": "rimraf dist/* && NODE_ENV=production && webpack && cp public/index.html dist/index.html"
   },
   "jest": {
     "moduleNameMapper": {

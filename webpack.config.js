@@ -7,7 +7,7 @@ const env = process.env.NODE_ENV;
 
 module.exports = {
   mode: env,
-  devtool: env === 'development' ? 'cheap-module-eval-source-map' : 'hidden-source-map',
+  devtool: env === 'development' ? 'eval-source-map' : 'nosources-source-map',
   entry: {
     client: [
       '@babel/polyfill',
