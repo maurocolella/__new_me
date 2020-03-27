@@ -12,7 +12,43 @@ class Navbar extends PureComponent {
     scrollTop: PropTypes.number.isRequired,
   };
 
-  static getComputedStyle(el, prop) {
+  constructor(props) {
+    super(props);
+    this.navbar = React.createRef();
+    this.navmenu = React.createRef();
+
+    this.state = {
+      sticky: false,
+      top: 0,
+      indicatorLeft: 0,
+      indicatorWidth: 0,
+      indicatorVisible: false,
+      links: [
+        { slug: 'about', icon: 'person' },
+        { slug: 'resume', icon: 'reorder' },
+      ],
+    };
+  }
+
+  componentDidMount() {
+    const { links } = this.state;
+    const navRef = this.navbar.current;
+    const navMenuRef = this.navmenu.current;
+    window.addEventListener('resize', this.handleResize);
+    this.handleScroll();
+
+    this.setState({
+      top: parseInt(this.getComputedStyle(navRef, 'top'), 10),
+      indicatorWidth: (navMenuRef && navMenuRef.offsetWidth) / links.length,
+    });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+    // clearInterval(this.timer);
+  }
+
+  getComputedStyle = (el, prop) => {
     const { getComputedStyle } = window;
 
     // In one fell swoop
@@ -36,41 +72,6 @@ class Navbar extends PureComponent {
     ];
   }
 
-  constructor(props) {
-    super(props);
-    this.navbar = React.createRef();
-    this.posIndicator = React.createRef();
-
-    this.state = {
-      sticky: false,
-      top: 0,
-      indicatorLeft: 0,
-      indicatorWidth: 0,
-      indicatorVisible: false,
-      links: [
-        { slug: 'about', icon: 'person' },
-        { slug: 'resume', icon: 'reorder' },
-      ],
-    };
-  }
-
-  componentDidMount() {
-    const { links } = this.state;
-    const navActiveRef = this.navbar.current;
-    window.addEventListener('resize', this.handleResize);
-    this.timer = global.setInterval(this.handleScroll, 17);
-
-    this.setState({
-      top: parseInt(this.constructor.getComputedStyle(this.navbar.current, 'top'), 10),
-      indicatorWidth: (navActiveRef && navActiveRef.offsetWidth) / links.length,
-    });
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
-    clearInterval(this.timer);
-  }
-
   handleScroll = () => {
     const { scrollTop } = this.props;
     const { sticky, top } = this.state;
@@ -82,7 +83,6 @@ class Navbar extends PureComponent {
       this.setState({
         sticky: false,
       });
-      return;
     }
 
     if (isOffScreen && !sticky) {
@@ -90,22 +90,23 @@ class Navbar extends PureComponent {
         sticky: true,
       });
     }
+    requestAnimationFrame(this.handleScroll);
   }
 
   handleResize = () => {
     const { links } = this.state;
-    const navActiveRef = this.navbar.current;
+    const navMenuRef = this.navmenu.current;
     this.setState({
-      indicatorWidth: (navActiveRef && navActiveRef.offsetWidth) / links.length,
+      indicatorWidth: (navMenuRef && navMenuRef.offsetWidth) / links.length,
     });
   }
 
   handleMouseOver = (event) => {
     const { links } = this.state;
-    const navActiveRef = this.navbar.current;
+    const navMenuRef = this.navmenu.current;
     this.setState({
       indicatorLeft: event.currentTarget.offsetLeft,
-      indicatorWidth: (navActiveRef && navActiveRef.offsetWidth) / links.length,
+      indicatorWidth: (navMenuRef && navMenuRef.offsetWidth) / links.length,
       indicatorVisible: true,
     });
   }
@@ -130,9 +131,10 @@ class Navbar extends PureComponent {
         className={`${styles.navbar}${sticky ? ` ${styles['navbar--sticky']}` : ''}`}
         onMouseLeave={this.handleMouseOut}
         onBlur={this.handleMouseOut}
+        ref={this.navbar}
       >
         <ProgressIndicator />
-        <ul className={`${styles.nav}${sticky ? ` ${styles['nav--sticky']}` : ''}`} ref={this.navbar}>
+        <ul className={`${styles.nav}${sticky ? ` ${styles['nav--sticky']}` : ''}`} ref={this.navmenu}>
           {links.map(link => (
             <li
               className={styles.nav__item}
