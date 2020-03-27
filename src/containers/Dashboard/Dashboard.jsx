@@ -10,7 +10,6 @@ import { withPerf } from '../../lib/PerfContext';
 import Loader from '../../components/Loader';
 import Header from '../../components/Header';
 import ResumePage from '../ResumePage';
-import WorkPage from '../WorkPage';
 import ContentPage from '../ContentPage';
 import NotFoundPage from '../NotFoundPage';
 import Footer from '../../components/Footer';
@@ -18,7 +17,6 @@ import Footer from '../../components/Footer';
 import styles from './Dashboard.scss';
 
 const Particles = React.lazy(() => import('react-particles-js'));
-const SkillsPage = React.lazy(() => import('../SkillsPage'));
 
 class Dashboard extends Component {
   handleResize = debounce(() => {
@@ -104,8 +102,6 @@ class Dashboard extends Component {
         <section className={styles.wrapper__content}>
           <Suspense fallback={<Loader />}>
             <Switch>
-              <Route exact path="/skills/:selected?" component={SkillsPage} />
-              <Route exact path="/work" component={WorkPage} />
               <Route exact path="/resume" component={ResumePage} />
               <Route exact path="/:slug?" component={ContentPage} />
               <Route component={NotFoundPage} />

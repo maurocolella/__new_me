@@ -47,17 +47,22 @@ class Navbar extends PureComponent {
       indicatorLeft: 0,
       indicatorWidth: 0,
       indicatorVisible: false,
+      links: [
+        { slug: 'about', icon: 'person' },
+        { slug: 'resume', icon: 'reorder' },
+      ],
     };
   }
 
   componentDidMount() {
+    const { links } = this.state;
     const navActiveRef = this.navbar.current;
     window.addEventListener('resize', this.handleResize);
     this.timer = global.setInterval(this.handleScroll, 17);
 
     this.setState({
       top: parseInt(this.constructor.getComputedStyle(this.navbar.current, 'top'), 10),
-      indicatorWidth: (navActiveRef && navActiveRef.offsetWidth) / 4,
+      indicatorWidth: (navActiveRef && navActiveRef.offsetWidth) / links.length,
     });
   }
 
@@ -88,17 +93,19 @@ class Navbar extends PureComponent {
   }
 
   handleResize = () => {
+    const { links } = this.state;
     const navActiveRef = this.navbar.current;
     this.setState({
-      indicatorWidth: (navActiveRef && navActiveRef.offsetWidth) / 4,
+      indicatorWidth: (navActiveRef && navActiveRef.offsetWidth) / links.length,
     });
   }
 
   handleMouseOver = (event) => {
+    const { links } = this.state;
     const navActiveRef = this.navbar.current;
     this.setState({
       indicatorLeft: event.currentTarget.offsetLeft,
-      indicatorWidth: (navActiveRef && navActiveRef.offsetWidth) / 4,
+      indicatorWidth: (navActiveRef && navActiveRef.offsetWidth) / links.length,
       indicatorVisible: true,
     });
   }
@@ -115,85 +122,36 @@ class Navbar extends PureComponent {
       indicatorLeft,
       indicatorWidth,
       indicatorVisible,
+      links,
     } = this.state;
 
     return (
       <nav
         className={`${styles.navbar}${sticky ? ` ${styles['navbar--sticky']}` : ''}`}
-        ref={this.navbar}
         onMouseLeave={this.handleMouseOut}
         onBlur={this.handleMouseOut}
       >
         <ProgressIndicator />
-        <ul className={`${styles.nav}${sticky ? ` ${styles['nav--sticky']}` : ''}`}>
-          <li
-            className={styles.nav__item}
-            onMouseOver={this.handleMouseOver}
-            onFocus={this.handleMouseOver}
-          >
-            <NavItem
-              activeClassName={styles['nav__link--active']}
-              className={`${styles.nav__link}${sticky ? ` ${styles['nav__link--sticky']}` : ''}`}
-              to="/about"
-              hoverClassName={styles['nav__link--hover']}
+        <ul className={`${styles.nav}${sticky ? ` ${styles['nav--sticky']}` : ''}`} ref={this.navbar}>
+          {links.map(link => (
+            <li
+              className={styles.nav__item}
+              onMouseOver={this.handleMouseOver}
+              onFocus={this.handleMouseOver}
             >
-              <i
-                className={`material-icons ${styles.nav__icon} ${styles['nav__icon--person']}`}
-              />
-              <span className={styles.nav__label}>About</span>
-            </NavItem>
-          </li>
-          <li
-            className={styles.nav__item}
-            onMouseOver={this.handleMouseOver}
-            onFocus={this.handleMouseOver}
-          >
-            <NavItem
-              activeClassName={styles['nav__link--active']}
-              className={`${styles.nav__link}${sticky ? ` ${styles['nav__link--sticky']}` : ''}`}
-              to="/skills"
-              hoverClassName={styles['nav__link--hover']}
-            >
-              <i
-                className={`material-icons ${styles.nav__icon} ${styles['nav__icon--phonelink']}`}
-              />
-              <span className={styles.nav__label}>Skills</span>
-            </NavItem>
-          </li>
-          <li
-            className={styles.nav__item}
-            onMouseOver={this.handleMouseOver}
-            onFocus={this.handleMouseOver}
-          >
-            <NavItem
-              activeClassName={styles['nav__link--active']}
-              className={`${styles.nav__link}${sticky ? ` ${styles['nav__link--sticky']}` : ''}`}
-              to="/work"
-              hoverClassName={styles['nav__link--hover']}
-            >
-              <i
-                className={`material-icons ${styles.nav__icon} ${styles['nav__icon--business']}`}
-              />
-              <span className={styles.nav__label}>Work</span>
-            </NavItem>
-          </li>
-          <li
-            className={styles.nav__item}
-            onMouseOver={this.handleMouseOver}
-            onFocus={this.handleMouseOver}
-          >
-            <NavItem
-              activeClassName={styles['nav__link--active']}
-              className={`${styles.nav__link}${sticky ? ` ${styles['nav__link--sticky']}` : ''}`}
-              to="/resume"
-              hoverClassName={styles['nav__link--hover']}
-            >
-              <i
-                className={`material-icons ${styles.nav__icon} ${styles['nav__icon--reorder']}`}
-              />
-              <span className={styles.nav__label}>Resume</span>
-            </NavItem>
-          </li>
+              <NavItem
+                activeClassName={styles['nav__link--active']}
+                className={`${styles.nav__link}${sticky ? ` ${styles['nav__link--sticky']}` : ''}`}
+                to={`/${link.slug}`}
+                hoverClassName={styles['nav__link--hover']}
+              >
+                <i
+                  className={`material-icons ${styles.nav__icon} ${styles[`nav__icon--${link.icon}`]}`}
+                />
+                <span className={styles.nav__label}>{link.slug.toUpperCase()}</span>
+              </NavItem>
+            </li>
+          ))}
           <span
             className={styles.nav__indicator}
             style={{
