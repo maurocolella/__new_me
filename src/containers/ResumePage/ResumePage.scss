@@ -6,6 +6,10 @@
 .toolbox {
   padding-top: 12px;
 
+  &-footer {
+    text-align: right;
+  }
+
   &__tool {
     color: #111;
   }

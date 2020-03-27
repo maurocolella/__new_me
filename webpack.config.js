@@ -92,6 +92,12 @@ module.exports = {
         adapter: sharpLoader,
       },
     }, {
+      test: /\.(pdf)$/i,
+      loader: 'file-loader',
+      options: {
+        name: '[name].[ext]',
+      },
+    }, {
       test: /\.(svg)$/,
       use: [
         {
