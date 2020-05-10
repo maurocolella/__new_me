@@ -5,7 +5,6 @@ import {
   Switch,
 } from 'react-router-dom';
 import debounce from 'lodash/debounce';
-import { withPerf } from '../../lib/PerfContext';
 
 import Loader from '../../components/Loader';
 import Header from '../../components/Header';
@@ -47,11 +46,11 @@ class Dashboard extends Component {
           },
           line_linked: {
             color: '#DEDEDE',
-            opacity: 0.6,
+            opacity: 0.4,
             width: 1,
           },
           move: {
-            speed: 0.5,
+            speed: 2,
           },
         },
         interactivity: {
@@ -114,4 +113,4 @@ class Dashboard extends Component {
   }
 }
 
-export default withPerf(Dashboard);
+export default Dashboard;
