@@ -12,15 +12,14 @@ class AWSSysopsAssociateBadge extends PureComponent {
     const urlHash = btoa(url);
 
     const cookiesAccepted = localStorage ? localStorage.getItem('cookiesAccepted') : false;
-    if (!cookiesAccepted) {
-      return;
+    if (cookiesAccepted) {
+      ReactGA.outboundLink(
+        {
+          label: url,
+        },
+        () => {},
+      );
     }
-    ReactGA.outboundLink(
-      {
-        label: url,
-      },
-      () => {},
-    );
 
     window.open(url, urlHash);
   }
