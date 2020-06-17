@@ -73,6 +73,7 @@ class Dashboard extends Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.handleResize);
+    this.handleResize();
   }
 
   componentWillUnmount() {
