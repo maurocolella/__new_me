@@ -46,6 +46,8 @@ class Footer extends PureComponent {
                   href="https://twitter.com/nvisionmedia"
                   className={styles.footnotes__link}
                   onClick={this.constructor.popup}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <TwitterIcon className={styles.footnotes__icon} />
                 </a>
@@ -55,6 +57,8 @@ class Footer extends PureComponent {
                   href="https://www.linkedin.com/in/mauro-colella-8783042/"
                   className={styles.footnotes__link}
                   onClick={this.constructor.popup}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <LinkedinIcon
                     className={styles.footnotes__icon}
@@ -67,6 +71,8 @@ class Footer extends PureComponent {
                   href="https://www.facebook.com/nvisionweb/"
                   className={styles.footnotes__link}
                   onClick={this.constructor.popup}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <FacebookIcon className={styles.footnotes__icon} />
                 </a>
@@ -118,6 +124,8 @@ class Footer extends PureComponent {
                     href="https://github.com/maurocolella/__new_me"
                     className={styles.footnotes__link}
                     onClick={this.constructor.popup}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     source code
                   </a>
@@ -129,6 +137,8 @@ class Footer extends PureComponent {
                     href="https://maurocolella.github.io/"
                     className={styles.footnotes__link}
                     onClick={this.constructor.popup}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     metrics
                   </a>
@@ -140,6 +150,8 @@ class Footer extends PureComponent {
                     href="https://api.mauro-colella.com"
                     className={styles.footnotes__link}
                     onClick={this.constructor.popup}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     api
                   </a>

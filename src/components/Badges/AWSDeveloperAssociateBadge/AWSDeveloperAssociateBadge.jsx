@@ -30,6 +30,8 @@ class AWSDeveloperAssociateBadge extends PureComponent {
       <a
         href="https://www.certmetrics.com/amazon/public/badge.aspx?i=2&t=c&d=2019-08-16&ci=AWS00594118"
         onClick={this.popup}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         <img
           src={AWSDeveloperAssociateImg}

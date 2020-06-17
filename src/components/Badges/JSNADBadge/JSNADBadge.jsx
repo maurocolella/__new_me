@@ -30,6 +30,8 @@ class JSNADBadge extends PureComponent {
       <a
         href="https://www.youracclaim.com/badges/7a04bd6f-3013-47b9-9cd9-96c8573fc86e/public_url"
         onClick={this.popup}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         <img
           src={JSNADImg}

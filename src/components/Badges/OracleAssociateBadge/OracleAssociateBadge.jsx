@@ -30,6 +30,8 @@ class OracleAssociateBadge extends PureComponent {
       <a
         href="https://www.youracclaim.com/badges/82b8a687-2958-4e07-b34d-9fae29eb9a62/public_url"
         onClick={this.popup}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         <img
           src={OracleAssociateImg}
