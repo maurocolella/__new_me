@@ -8,6 +8,8 @@
   position: absolute;
   text-align: center;
   top: 312px;
+  transition: 1s ease background-color;
+  transform: translate3d(0,0,0);
   width: 100%;
   z-index: 9;
 
@@ -53,6 +55,7 @@
     padding-bottom: 3px;
     text-align: center;
     text-decoration: none;
+    transition: 1s ease color;
     width: 100%;
 
     &--active,
@@ -112,8 +115,6 @@
   }
 
   &--sticky {
-    background-color: #111;
-
     & .nav__indicator {
       background-color: #fff;
     }
