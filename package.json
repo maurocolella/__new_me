@@ -100,7 +100,7 @@
     "history": "^4.10.1",
     "isomorphic-fetch": "^2.2.1",
     "mobile-detect": "^1.4.4",
-    "moment": "^2.25.3",
+    "moment": "^2.29.2",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
