@@ -9,7 +9,7 @@ import debounce from 'lodash/debounce';
 import Loader from '../../components/Loader';
 import Header from '../../components/Header';
 import ResumePage from '../ResumePage';
-import ContentPage from '../ContentPage';
+import StaticPage from '../StaticPage';
 import NotFoundPage from '../NotFoundPage';
 import Footer from '../../components/Footer';
 
@@ -103,7 +103,7 @@ class Dashboard extends Component {
           <Suspense fallback={<Loader />}>
             <Switch>
               <Route exact path="/resume" component={ResumePage} />
-              <Route exact path="/:slug?" component={ContentPage} />
+              <Route exact path="/:slug?" component={StaticPage} />
               <Route component={NotFoundPage} />
             </Switch>
           </Suspense>
