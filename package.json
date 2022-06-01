@@ -78,7 +78,7 @@
     "responsive-loader": "^1.2.0",
     "rimraf": "^3.0.2",
     "sass-loader": "^8.0.2",
-    "sharp": "^0.25.2",
+    "sharp": "^0.30.5",
     "style-loader": "^1.2.1",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^4.1.0",
