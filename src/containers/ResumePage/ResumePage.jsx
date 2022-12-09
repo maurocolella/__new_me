@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import BadgeContainer from '../BadgeContainer';
 import PDFResume from '../../components/PDFResume';
-import resume from '../../components/PDFResume/Mauro Colella_Resume_2020.pdf';
+import resume from '../../components/PDFResume/Mauro_Colella_Resume_2022.pdf';
 
 import globalStyles from '../../assets/styles/page.scss';
 import styles from './ResumePage.scss';
