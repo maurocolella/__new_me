@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import BadgeContainer from '../BadgeContainer';
 import PDFResume from '../../components/PDFResume';
-import resume from '../../components/PDFResume/Mauro_Colella_Resume_2022.pdf';
+import resume from '../../components/PDFResume/Mauro_Colella_Resume_2023.pdf';
 
 import globalStyles from '../../assets/styles/page.scss';
 import styles from './ResumePage.scss';
@@ -20,7 +20,7 @@ class ResumePage extends Component {
     };
   }
 
-  lastModified = () => moment('2020/03/27').format('LL');
+  lastModified = () => moment('2023/02/06').format('LL');
 
   render() {
     const title = 'Resume';
