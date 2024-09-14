@@ -51,7 +51,7 @@ class ResumePage extends Component {
         </header>
         <article className={globalStyles.article}>
           <h5>Achievements</h5>
-          <BadgeContainer />
+          {/* <BadgeContainer /> */}
         </article>
         <article style={{ width: '100%' }}>
           <h5>Outline</h5>
