@@ -50,11 +50,11 @@ class ResumePage extends Component {
           </aside>
         </header>
         <article className={globalStyles.article}>
-          <h5>Achievements</h5>
-          <BadgeContainer />
+          {/* <h5>Achievements</h5>
+          <BadgeContainer /> */}
         </article>
         <article style={{ width: '100%' }}>
-          <h5>Outline</h5>
+          {/* <h5>Outline</h5> */}
           <PDFResume />
           <aside className={`${styles.toolbox} ${styles['toolbox-footer']}`}>
             <a
