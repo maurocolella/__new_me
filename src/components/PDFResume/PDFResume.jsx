@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Document, Page } from 'react-pdf/dist/entry.webpack';
-import resume from './Mauro Colella - Resume 2024.pdf';
+import resume from './Mauro Colella - Resume 2024 v7.pdf';
 
 import Loader from '../Loader';
 import styles from './PDFResume.scss';
